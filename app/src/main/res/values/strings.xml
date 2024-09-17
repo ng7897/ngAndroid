@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ToTheDestination</string>
+    <string name="TextOnLoginButton">התחברות</string>
 </resources>
