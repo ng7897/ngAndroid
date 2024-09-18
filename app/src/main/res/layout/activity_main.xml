@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/teal_700"
-        android:text="הגעת ליעד"
+        android:text="@string/ArrivedToDestination"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="34sp"
@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="29dp"
-        android:text="@string/TextOnLoginButton"
+        android:text="@string/LogIn1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -40,7 +40,7 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="הרשמה"
+        android:text="@string/SignUp1"
         app:layout_constraintTop_toBottomOf="@+id/button"
         tools:layout_editor_absoluteX="161dp" />
 

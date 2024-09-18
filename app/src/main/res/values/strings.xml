@@ -1,4 +1,16 @@
 <resources>
     <string name="app_name">ToTheDestination</string>
-    <string name="TextOnLoginButton">התחברות</string>
+    <string name="ArrivedToDestination">הגעת ליעד</string>
+    <string name="LogIn1">התחברות</string>
+    <string name="SignUp1">הרשמה</string>
+    <string name="Keep">שמירה</string>
+    <string name="SignUp2">הרשמה</string>
+    <string name="LogIn2">התחברות</string>
+    <string name="back1">לחזור לעמוד הראשי</string>
+    <string name="password">סיסמה:</string>
+    <string name="secondPasword">אימות סיסמה:</string>
+    <string name="firstName">שם:</string>
+    <string name="secondName">שם משפחה:</string>
+    <string name="email">מייל:</string>
+
 </resources>
