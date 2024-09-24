@@ -8,6 +8,18 @@
     android:backgroundTint="#AEC6C4"
     tools:context=".MainActivity2">
 
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="184dp"
+        android:layout_height="172dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/button5"
+        app:layout_constraintVertical_bias="0.462"
+        app:srcCompat="@drawable/img_4" />
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
