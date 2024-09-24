@@ -12,5 +12,6 @@
     <string name="firstName">שם:</string>
     <string name="secondName">שם משפחה:</string>
     <string name="email">מייל:</string>
+    <string name="title_activity_search1">search1</string>
 
 </resources>
