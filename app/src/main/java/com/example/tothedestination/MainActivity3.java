@@ -13,7 +13,7 @@ public class MainActivity3 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login);
+        setContentView(R.layout.activity_main3);
 
         Button button5=findViewById(R.id.button7);
         button5.setOnClickListener(new View.OnClickListener() {

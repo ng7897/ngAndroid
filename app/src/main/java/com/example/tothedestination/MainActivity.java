@@ -1,7 +1,5 @@
 package com.example.tothedestination;
 
-import static com.example.tothedestination.R.id.button1;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -14,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.start);
+        setContentView(R.layout.activity_main);
 
         Button button2=findViewById(R.id.button1);
         Button button1=findViewById(R.id.button);

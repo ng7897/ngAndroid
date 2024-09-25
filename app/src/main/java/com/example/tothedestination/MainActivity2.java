@@ -13,7 +13,7 @@ public class MainActivity2 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.signup);
+        setContentView(R.layout.activity_main2);
 
         Button button3=findViewById(R.id.button5);
         Button button4=findViewById(R.id.button4);
