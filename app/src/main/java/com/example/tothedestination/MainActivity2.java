@@ -45,12 +45,21 @@ public class MainActivity2 extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        sp=getSharedPreferences("details1",0);
         String strLastName = sp.getString("key_Lname",null);
         et_firstName= findViewById(R.id.editTextTextPersonName);
+        et_lastName= findViewById(R.id.editTextTextPersonName2);
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(button3==view)
+                {
+                    SharedPreferences.Editor editor = sp.edit();
+                    editor.putString("key_Lname",et_lastName.getText().toString());
+                    editor.commit();
+                }
+            }
+        });
 
-      sp=getSharedPreferences("details1",0);
-      SharedPreferences.Editor editor = sp.edit();
-      editor.putString("key_Lname",et_lastName.getText().toString());
-      editor.commit();
     }
 }
