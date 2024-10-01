@@ -40,7 +40,7 @@ public class MainActivity3 extends AppCompatActivity {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent1 =new Intent(MainActivity3.this,MainActivity2.class);
+                Intent intent1 =new Intent(MainActivity3.this,MainActivity.class);
                 startActivity(intent1);
             }
         });
