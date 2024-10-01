@@ -33,33 +33,20 @@ public class MainActivity2 extends AppCompatActivity {
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =new Intent(MainActivity2.this,MainActivity3.class);
-                startActivity(intent);
+                Intent intent1 =new Intent(MainActivity2.this,MainActivity3.class);
+                startActivity(intent1);
             }
         });
         imageView=findViewById(R.id.imageView);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =new Intent(MainActivity2.this,MainActivity.class);
-                startActivity(intent);
+                Intent intent2 =new Intent(MainActivity2.this,MainActivity.class);
+                startActivity(intent2);
             }
         });
-        sp=getSharedPreferences("details1",0);
-        String strLastName = sp.getString("key_Lname",null);
-        et_firstName= findViewById(R.id.editTextTextPersonName);
-        et_lastName= findViewById(R.id.editTextTextPersonName2);
-        button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(button3==view)
-                {
-                    SharedPreferences.Editor editor = sp.edit();
-                    editor.putString("key_Lname",et_lastName.getText().toString());
-                    editor.commit();
-                }
-            }
-        });
+
+
 
     }
 }

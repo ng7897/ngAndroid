@@ -12,6 +12,7 @@
     <string name="firstName">שם:</string>
     <string name="secondName">שם משפחה:</string>
     <string name="email">מייל:</string>
+    <string name="allName">שם מלא:</string>
 
 
 </resources>
