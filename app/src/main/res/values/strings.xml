@@ -12,6 +12,12 @@
     <string name="secondName">שם משפחה:</string>
     <string name="email">מייל:</string>
     <string name="allName">שם מלא:</string>
+    <string name="choosing">בחירת מאפיינים לטיסה</string>
+    <string name="afterRemoving">אחרי סינון</string>
+    <string name="dataOnProgrammer">פרטי מתכנתת</string>
+    <string name="flightDateBack">תאריך טיסה חזרה:</string>
+    <string name="flightDate">תאריך טיסה הלוך:</string>
+    <string name="howLongFlight">כמות שעות טיסה</string>
 
 
 </resources>
