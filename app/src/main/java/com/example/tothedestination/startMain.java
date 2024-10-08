@@ -2,32 +2,34 @@ package com.example.tothedestination;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
+public class startMain extends AppCompatActivity {
 
-    private Button button1,button;
+    private Button logIn,sighUp;
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.start);
 
-        button1=findViewById(R.id.button1);
-        button=findViewById(R.id.button);
-        button1.setOnClickListener(new View.OnClickListener() {
+        logIn=findViewById(R.id.logIn);
+        sighUp=findViewById(R.id.sighUp);
+        sighUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =new Intent(MainActivity.this,MainActivity2.class);
+                Intent intent =new Intent(startMain.this, sighupMain.class);
                 startActivity(intent);
             }
         });
-        button.setOnClickListener(new View.OnClickListener() {
+        logIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent1=new Intent(MainActivity.this,MainActivity3.class);
+                Intent intent1=new Intent(startMain.this, loginMain.class);
                 startActivity(intent1);
             }
         });

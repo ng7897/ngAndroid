@@ -11,48 +11,48 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-public class MainActivity3 extends AppCompatActivity {
+public class loginMain extends AppCompatActivity {
 
-    private Button button5,button6;
-    private ImageView imageView;
+    private Button backToStart,finalLogIn;
+    private ImageView arrowImage;
     private SharedPreferences sp;
     EditText et_fullName,et_email,et_password;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main3);
+        setContentView(R.layout.login);
 
-        button5=findViewById(R.id.back);
-        button6=findViewById(R.id.button6);
+        backToStart=findViewById(R.id.backToStart);
+        finalLogIn=findViewById(R.id.finalLogIn);
 
         // Return to main activity
-        button5.setOnClickListener(new View.OnClickListener() {
+        backToStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =new Intent(MainActivity3.this,MainActivity.class);
+                Intent intent =new Intent(loginMain.this, startMain.class);
                 startActivity(intent);
             }
         });
 
         // Back to last view
-        imageView=findViewById(R.id.imageView3);
-        imageView.setOnClickListener(new View.OnClickListener() {
+        arrowImage=findViewById(R.id.arrowImage);
+        arrowImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent1 =new Intent(MainActivity3.this,MainActivity.class);
+                Intent intent1 =new Intent(loginMain.this, startMain.class);
                 startActivity(intent1);
             }
         });
 
 
-        //
+        //49-67 לשמור על המידע שמכניסים בshared preferences
         sp=getSharedPreferences("myPref",0);
         et_password= findViewById(R.id.editTextNumberPassword);
         et_email= findViewById(R.id.editTextTextEmailAddress);
 
         // Do Login
-        button6.setOnClickListener(new View.OnClickListener() {
+        finalLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -61,7 +61,7 @@ public class MainActivity3 extends AppCompatActivity {
                     editor.putInt("key_password", Integer.parseInt(et_password.getText().toString()));
                     editor.commit();
 
-                    Intent intent2=new Intent(MainActivity3.this,search1.class);
+                    Intent intent2=new Intent(loginMain.this,search1.class);
                     startActivity(intent2);
             }
         });

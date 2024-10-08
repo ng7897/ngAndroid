@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#ACCAC7"
     android:backgroundTint="#AEC6C4"
-    tools:context=".MainActivity2">
+    tools:context=".sighupMain">
 
     <TextView
         android:id="@+id/textView2"
@@ -148,7 +148,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/finalSighUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/SignUp1"
@@ -190,7 +190,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/backToStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#000000"
@@ -205,7 +205,7 @@
         app:layout_constraintVertical_bias="0.976" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/arrowImage"
         android:layout_width="171dp"
         android:layout_height="75dp"
         app:layout_constraintBottom_toBottomOf="parent"

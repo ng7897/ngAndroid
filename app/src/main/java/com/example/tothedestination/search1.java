@@ -1,7 +1,5 @@
 package com.example.tothedestination;
 
-import static com.example.tothedestination.R.id.textView9;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -48,7 +46,7 @@ public class search1 extends AppCompatActivity {
                 editor.clear();
                 editor.commit();
 
-                Intent intent=new Intent(search1.this,MainActivity.class);
+                Intent intent=new Intent(search1.this, startMain.class);
                 startActivity(intent);
             }
 

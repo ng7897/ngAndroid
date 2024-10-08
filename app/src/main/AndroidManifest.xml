@@ -18,13 +18,13 @@
             android:name=".search1"
             android:exported="false" />
         <activity
-            android:name=".MainActivity3"
+            android:name=".loginMain"
             android:exported="false" />
         <activity
-            android:name=".MainActivity2"
+            android:name=".sighupMain"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".startMain"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
