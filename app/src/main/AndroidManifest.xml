@@ -12,13 +12,13 @@
         android:theme="@style/Theme.ToTheDestination"
         tools:targetApi="31">
         <activity
-            android:name=".information"
+            android:name=".informationMain"
             android:exported="false" />
         <activity
-            android:name=".after_delete"
+            android:name=".after_deleteMain"
             android:exported="false" />
         <activity
-            android:name=".search1"
+            android:name=".search1Main"
             android:exported="false" />
         <activity
             android:name=".loginMain"

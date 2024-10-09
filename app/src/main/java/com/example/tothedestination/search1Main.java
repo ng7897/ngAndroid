@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class search1 extends AppCompatActivity {
+public class search1Main extends AppCompatActivity {
 
     private TextView tvEmail,tvFname,tvpassword;
     private Button button2;
@@ -46,10 +46,11 @@ public class search1 extends AppCompatActivity {
                 editor.clear();
                 editor.commit();
 
-                Intent intent=new Intent(search1.this, startMain.class);
+                Intent intent=new Intent(search1Main.this, startMain.class);
                 startActivity(intent);
             }
 
         });
+        return false;
     }
 }

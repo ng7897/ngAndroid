@@ -37,7 +37,7 @@ public class sighupMain extends AppCompatActivity {
         finalSighUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =new Intent(sighupMain.this, search1.class);
+                Intent intent =new Intent(sighupMain.this, search1Main.class);
                 startActivity(intent);
             }
         });
@@ -52,6 +52,6 @@ public class sighupMain extends AppCompatActivity {
         });
 
 
-
+        return false;
     }
 }

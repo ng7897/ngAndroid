@@ -61,9 +61,10 @@ public class loginMain extends AppCompatActivity {
                     editor.putInt("key_password", Integer.parseInt(et_password.getText().toString()));
                     editor.commit();
 
-                    Intent intent2=new Intent(loginMain.this,search1.class);
+                    Intent intent2=new Intent(loginMain.this, search1Main.class);
                     startActivity(intent2);
             }
         });
+        return false;
     }
 }
