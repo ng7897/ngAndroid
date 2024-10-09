@@ -20,7 +20,7 @@ public class search1 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main4);
+        setContentView(R.layout.search1);
 
         tvEmail=findViewById(R.id.textView8);
         tvFname=findViewById(R.id.textView9);
