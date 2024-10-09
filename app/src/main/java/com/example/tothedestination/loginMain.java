@@ -6,10 +6,12 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class loginMain extends AppCompatActivity {
 
@@ -45,7 +47,6 @@ public class loginMain extends AppCompatActivity {
             }
         });
 
-
         //49-67 לשמור על המידע שמכניסים בshared preferences
         sp=getSharedPreferences("myPref",0);
         et_password= findViewById(R.id.editTextNumberPassword);
@@ -56,14 +57,31 @@ public class loginMain extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                    SharedPreferences.Editor editor = sp.edit();
-                    editor.putString("key_email",et_email.getText().toString());
-                    editor.putInt("key_password", Integer.parseInt(et_password.getText().toString()));
-                    editor.commit();
 
-                    Intent intent2=new Intent(loginMain.this, search1Main.class);
-                    startActivity(intent2);
+
+
+                    if(TextUtils.isEmpty(et_email.getText().toString()))
+                    {
+                        Toast.makeText(loginMain.this,"no empty field allowed", Toast.LENGTH_SHORT).show();
+                    }
+                    else if(TextUtils.isEmpty(et_password.getText().toString()))
+                    {
+                         Toast.makeText(loginMain.this,"no empty field allowed", Toast.LENGTH_SHORT).show();
+                    }
+
+                    else
+                    {
+
+                        SharedPreferences.Editor editor = sp.edit();
+                        editor.putString("key_email",et_email.getText().toString());
+                        editor.putString("key_password", et_password.getText().toString());
+                        editor.commit();
+
+                        Intent intent2=new Intent(loginMain.this, search1Main.class);
+                        startActivity(intent2);
+                    }
             }
         });
+
     }
 }
