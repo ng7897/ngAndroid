@@ -50,8 +50,5 @@ public class sighupMain extends AppCompatActivity {
                 startActivity(intent2);
             }
         });
-
-
-        return false;
     }
 }

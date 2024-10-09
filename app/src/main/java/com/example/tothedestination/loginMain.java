@@ -65,6 +65,5 @@ public class loginMain extends AppCompatActivity {
                     startActivity(intent2);
             }
         });
-        return false;
     }
 }

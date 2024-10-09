@@ -6,8 +6,10 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class startMain extends AppCompatActivity {
 
@@ -17,16 +19,6 @@ public class startMain extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.start);
-
-        public boolean onCreateOptionsMenu(Menu menu){
-            getMenuInflater().inflate(R.menu.main_menu, menu);
-            return true;
-        }
-        public boolean onOptionsItemSelected(MenuItem item)
-        {
-
-
-        }
 
         logIn=findViewById(R.id.logIn);
         sighUp=findViewById(R.id.sighUp);
@@ -44,8 +36,30 @@ public class startMain extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
-
-
-
+    }
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.options, menu);
+        return true;
+    }
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        super.onOptionsItemSelected(item);
+        int id=item.getItemId();
+        if(id==R.id.action_login)
+        {
+            Toast.makeText(this,"you selected login", Toast.LENGTH_SHORT).show();
+            Intent intent1=new Intent(startMain.this, loginMain.class);
+            startActivity(intent1);
+        }
+        else if(id==R.id.action_setting)
+        {
+            Toast.makeText(this,"you selected setting", Toast.LENGTH_SHORT).show();
+        }
+        else if(id==R.id.action_exit)
+        {
+            Toast.makeText(this,"you selected exit", Toast.LENGTH_SHORT).show();
+        }
+        return true;
     }
 }

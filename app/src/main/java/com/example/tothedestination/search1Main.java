@@ -51,6 +51,5 @@ public class search1Main extends AppCompatActivity {
             }
 
         });
-        return false;
     }
 }
