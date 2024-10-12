@@ -24,7 +24,7 @@
             android:name=".loginMain"
             android:exported="false" />
         <activity
-            android:name=".sighupMain"
+            android:name=".signUpMain"
             android:exported="false" />
         <activity
             android:name=".startMain"

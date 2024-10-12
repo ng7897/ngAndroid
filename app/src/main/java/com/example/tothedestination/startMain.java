@@ -25,7 +25,7 @@ public class startMain extends AppCompatActivity {
         sighUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =new Intent(startMain.this, sighupMain.class);
+                Intent intent =new Intent(startMain.this, signUpMain.class);
                 startActivity(intent);
             }
         });

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#ABC6C4"
     android:backgroundTint="#AEC6C4"
-    tools:context=".sighupMain">
+    tools:context=".signUpMain">
 
     <TextView
         android:id="@+id/sighUpBig"
@@ -157,7 +157,7 @@
         app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.762" />
+        app:layout_constraintVertical_bias="0.765" />
 
     <TextView
         android:id="@+id/nameText2"

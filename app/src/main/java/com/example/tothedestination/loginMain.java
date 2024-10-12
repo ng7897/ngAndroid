@@ -52,13 +52,10 @@ public class loginMain extends AppCompatActivity {
         et_password= findViewById(R.id.editTextNumberPassword);
         et_email= findViewById(R.id.editTextTextEmailAddress);
 
-        // Do Login
+        // Do Login אם לא מכניסים סיסמה או מייל רושם הודעה
         finalLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-
 
                     if(TextUtils.isEmpty(et_email.getText().toString()))
                     {
@@ -71,7 +68,6 @@ public class loginMain extends AppCompatActivity {
 
                     else
                     {
-
                         SharedPreferences.Editor editor = sp.edit();
                         editor.putString("key_email",et_email.getText().toString());
                         editor.putString("key_password", et_password.getText().toString());
