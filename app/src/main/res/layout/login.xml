@@ -12,15 +12,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
+        android:fontFamily="@font/alexandria_bold"
         android:text="@string/email"
         android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.854"
+        app:layout_constraintHorizontal_bias="0.85"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.371" />
+        app:layout_constraintVertical_bias="0.351" />
 
     <ImageView
         android:id="@+id/arrowImage"
@@ -70,6 +71,7 @@
         android:layout_height="wrap_content"
         android:text="@string/password"
         android:textColor="#000000"
+        android:fontFamily="@font/alexandria_bold"
         android:textColorHighlight="#000000"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -98,6 +100,7 @@
         android:id="@+id/finalLogIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/alexandria_bold"
         android:background="#97B1AF"
         android:text="@string/LogIn2"
         app:layout_constraintBottom_toBottomOf="parent"

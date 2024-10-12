@@ -18,7 +18,7 @@ public class loginMain extends AppCompatActivity {
     private Button backToStart,finalLogIn;
     private ImageView arrowImage;
     private SharedPreferences sp;
-    EditText et_fullName,et_email,et_password;
+    EditText et_email,et_password;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {

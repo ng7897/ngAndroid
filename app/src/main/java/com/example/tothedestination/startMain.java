@@ -13,30 +13,32 @@ import android.widget.Toast;
 
 public class startMain extends AppCompatActivity {
 
-    private Button logIn,sighUp;
+    private Button logIn, signUp;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.start);
 
-        logIn=findViewById(R.id.logIn);
-        sighUp=findViewById(R.id.sighUp);
-        sighUp.setOnClickListener(new View.OnClickListener() {
+        logIn = findViewById(R.id.logIn);
+        signUp = findViewById(R.id.signUp);
+        signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =new Intent(startMain.this, signUpMain.class);
+                Intent intent = new Intent(startMain.this, signUpMain.class);
                 startActivity(intent);
             }
         });
         logIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent1=new Intent(startMain.this, loginMain.class);
+                Intent intent1 = new Intent(startMain.this, loginMain.class);
                 startActivity(intent1);
             }
         });
     }
+
     public boolean onCreateOptionsMenu(Menu menu)
     {
         getMenuInflater().inflate(R.menu.options, menu);
