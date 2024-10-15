@@ -66,21 +66,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.214" />
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="192dp"
-        android:layout_height="401dp"
-        android:rotation="-15"
-        android:rotationX="0"
-        android:rotationY="0"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.871"
-        app:srcCompat="@drawable/img_6" />
-
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="330dp"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="false"
+        app:lottie_rawRes="@raw/lottie"
+        tools:layout_editor_absoluteX="11dp"
+        tools:ignore="MissingClass,MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
