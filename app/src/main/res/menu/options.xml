@@ -7,6 +7,21 @@
         android:orderInCategory="100"
     />
     <item
+        android:id="@+id/About_programmer"
+        android:title="information About the programmer"
+        android:orderInCategory="100"
+        />
+    <item
+        android:id="@+id/about_app"
+        android:title="information About the app"
+        android:orderInCategory="100"
+        />
+    <item
+        android:id="@+id/fac_flights"
+        android:title="Favorite Flights"
+        android:orderInCategory="100"
+        />
+    <item
         android:id="@+id/action_setting"
         android:title="setting"
         android:orderInCategory="200"
