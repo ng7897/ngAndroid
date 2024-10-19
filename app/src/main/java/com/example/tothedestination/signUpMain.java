@@ -1,7 +1,5 @@
 package com.example.tothedestination;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,11 +11,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class signUpMain extends AppCompatActivity {
     private Button backToStart,finalSighUp;
     private ImageView arrowImage;
     private SharedPreferences sp1;
-    EditText et_firstName,et_email,et_lastName,et_password,et_passwordAgain;
+    private EditText et_firstName,et_email,et_lastName,et_password,et_passwordAgain;
     @SuppressLint({"MissingInflatedId", "WrongViewCast"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +47,7 @@ public class signUpMain extends AppCompatActivity {
         sp1=getSharedPreferences("myPref",0);
         et_password= findViewById(R.id.editTextNumberPassword);
         et_email= findViewById(R.id.editTextTextEmailAddress);
-        et_firstName= findViewById(R.id.editTextTextPersonName);
+        //et_firstName= findViewById(R.id.editTextTextPersonName);
         et_lastName= findViewById(R.id.editTextTextPersonName2);
         et_passwordAgain= findViewById(R.id.editTextNumberPassword2);
 

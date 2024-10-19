@@ -14,9 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.airbnb.lottie.LottieAnimationView;
 
-
-
-
 public class startMain extends AppCompatActivity {
 
     private Button logIn, signUp;
