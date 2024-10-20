@@ -11,10 +11,15 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.airbnb.lottie.LottieAnimationView;
+
+
 public class finalstartMain extends AppCompatActivity {
 
 
     private Button logIn, signUp;
+    LottieAnimationView lottie2;
+
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -24,6 +29,7 @@ public class finalstartMain extends AppCompatActivity {
 
         logIn = findViewById(R.id.logIn);
         signUp = findViewById(R.id.signUp);
+        lottie2 = findViewById(R.id.lottie2);
 
 
 
