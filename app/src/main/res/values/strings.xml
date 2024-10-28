@@ -18,6 +18,7 @@
     <string name="flightDateBack">תאריך טיסה חזרה:</string>
     <string name="flightDate">תאריך טיסה הלוך:</string>
     <string name="howLongFlight">כמות שעות טיסה</string>
+    <string name="flySmart">לנפוש חכם</string>
 
 
 </resources>
