@@ -53,6 +53,6 @@ public class custom_layoutMain extends AppCompatActivity {
 
         flyAdapter=new FlyAdapter(this,0,0,flyList);
         lv=(ListView) findViewById(R.id.lv);
-        lv.setAdapter((ListAdapter) flyAdapter);
+        lv.setAdapter((ListAdapter) flyAdapter);/
     }
 }
