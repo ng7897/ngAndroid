@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".custom_layoutMain">
@@ -11,57 +11,46 @@
 
     <ImageView
         android:id="@+id/ivProduct"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-         />
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tvCountry"
-            android:textSize="20dp"
-            android:text="Country"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="10dp"
-            android:textColor="#0e82f5"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tvAttraction"
-            android:textSize="20dp"
-            android:text="Attraction"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="10dp"
-            android:textColor="#F44336"
-            />
-
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvHoursFlight"
-        android:textSize="20dp"
-        android:text="Hours flight"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="10dp"
-        android:textColor="#4CAF50"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         />
+
+
     <TextView
+        android:id="@+id/tvCountry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="example"/>
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/lv">
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
+        android:text="Country"
+        android:textColor="#0e82f5"
+        android:textSize="20dp"
+        app:layout_constraintStart_toEndOf="@+id/ivProduct"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    </ListView>
+    <TextView
+        android:id="@+id/tvAttraction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
+        android:text="Attraction"
+        android:textColor="#F44336"
+        android:textSize="20dp"
+        app:layout_constraintStart_toEndOf="@+id/ivProduct"
+        app:layout_constraintTop_toBottomOf="@+id/tvHoursFlight" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/tvHoursFlight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
+        android:text="Hours flight"
+        android:textColor="#4CAF50"
+        android:textSize="20dp"
+        app:layout_constraintStart_toEndOf="@+id/ivProduct"
+        app:layout_constraintTop_toBottomOf="@+id/tvCountry" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,12 +14,13 @@ import com.example.tothedestination.R;
 
 import java.util.List;
 
-public class FlyAdapter {
+public class FlyAdapter extends ArrayAdapter<Fly> {
 
     Context context;
     List<Fly> objects;
 
     public FlyAdapter(Context context, int resource, int textViewResourceld, List<Fly> objects) {
+        super(context,resource,textViewResourceld,objects);
         this.context = context;
         this.objects = objects;
     }

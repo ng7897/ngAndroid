@@ -73,7 +73,7 @@ public class loginMain extends AppCompatActivity {
                         editor.putString("key_password", et_password.getText().toString());
                         editor.commit();
 
-                        Intent intent2=new Intent(loginMain.this, search1Main.class);
+                        Intent intent2=new Intent(loginMain.this, FlyListMain.class);
                         startActivity(intent2);
                     }
             }
