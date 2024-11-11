@@ -19,6 +19,14 @@
     <string name="flightDate">תאריך טיסה הלוך:</string>
     <string name="howLongFlight">כמות שעות טיסה</string>
     <string name="flySmart">לנפוש חכם</string>
+    <string-array name="Spinner_items">
+        <item>Spinner Item One</item>
+        <item>Spinner Item Two</item>
+        <item>Spinner Item Three</item>
+        <item>Spinner Item Four</item>
+        <item>Spinner Item Five</item>
+
+    </string-array>
 
 
 </resources>

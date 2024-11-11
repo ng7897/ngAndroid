@@ -3,7 +3,11 @@ package com.example.tothedestination;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +17,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
 
-public class FlyListMain extends AppCompatActivity {
+public class FlyListMain extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     ArrayList<Fly> flyList;
     ListView lv;
@@ -23,6 +27,8 @@ public class FlyListMain extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fly_list);
+        Spinner aSpinner=findViewById(R.id.aSpinner);
+        aSpinner.setOnItemSelectedListener(this);
 
         Bitmap country0= BitmapFactory.decodeResource(getResources(),R.drawable.country0);
         Bitmap country1= BitmapFactory.decodeResource(getResources(),R.drawable.country1);
@@ -52,6 +58,16 @@ public class FlyListMain extends AppCompatActivity {
         flyAdapter=new FlyAdapter(this,0,0,flyList);
         lv=(ListView) findViewById(R.id.lv);
         lv.setAdapter(flyAdapter);
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        Toast.makeText(this, adapterView.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
 }

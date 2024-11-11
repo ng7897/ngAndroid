@@ -8,17 +8,25 @@
     android:layout_height="match_parent"
     tools:context=".FlyListMain">
 
-<Spinner
-    android:id="@+id/aSpinner"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_margin="20dp"
-    tools:ignore="MissingConstraints"/>
+    <Spinner
+        android:id="@+id/aSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:entries="@array/Spinner_items"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <ListView
+        android:id="@+id/lv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/lv">
+        android:layout_marginTop="52dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
     </ListView>
