@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "981254635051",
+    "project_id": "flight-c18f5",
+    "storage_bucket": "flight-c18f5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:981254635051:android:3a88eda28075567c69b46e",
+        "android_client_info": {
+          "package_name": "com.example.tothedestination"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZNTATTo97nmrFVNWx4ux4Eb6fdWRzoKs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
