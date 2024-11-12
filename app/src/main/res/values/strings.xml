@@ -9,6 +9,7 @@
     <string name="password">סיסמה:</string>
     <string name="secondPasword">אימות סיסמה:</string>
     <string name="firstName">שם:</string>
+    <string name="beCareful">אזהרת מסע:</string>
     <string name="secondName">שם משפחה:</string>
     <string name="email">מייל:</string>
     <string name="allName">שם מלא:</string>
@@ -19,13 +20,50 @@
     <string name="flightDate">תאריך טיסה הלוך:</string>
     <string name="howLongFlight">כמות שעות טיסה</string>
     <string name="flySmart">לנפוש חכם</string>
-    <string-array name="Spinner_items">
+    <string-array name="Spinner_items1">
         <item>Spinner Item One</item>
         <item>Spinner Item Two</item>
         <item>Spinner Item Three</item>
         <item>Spinner Item Four</item>
         <item>Spinner Item Five</item>
-
+    </string-array>
+    <string-array name="Spinner_AgeOfChildren">
+        <item>Not Important</item>
+        <item>0-3</item>
+        <item>4-8</item>
+        <item>9-12</item>
+        <item>13-17</item>
+        <item>Spinner Item Five</item>
+    </string-array>
+    <string-array name="Spinner_HoursFlight">
+        <item>not important</item>
+        <item>1-2</item>
+        <item>3-4</item>
+        <item>5-6</item>
+        <item>7-8</item>
+        <item>9-10</item>
+        <item>11-12</item>
+        <item>13-14</item>
+        <item>15-16</item>
+        <item>17-18</item>
+        <item>19-20</item>
+        <item>21-22</item>
+        <item>23-24</item>
+    </string-array>
+    <string-array name="Spinner_attraction">
+        <item>Not Important</item>
+        <item>Hiking</item>
+        <item>Beach</item>
+        <item>Landscape</item>
+    </string-array>
+    <string-array name="Spinner_HowMuchChildren">
+        <item>Not Important</item>
+        <item>0</item>
+        <item>1-2</item>
+        <item>3-4</item>
+        <item>5-6</item>
+        <item>7-8</item>
+        <item>9-10</item>
     </string-array>
 
 

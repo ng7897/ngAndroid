@@ -7,14 +7,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class search1Main extends AppCompatActivity {
+public class search1Main extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
-    private TextView tvEmail,tvFname,tvpassword;
-    private Button button2;
-    private SharedPreferences sp;
+
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -22,34 +23,33 @@ public class search1Main extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search1);
 
-        tvEmail=findViewById(R.id.textView8);
-        tvFname=findViewById(R.id.textView9);
-        tvpassword=findViewById(R.id.textView11);
-        button2=findViewById(R.id.button2);
+        Spinner aSpinner1=findViewById(R.id.aSpinner1);
+        aSpinner1.setOnItemSelectedListener(this);
+        Spinner aSpinner2=findViewById(R.id.aSpinner2);
+        aSpinner2.setOnItemSelectedListener(this);
+        Spinner aSpinner3=findViewById(R.id.aSpinner3);
+        aSpinner3.setOnItemSelectedListener(this);
+        Spinner aSpinner4=findViewById(R.id.aSpinner4);
+        aSpinner4.setOnItemSelectedListener(this);
 
-        sp=getSharedPreferences("details1",0);
-        String email=sp.getString("email",null);
-        String Fname=sp.getString("full name",null);
-        int iPassword=sp.getInt("password",0);
-
-        if(email!=null && Fname !=null && iPassword!=0)
-        {
-            tvEmail.setText("email id:" + email);
-            tvFname.setText("name is:" + Fname);
-            tvpassword.setText("password is:" + iPassword);
-        }
-        button2.setOnClickListener(new View.OnClickListener() {
+        Button b=findViewById(R.id.button);
+        b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                SharedPreferences.Editor editor = sp.edit();
-                editor.clear();
-                editor.commit();
-
-                Intent intent=new Intent(search1Main.this, startMain.class);
-                startActivity(intent);
+                Intent intent2=new Intent(search1Main.this, FlyListMain.class);
+                startActivity(intent2);
             }
-
         });
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        Toast.makeText(this, adapterView.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 }
