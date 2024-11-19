@@ -15,13 +15,19 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import java.util.ArrayList;
+import com.google.firebase.Firebase;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-public class FlyListMain extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+import java.util.ArrayList;
+import java.util.Random;
+
+public class    FlyListMain extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     ArrayList<Fly> flyList;
     ListView lv;
     FlyAdapter flyAdapter;
+    Random random = new Random();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +35,20 @@ public class FlyListMain extends AppCompatActivity implements AdapterView.OnItem
         setContentView(R.layout.fly_list);
         Spinner aSpinner=findViewById(R.id.aSpinner);
         aSpinner.setOnItemSelectedListener(this);
+
+        FirebaseDatabase database=FirebaseDatabase.getInstance();
+        DatabaseReference flyRef=database.getReference("flyList");
+
+        flyList = new ArrayList<Fly>();
+
+        for(int i=0;i<7;i++)
+        {
+            int randomNumber = random.nextInt(24) + 1;
+            Fly fly1=new Fly(randomNumber,"hiking","french");
+            flyList.add(fly1);
+            DatabaseReference newFlyRef= flyRef.push();
+            newFlyRef.setValue(fly1);
+        }
 
         Bitmap country0= BitmapFactory.decodeResource(getResources(),R.drawable.country0);
         Bitmap country1= BitmapFactory.decodeResource(getResources(),R.drawable.country1);

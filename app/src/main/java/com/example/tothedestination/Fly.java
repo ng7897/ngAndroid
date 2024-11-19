@@ -17,6 +17,19 @@ public class Fly {
         this.bitmap=bitmap;
     }
 
+    public Fly(int hoursFlight, String attraction, String country)
+    {
+        this.hoursFlight=hoursFlight;
+        this.attraction=attraction;
+        this.country=country;
+        this.bitmap=null;
+    }
+
+    public Fly()
+    {
+
+    }
+
     public int getHoursFlight() {
         return hoursFlight;
     }

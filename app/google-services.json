@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "981254635051",
+    "firebase_url": "https://flight-c18f5-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "flight-c18f5",
     "storage_bucket": "flight-c18f5.firebasestorage.app"
   },
