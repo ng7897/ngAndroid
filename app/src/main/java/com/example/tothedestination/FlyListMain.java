@@ -1,8 +1,11 @@
 package com.example.tothedestination;
 
+import static android.content.ContentValues.TAG;
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -16,8 +19,11 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.Firebase;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -35,22 +41,36 @@ public class    FlyListMain extends AppCompatActivity implements AdapterView.OnI
         setContentView(R.layout.fly_list);
         Spinner aSpinner=findViewById(R.id.aSpinner);
         aSpinner.setOnItemSelectedListener(this);
-
+        flyList = new ArrayList<Fly>();
         FirebaseDatabase database=FirebaseDatabase.getInstance();
         DatabaseReference flyRef=database.getReference("flyList");
 
-        flyList = new ArrayList<Fly>();
+        flyRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
-        for(int i=0;i<7;i++)
-        {
-            int randomNumber = random.nextInt(24) + 1;
-            Fly fly1=new Fly(randomNumber,"hiking","french");
-            flyList.add(fly1);
-            DatabaseReference newFlyRef= flyRef.push();
-            newFlyRef.setValue(fly1);
-        }
+                flyList.clear();
+                for (DataSnapshot flySnapshot : dataSnapshot.getChildren()) {
+                    flyList.add(flySnapshot.getValue(Fly.class));
+                    flyAdapter.notifyDataSetChanged();
+                }
+            }
 
-        Bitmap country0= BitmapFactory.decodeResource(getResources(),R.drawable.country0);
+            @Override
+            public void onCancelled(DatabaseError error) {
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
+//        for(int i=0;i<7;i++)
+//        {
+//            int randomNumber = random.nextInt(24) + 1;
+//            Fly fly1=new Fly(randomNumber,"hiking","french");
+//            flyList.add(fly1);
+//            DatabaseReference newFlyRef= flyRef.push();
+//            newFlyRef.setValue(fly1);
+//        }
+
+       /* Bitmap country0= BitmapFactory.decodeResource(getResources(),R.drawable.country0);
         Bitmap country1= BitmapFactory.decodeResource(getResources(),R.drawable.country1);
         Bitmap country2= BitmapFactory.decodeResource(getResources(),R.drawable.country2);
         Bitmap country3= BitmapFactory.decodeResource(getResources(),R.drawable.country3);
@@ -73,7 +93,7 @@ public class    FlyListMain extends AppCompatActivity implements AdapterView.OnI
         flyList.add(f4);
         flyList.add(f5);
         flyList.add(f6);
-        flyList.add(f7);
+        flyList.add(f7);*/
 
         flyAdapter=new FlyAdapter(this,0,0,flyList);
         lv=(ListView) findViewById(R.id.lv);
