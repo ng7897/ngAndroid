@@ -36,6 +36,11 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                // נשמור את נתוני החיפוש
+
+
+
                 Intent intent2=new Intent(search1Main.this, FlyListMain.class);
                 startActivity(intent2);
             }

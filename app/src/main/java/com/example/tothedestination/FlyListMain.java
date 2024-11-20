@@ -23,9 +23,11 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Dictionary;
 import java.util.Random;
 
 public class    FlyListMain extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -42,15 +44,35 @@ public class    FlyListMain extends AppCompatActivity implements AdapterView.OnI
         Spinner aSpinner=findViewById(R.id.aSpinner);
         aSpinner.setOnItemSelectedListener(this);
         flyList = new ArrayList<Fly>();
+
+        // אפשרות לייצור מילון בין שם מדינה לבין שם קובץ
+
+        // נקבל את נתוני החיפוש מהמסך הקודם
+
+
+        // עונה , סוג אטרקציות, טווח גילאים (תינוק, ילד, נוער) , כמות שעות טיסה
+
+
         FirebaseDatabase database=FirebaseDatabase.getInstance();
         DatabaseReference flyRef=database.getReference("flyList");
 
-        flyRef.addValueEventListener(new ValueEventListener() {
+        // בונה "מנוע" לוגי שלפי המאפיינים משנה את הסינונים
+
+
+
+        Query query = flyRef.orderByChild("country").equalTo("France");
+
+        query = query.orderByChild("hours").equalTo("France");
+
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
                 flyList.clear();
                 for (DataSnapshot flySnapshot : dataSnapshot.getChildren()) {
+
+
+
+
                     flyList.add(flySnapshot.getValue(Fly.class));
                     flyAdapter.notifyDataSetChanged();
                 }
@@ -61,14 +83,15 @@ public class    FlyListMain extends AppCompatActivity implements AdapterView.OnI
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
-//        for(int i=0;i<7;i++)
-//        {
-//            int randomNumber = random.nextInt(24) + 1;
-//            Fly fly1=new Fly(randomNumber,"hiking","french");
-//            flyList.add(fly1);
-//            DatabaseReference newFlyRef= flyRef.push();
-//            newFlyRef.setValue(fly1);
-//        }
+
+      /* for(int i=0;i<7;i++)
+        {
+           int randomNumber = random.nextInt(24) + 1;
+           Fly fly1=new Fly(randomNumber,"hiking","french");
+            flyList.add(fly1);
+            DatabaseReference newFlyRef= flyRef.push();
+            newFlyRef.setValue(fly1);
+        }*/
 
        /* Bitmap country0= BitmapFactory.decodeResource(getResources(),R.drawable.country0);
         Bitmap country1= BitmapFactory.decodeResource(getResources(),R.drawable.country1);

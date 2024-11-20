@@ -37,18 +37,18 @@
     </string-array>
     <string-array name="Spinner_HoursFlight">
         <item>not important</item>
-        <item>1-2</item>
-        <item>3-4</item>
-        <item>5-6</item>
-        <item>7-8</item>
-        <item>9-10</item>
-        <item>11-12</item>
-        <item>13-14</item>
-        <item>15-16</item>
-        <item>17-18</item>
-        <item>19-20</item>
-        <item>21-22</item>
-        <item>23-24</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
     </string-array>
     <string-array name="Spinner_attraction">
         <item>Not Important</item>
