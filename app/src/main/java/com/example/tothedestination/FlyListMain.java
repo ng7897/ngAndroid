@@ -2,6 +2,7 @@ package com.example.tothedestination;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -36,6 +37,7 @@ public class    FlyListMain extends AppCompatActivity implements AdapterView.OnI
     ListView lv;
     FlyAdapter flyAdapter;
     Random random = new Random();
+    private SharedPreferences sp1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +53,7 @@ public class    FlyListMain extends AppCompatActivity implements AdapterView.OnI
 
 
         // עונה , סוג אטרקציות, טווח גילאים (תינוק, ילד, נוער) , כמות שעות טיסה
-
+        //מדינה אני לא צריכה להשוות לשמהו בעמוד הקודם משום שהמשתמש בוחר אותה בסופו של דבר
 
         FirebaseDatabase database=FirebaseDatabase.getInstance();
         DatabaseReference flyRef=database.getReference("flyList");
@@ -60,20 +62,22 @@ public class    FlyListMain extends AppCompatActivity implements AdapterView.OnI
 
 
 
-        Query query = flyRef.orderByChild("country").equalTo("France");
+        //Query query = flyRef.orderByChild("country").equalTo("Belgium");
 
-        query = query.orderByChild("hours").equalTo("France");
-
-        query.addValueEventListener(new ValueEventListener() {
+        flyRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 flyList.clear();
                 for (DataSnapshot flySnapshot : dataSnapshot.getChildren()) {
-
-
-
-
-                    flyList.add(flySnapshot.getValue(Fly.class));
+                    // Rule base ML הרבה תנאים
+                    Fly currentFlight = flySnapshot.getValue(Fly.class);
+                    if ("Belgium".equals(currentFlight.getCountry())) {
+                        if (currentFlight.getHoursFlight() == 7) {
+                            if ("Chocolate".equals(currentFlight.getAttraction())) {
+                                flyList.add(currentFlight);
+                            }
+                        }
+                    }
                     flyAdapter.notifyDataSetChanged();
                 }
             }
