@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-public class loginMain extends AppCompatActivity {
+public class    loginMain extends AppCompatActivity {
 
     private Button backToStart,finalLogIn;
     private ImageView arrowImage;

@@ -55,7 +55,6 @@ public class signUpMain extends AppCompatActivity {
          finalSighUp.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View view) {
-
                          if(TextUtils.isEmpty(et_email.getText().toString()))
                          {
                              Toast.makeText(signUpMain.this,"no empty field allowed", Toast.LENGTH_SHORT).show();

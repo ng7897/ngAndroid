@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 public class search1Main extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
-
+    private SharedPreferences sp1;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -33,13 +33,27 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
         aSpinner4.setOnItemSelectedListener(this);
 
         Button b=findViewById(R.id.button);
+        sp1=getSharedPreferences("myPref",0);
+
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 // נשמור את נתוני החיפוש
+                if (aSpinner1.getSelectedItem() == null ||
+                        aSpinner2.getSelectedItem() == null ||
+                        aSpinner3.getSelectedItem() == null ||
+                        aSpinner4.getSelectedItem() == null) {
+                    Toast.makeText(search1Main.this, "Please select all options", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
-
+                SharedPreferences.Editor editor = sp1.edit();
+                editor.putString("key_ageOfChildren",aSpinner1.getSelectedItem().toString());
+                editor.putString("key_hoursFlight", aSpinner2.getSelectedItem().toString());
+                editor.putString("key_attraction", aSpinner3.getSelectedItem().toString());
+                editor.putString("key_wather", aSpinner4.getSelectedItem().toString());
+                editor.commit();
 
                 Intent intent2=new Intent(search1Main.this, FlyListMain.class);
                 startActivity(intent2);
