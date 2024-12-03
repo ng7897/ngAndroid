@@ -31,6 +31,8 @@ public class FlyAdapter extends ArrayAdapter<Fly> {
         TextView tvHoursFly = (TextView) view.findViewById(R.id.tvHoursFlight);
         TextView tvCountry = (TextView) view.findViewById(R.id.tvCountry);
         TextView tvAttraction = (TextView) view.findViewById(R.id.tvAttraction);
+        TextView tvAgeOfChild = (TextView) view.findViewById(R.id.tvAgeOfChild);
+        TextView tvSeason = (TextView) view.findViewById(R.id.tvSeason);
         ImageView ivProduct = (ImageView) view.findViewById(R.id.ivProduct);
 
         Fly temp = objects.get(position);
@@ -38,6 +40,8 @@ public class FlyAdapter extends ArrayAdapter<Fly> {
         tvHoursFly.setText(String.valueOf(temp.getHoursFlight()));
         tvCountry.setText(temp.getCountry());
         tvAttraction.setText(temp.getAttraction());
+        tvAgeOfChild.setText(temp.getAgeOfChild());
+        tvSeason.setText(temp.getSeason());
         return view;
     }
 }

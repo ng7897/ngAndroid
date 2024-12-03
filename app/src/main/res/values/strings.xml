@@ -20,20 +20,12 @@
     <string name="flightDate">תאריך טיסה הלוך:</string>
     <string name="howLongFlight">כמות שעות טיסה</string>
     <string name="flySmart">לנפוש חכם</string>
-    <string-array name="Spinner_items1">
-        <item>Spinner Item One</item>
-        <item>Spinner Item Two</item>
-        <item>Spinner Item Three</item>
-        <item>Spinner Item Four</item>
-        <item>Spinner Item Five</item>
-    </string-array>
     <string-array name="Spinner_AgeOfChildren">
         <item>Not Important</item>
         <item>Baby</item>
         <item>Child</item>
         <item>Teen</item>
         <item>Adult</item>
-        <item>Spinner Item Five</item>
     </string-array>
     <string-array name="Spinner_HoursFlight">
         <item>not important</item>
@@ -56,15 +48,12 @@
         <item>Beach</item>
         <item>Landscape</item>
     </string-array>
-    <string-array name="Spinner_HowMuchChildren">
+    <string-array name="Spinner_weather">
         <item>Not Important</item>
-        <item>0</item>
-        <item>1-2</item>
-        <item>3-4</item>
-        <item>5-6</item>
-        <item>7-8</item>
-        <item>9-10</item>
+        <item>Summer</item>
+        <item>Winter</item>
+        <item>Spring</item>
+        <item>Fall</item>
     </string-array>
-
 
 </resources>

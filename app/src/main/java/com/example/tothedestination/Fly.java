@@ -6,22 +6,28 @@ public class Fly {
 
     private int hoursFlight;
     private String attraction;
+    private String ageOfChild;
+    private String season;
     private String country;
     private Bitmap bitmap;
 
-    public Fly(int hoursFlight, String attraction, String country, Bitmap bitmap)
+    public Fly(int hoursFlight, String attraction, String country, String ageOfChild, String season, Bitmap bitmap)
     {
         this.hoursFlight=hoursFlight;
         this.attraction=attraction;
         this.country=country;
+        this.ageOfChild=ageOfChild;
+        this.season=season;
         this.bitmap=bitmap;
     }
 
-    public Fly(int hoursFlight, String attraction, String country)
+    public Fly(int hoursFlight, String attraction, String country, String ageOfChild, String season)
     {
         this.hoursFlight=hoursFlight;
         this.attraction=attraction;
         this.country=country;
+        this.ageOfChild=ageOfChild;
+        this.season=season;
         this.bitmap=null;
     }
 
@@ -41,6 +47,12 @@ public class Fly {
     public String getCountry() {
         return country;
     }
+    public String getAgeOfChild() {
+        return ageOfChild;
+    }
+    public String getSeason() {
+        return season;
+    }
 
     public Bitmap getBitmap() {
         return bitmap;
@@ -56,6 +68,12 @@ public class Fly {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+    public void setAgeOfChild(String ageOfChild) {
+        this.ageOfChild = ageOfChild;
+    }
+    public void setSeason(String season) {
+        this.season = season;
     }
 
     public void setBitmap(Bitmap bitmap) {

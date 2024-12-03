@@ -43,8 +43,6 @@ public class    FlyListMain extends AppCompatActivity implements AdapterView.OnI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fly_list);
-        Spinner aSpinner=findViewById(R.id.aSpinner);
-        aSpinner.setOnItemSelectedListener(this);
         flyList = new ArrayList<Fly>();
 
         // אפשרות לייצור מילון בין שם מדינה לבין שם קובץ
@@ -71,13 +69,16 @@ public class    FlyListMain extends AppCompatActivity implements AdapterView.OnI
                 for (DataSnapshot flySnapshot : dataSnapshot.getChildren()) {
                     // Rule base ML הרבה תנאים
                     Fly currentFlight = flySnapshot.getValue(Fly.class);
-                    if ("Belgium".equals(currentFlight.getCountry())) {
                         if (currentFlight.getHoursFlight() == 7) {
-                            if ("Chocolate".equals(currentFlight.getAttraction())) {
-                                flyList.add(currentFlight);
+                            if ("hiking".equals(currentFlight.getAttraction())) {
+                                if ("summer".equals(currentFlight.getSeason())) {
+                                    if ("teen".equals(currentFlight.getAgeOfChild())) {
+                                            flyList.add(currentFlight);
+                                    }
+                                }
                             }
+
                         }
-                    }
                     flyAdapter.notifyDataSetChanged();
                 }
             }
@@ -88,10 +89,10 @@ public class    FlyListMain extends AppCompatActivity implements AdapterView.OnI
             }
         });
 
-      /* for(int i=0;i<7;i++)
+       /*for(int i=0;i<7;i++)
         {
            int randomNumber = random.nextInt(24) + 1;
-           Fly fly1=new Fly(randomNumber,"hiking","french");
+           Fly fly1=new Fly(randomNumber,"hiking","french","teen","summer");
             flyList.add(fly1);
             DatabaseReference newFlyRef= flyRef.push();
             newFlyRef.setValue(fly1);

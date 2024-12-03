@@ -9,17 +9,22 @@
     android:orientation="vertical"
     tools:context=".FlyListMain">
 
-    <Spinner
-        android:id="@+id/aSpinner"
+
+    <TextView
+        android:id="@+id/countries"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:entries="@array/Spinner_items1"
+        android:text="countries:"
+        android:textColor="#000000"
+        android:textSize="30dp"
+
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.446"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintVertical_bias="0.017" />
 
     <ListView
         android:id="@+id/lv"

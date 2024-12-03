@@ -3,17 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ABC6C4"
+    android:orientation="vertical"
     tools:context=".custom_layoutMain">
 
 
     <ImageView
         android:id="@+id/ivProduct"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        />
+        android:layout_width="108dp"
+        android:layout_height="123dp" />
 
 
     <TextView
@@ -21,24 +21,46 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
         android:text="Country"
-        android:textColor="#0e82f5"
-        android:textSize="20dp"
+        android:textColor="#009688"
+        android:textSize="17dp"
         app:layout_constraintStart_toEndOf="@+id/ivProduct"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tvHoursFlight" />
+
+    <TextView
+        android:id="@+id/tvSeason"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:text="season"
+        android:textColor="#FFFFFF"
+        android:textSize="17dp"
+        app:layout_constraintStart_toEndOf="@+id/ivProduct"
+        app:layout_constraintTop_toBottomOf="@+id/tvCountry" />
+
+    <TextView
+        android:id="@+id/tvAgeOfChild"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="Age of child"
+        android:textColor="@color/teal_700"
+        android:textSize="17dp"
+        app:layout_constraintStart_toEndOf="@+id/ivProduct"
+        app:layout_constraintTop_toBottomOf="@+id/tvSeason" />
 
     <TextView
         android:id="@+id/tvAttraction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="4dp"
         android:text="Attraction"
-        android:textColor="#F44336"
-        android:textSize="20dp"
+        android:textColor="@color/white"
+        android:textSize="17dp"
         app:layout_constraintStart_toEndOf="@+id/ivProduct"
-        app:layout_constraintTop_toBottomOf="@+id/tvHoursFlight" />
+        app:layout_constraintTop_toBottomOf="@+id/tvAgeOfChild" />
 
     <TextView
         android:id="@+id/tvHoursFlight"
@@ -47,10 +69,10 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="4dp"
         android:text="Hours flight"
-        android:textColor="#4CAF50"
-        android:textSize="20dp"
+        android:textColor="#FFFFFF"
+        android:textSize="17dp"
         app:layout_constraintStart_toEndOf="@+id/ivProduct"
-        app:layout_constraintTop_toBottomOf="@+id/tvCountry" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
