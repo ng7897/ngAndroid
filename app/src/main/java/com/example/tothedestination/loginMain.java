@@ -59,11 +59,13 @@ public class    loginMain extends AppCompatActivity {
 
                     if(TextUtils.isEmpty(et_email.getText().toString()))
                     {
+                        et_email.setError("Email is required");
                         Toast.makeText(loginMain.this,"no empty field allowed", Toast.LENGTH_SHORT).show();
                     }
                     else if(TextUtils.isEmpty(et_password.getText().toString()))
                     {
-                         Toast.makeText(loginMain.this,"no empty field allowed", Toast.LENGTH_SHORT).show();
+                        et_password.setError("Password is required");
+                        Toast.makeText(loginMain.this,"no empty field allowed", Toast.LENGTH_SHORT).show();
                     }
 
                     else

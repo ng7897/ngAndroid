@@ -40,13 +40,14 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
             public void onClick(View view) {
 
                 // נשמור את נתוני החיפוש
-                if (aSpinner1.getSelectedItem() == null ||
+               /* if (aSpinner1.getSelectedItem() == null ||
                         aSpinner2.getSelectedItem() == null ||
                         aSpinner3.getSelectedItem() == null ||
                         aSpinner4.getSelectedItem() == null) {
+
                     Toast.makeText(search1Main.this, "Please select all options", Toast.LENGTH_SHORT).show();
                     return;
-                }
+                }*/
 
                 SharedPreferences.Editor editor = sp1.edit();
                 editor.putString("key_ageOfChildren",aSpinner1.getSelectedItem().toString());

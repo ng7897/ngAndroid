@@ -51,29 +51,5 @@ public class finalstartMain extends AppCompatActivity {
     }
 
 
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        getMenuInflater().inflate(R.menu.options, menu);
-        return true;
-    }
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        super.onOptionsItemSelected(item);
-        int id=item.getItemId();
-        if(id==R.id.action_login)
-        {
-            Toast.makeText(this,"you selected login", Toast.LENGTH_SHORT).show();
-            Intent intent1=new Intent(finalstartMain.this, loginMain.class);
-            startActivity(intent1);
-        }
-        else if(id==R.id.action_setting)
-        {
-            Toast.makeText(this,"you selected setting", Toast.LENGTH_SHORT).show();
-        }
-        else if(id==R.id.action_exit)
-        {
-            Toast.makeText(this,"you selected exit", Toast.LENGTH_SHORT).show();
-        }
-        return true;
-    }
+
 }

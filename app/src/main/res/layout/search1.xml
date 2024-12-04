@@ -19,7 +19,7 @@
         app:layout_constraintHorizontal_bias="0.648"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.248"
+        app:layout_constraintVertical_bias="0.229"
         tools:ignore="MissingConstraints" />
 
     <Spinner
@@ -31,10 +31,10 @@
         android:scrollbarSize="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.61"
+        app:layout_constraintHorizontal_bias="0.587"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.367"
+        app:layout_constraintTop_toBottomOf="@+id/aSpinner1"
+        app:layout_constraintVertical_bias="0.127"
         tools:ignore="MissingConstraints" />
 
     <Spinner
@@ -57,13 +57,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:scrollbarSize="40dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="20dp"
         android:entries="@array/Spinner_AgeOfChildren"
+        android:scrollbarSize="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.36"
+        app:layout_constraintTop_toBottomOf="@+id/aSpinner3"
+        app:layout_constraintVertical_bias="0.114"
         tools:ignore="MissingConstraints" />
 
     <TextView
