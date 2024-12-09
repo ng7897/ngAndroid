@@ -2,11 +2,14 @@ package com.example.tothedestination;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -58,7 +61,11 @@ public class    FlyListMain extends AppCompatActivity implements AdapterView.OnI
 
         // בונה "מנוע" לוגי שלפי המאפיינים משנה את הסינונים
 
-
+        SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+        int hoursFlight = sharedPreferences.getInt("key_hoursFlight", 0);
+        String attraction = sharedPreferences.getString("key_attraction", "");
+        String season = sharedPreferences.getString("key_season", "");
+        String ageOfChildren = sharedPreferences.getString("key_ageOfChildren", "");
 
         //Query query = flyRef.orderByChild("country").equalTo("Belgium");
 
@@ -69,10 +76,10 @@ public class    FlyListMain extends AppCompatActivity implements AdapterView.OnI
                 for (DataSnapshot flySnapshot : dataSnapshot.getChildren()) {
                     // Rule base ML הרבה תנאים
                     Fly currentFlight = flySnapshot.getValue(Fly.class);
-                        if (currentFlight.getHoursFlight() == 7) {
-                            if ("hiking".equals(currentFlight.getAttraction())) {
-                                if ("summer".equals(currentFlight.getSeason())) {
-                                    if ("teen".equals(currentFlight.getAgeOfChild())) {
+                        if (currentFlight.getHoursFlight() == hoursFlight) {
+                            if (attraction.equals(currentFlight.getAttraction())) {
+                                if (season.equals(currentFlight.getSeason())) {
+                                    if (ageOfChildren.equals(currentFlight.getAgeOfChild())) {
                                             flyList.add(currentFlight);
                                     }
                                 }
@@ -138,4 +145,43 @@ public class    FlyListMain extends AppCompatActivity implements AdapterView.OnI
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.options, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        super.onOptionsItemSelected(item);
+        int id=item.getItemId();
+        if(id==R.id.action_login)
+        {
+            Toast.makeText(this,"you selected login", Toast.LENGTH_SHORT).show();
+            Intent intent1=new Intent(FlyListMain.this, loginMain.class);
+            startActivity(intent1);
+        }
+        else if(id==R.id.action_setting)
+        {
+            Toast.makeText(this,"you selected setting", Toast.LENGTH_SHORT).show();
+        }
+        else if(id==R.id.About_programmer)
+        {
+            Toast.makeText(this,"you selected About programmer", Toast.LENGTH_SHORT).show();
+        }
+        else if(id==R.id.about_app)
+        {
+            Toast.makeText(this,"you selected About app", Toast.LENGTH_SHORT).show();
+        }
+        else if(id==R.id.fav_flights)
+        {
+            Toast.makeText(this,"you selected Favorite Flights", Toast.LENGTH_SHORT).show();
+        }
+        else if(id==R.id.action_exit)
+        {
+            Toast.makeText(this,"you selected exit", Toast.LENGTH_SHORT).show();
+        }
+        return true;
+    }
+
 }

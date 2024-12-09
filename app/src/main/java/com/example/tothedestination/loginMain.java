@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -56,19 +58,21 @@ public class    loginMain extends AppCompatActivity {
         finalLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                boolean ifError = false;
                     if(TextUtils.isEmpty(et_email.getText().toString()))
                     {
                         et_email.setError("Email is required");
                         Toast.makeText(loginMain.this,"no empty field allowed", Toast.LENGTH_SHORT).show();
+                        ifError=true;
                     }
-                    else if(TextUtils.isEmpty(et_password.getText().toString()))
+                    if(TextUtils.isEmpty(et_password.getText().toString()))
                     {
                         et_password.setError("Password is required");
                         Toast.makeText(loginMain.this,"no empty field allowed", Toast.LENGTH_SHORT).show();
+                        ifError=true;
                     }
 
-                    else
+                    if (!ifError)
                     {
                         SharedPreferences.Editor editor = sp.edit();
                         editor.putString("key_email",et_email.getText().toString());
@@ -82,4 +86,43 @@ public class    loginMain extends AppCompatActivity {
         });
 
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.options, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        super.onOptionsItemSelected(item);
+        int id=item.getItemId();
+        if(id==R.id.action_login)
+        {
+            Toast.makeText(this,"you selected login", Toast.LENGTH_SHORT).show();
+            Intent intent1=new Intent(loginMain.this, loginMain.class);
+            startActivity(intent1);
+        }
+        else if(id==R.id.action_setting)
+        {
+            Toast.makeText(this,"you selected setting", Toast.LENGTH_SHORT).show();
+        }
+        else if(id==R.id.About_programmer)
+        {
+            Toast.makeText(this,"you selected About programmer", Toast.LENGTH_SHORT).show();
+        }
+        else if(id==R.id.about_app)
+        {
+            Toast.makeText(this,"you selected About app", Toast.LENGTH_SHORT).show();
+        }
+        else if(id==R.id.fav_flights)
+        {
+            Toast.makeText(this,"you selected Favorite Flights", Toast.LENGTH_SHORT).show();
+        }
+        else if(id==R.id.action_exit)
+        {
+            Toast.makeText(this,"you selected exit", Toast.LENGTH_SHORT).show();
+        }
+        return true;
+    }
+
 }
