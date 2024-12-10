@@ -28,7 +28,7 @@
         <item>Adult</item>
     </string-array>
     <string-array name="Spinner_HoursFlight">
-        <item>not important</item>
+        <item>0</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
@@ -48,7 +48,7 @@
         <item>Beach</item>
         <item>Landscape</item>
     </string-array>
-    <string-array name="Spinner_weather">
+    <string-array name="Spinner_season">
         <item>Not Important</item>
         <item>Summer</item>
         <item>Winter</item>

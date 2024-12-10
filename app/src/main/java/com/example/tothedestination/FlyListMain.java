@@ -61,11 +61,11 @@ public class    FlyListMain extends AppCompatActivity implements AdapterView.OnI
 
         // בונה "מנוע" לוגי שלפי המאפיינים משנה את הסינונים
 
-        SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
-        int hoursFlight = sharedPreferences.getInt("key_hoursFlight", 0);
-        String attraction = sharedPreferences.getString("key_attraction", "");
-        String season = sharedPreferences.getString("key_season", "");
-        String ageOfChildren = sharedPreferences.getString("key_ageOfChildren", "");
+        //SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+        int hoursFlight = getIntent().getExtras().getInt("hoursFlight");
+        String attraction = getIntent().getExtras().getString("attraction");
+        String season = getIntent().getExtras().getString("season");
+        String ageOfChildren = getIntent().getExtras().getString("ageOfChildren");
 
         //Query query = flyRef.orderByChild("country").equalTo("Belgium");
 
@@ -76,10 +76,10 @@ public class    FlyListMain extends AppCompatActivity implements AdapterView.OnI
                 for (DataSnapshot flySnapshot : dataSnapshot.getChildren()) {
                     // Rule base ML הרבה תנאים
                     Fly currentFlight = flySnapshot.getValue(Fly.class);
-                        if (currentFlight.getHoursFlight() == hoursFlight) {
-                            if (attraction.equals(currentFlight.getAttraction())) {
-                                if (season.equals(currentFlight.getSeason())) {
-                                    if (ageOfChildren.equals(currentFlight.getAgeOfChild())) {
+                        if (currentFlight.getHoursFlight() == hoursFlight || hoursFlight==0) {
+                            if (attraction.equals(currentFlight.getAttraction()) || attraction.equals("Not Important")) {
+                                if (season.equals(currentFlight.getSeason()) || season.equals("Not Important")) {
+                                    if (ageOfChildren.equals(currentFlight.getAgeOfChild()) || ageOfChildren.equals("Not Important")) {
                                             flyList.add(currentFlight);
                                     }
                                 }

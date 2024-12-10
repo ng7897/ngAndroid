@@ -51,14 +51,20 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
                     return;
                 }*/
 
-                SharedPreferences.Editor editor = sp1.edit();
-                editor.putString("key_ageOfChildren",aSpinner1.getSelectedItem().toString());
-                editor.putString("key_hoursFlight", aSpinner2.getSelectedItem().toString());
-                editor.putString("key_attraction", aSpinner3.getSelectedItem().toString());
-                editor.putString("key_wather", aSpinner4.getSelectedItem().toString());
-                editor.commit();
+//                SharedPreferences.Editor editor = sp1.edit();
+//                editor.putString("key_hoursFlight",aSpinner1.getSelectedItem().toString());
+//                editor.putString("key_attraction", aSpinner2.getSelectedItem().toString());
+//                editor.putString("key_season", aSpinner3.getSelectedItem().toString());
+//                editor.putString("key_ageOfChildren", aSpinner4.getSelectedItem().toString());
+//                editor.commit();
 
                 Intent intent2=new Intent(search1Main.this, FlyListMain.class);
+                intent2.putExtra("hoursFlight",aSpinner1.getSelectedItem().toString());
+                intent2.putExtra("attraction", aSpinner2.getSelectedItem().toString());
+                intent2.putExtra("season", aSpinner3.getSelectedItem().toString());
+                intent2.putExtra("ageOfChildren", aSpinner4.getSelectedItem().toString());
+
+
                 startActivity(intent2);
             }
         });
