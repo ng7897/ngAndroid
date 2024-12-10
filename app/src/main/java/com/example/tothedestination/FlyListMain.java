@@ -32,6 +32,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Dictionary;
+import java.util.Hashtable;
 import java.util.Random;
 
 public class    FlyListMain extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -69,10 +70,24 @@ public class    FlyListMain extends AppCompatActivity implements AdapterView.OnI
 
         //Query query = flyRef.orderByChild("country").equalTo("Belgium");
 
+
+
+
         flyRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 flyList.clear();
+
+                Dictionary<String,Integer> countryMap = new Hashtable<String,Integer>();
+                countryMap.put("Italy",R.drawable.country0);
+                countryMap.put("Germany",R.drawable.country1);
+                countryMap.put("Netherlands",R.drawable.country2);
+                countryMap.put("France",R.drawable.country3);
+                countryMap.put("Greece",R.drawable.country4);
+                countryMap.put("Iceland",R.drawable.country5);
+                countryMap.put("Belgium",R.drawable.country6);
+
+
                 for (DataSnapshot flySnapshot : dataSnapshot.getChildren()) {
                     // Rule base ML הרבה תנאים
                     Fly currentFlight = flySnapshot.getValue(Fly.class);
@@ -80,11 +95,12 @@ public class    FlyListMain extends AppCompatActivity implements AdapterView.OnI
                             if (attraction.equals(currentFlight.getAttraction()) || attraction.equals("Not Important")) {
                                 if (season.equals(currentFlight.getSeason()) || season.equals("Not Important")) {
                                     if (ageOfChildren.equals(currentFlight.getAgeOfChild()) || ageOfChildren.equals("Not Important")) {
+                                            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), countryMap.get(currentFlight.getCountry())); // Example: Load from resources
+                                            currentFlight.setBitmap(bitmap);
                                             flyList.add(currentFlight);
                                     }
                                 }
                             }
-
                         }
                     flyAdapter.notifyDataSetChanged();
                 }
@@ -105,15 +121,9 @@ public class    FlyListMain extends AppCompatActivity implements AdapterView.OnI
             newFlyRef.setValue(fly1);
         }*/
 
-       /* Bitmap country0= BitmapFactory.decodeResource(getResources(),R.drawable.country0);
-        Bitmap country1= BitmapFactory.decodeResource(getResources(),R.drawable.country1);
-        Bitmap country2= BitmapFactory.decodeResource(getResources(),R.drawable.country2);
-        Bitmap country3= BitmapFactory.decodeResource(getResources(),R.drawable.country3);
-        Bitmap country4= BitmapFactory.decodeResource(getResources(),R.drawable.country4);
-        Bitmap country5= BitmapFactory.decodeResource(getResources(),R.drawable.country5);
-        Bitmap country6= BitmapFactory.decodeResource(getResources(),R.drawable.country6);
 
-        Fly f1=new Fly(5,"hiking", "italy",country0);
+
+      /*  Fly f1=new Fly(5,"hiking", "italy",country0);
         Fly f2=new Fly(8,"shopping", "germany",country1);
         Fly f3=new Fly(11,"cheese factory", "netherland",country2);
         Fly f4=new Fly(6,"hiking", "french",country3);
