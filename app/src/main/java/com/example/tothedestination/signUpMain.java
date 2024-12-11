@@ -16,6 +16,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class signUpMain extends AppCompatActivity {
     private Button backToStart,finalSighUp;
     private ImageView arrowImage;
@@ -33,7 +36,7 @@ public class signUpMain extends AppCompatActivity {
         backToStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =new Intent(signUpMain.this, startMain.class);
+                Intent intent =new Intent(signUpMain.this, finalstartMain.class);
                 startActivity(intent);
             }
         });
@@ -42,7 +45,7 @@ public class signUpMain extends AppCompatActivity {
         arrowImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent2 =new Intent(signUpMain.this, startMain.class);
+                Intent intent2 =new Intent(signUpMain.this, finalstartMain.class);
                 startActivity(intent2);
             }
         });
@@ -98,7 +101,7 @@ public class signUpMain extends AppCompatActivity {
                              editor.putString("key_firstName", et_firstName.getText().toString());
                              editor.putString("key_lastName", et_lastName.getText().toString());
                              editor.commit();
-
+                             saveUser();
                              Intent intent2=new Intent(signUpMain.this, search1Main.class);
                              startActivity(intent2);
                          }
@@ -145,6 +148,18 @@ public class signUpMain extends AppCompatActivity {
             Toast.makeText(this,"you selected exit", Toast.LENGTH_SHORT).show();
         }
         return true;
+    }
+    public void saveUser()
+    {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference usersListRef = database.getReference("userList");
+
+
+        User user=new User(et_firstName.getText().toString(),et_lastName.getText().toString(),et_password.getText().toString(),et_email.getText().toString());
+        DatabaseReference newUserRef= usersListRef.push();
+        newUserRef.setValue(user);
+
+        Toast.makeText(this,"user added", Toast.LENGTH_SHORT).show();
     }
 
 }

@@ -34,7 +34,7 @@ public class    loginMain extends AppCompatActivity {
         backToStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =new Intent(loginMain.this, startMain.class);
+                Intent intent =new Intent(loginMain.this, finalstartMain.class);
                 startActivity(intent);
             }
         });
@@ -44,7 +44,7 @@ public class    loginMain extends AppCompatActivity {
         arrowImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent1 =new Intent(loginMain.this, startMain.class);
+                Intent intent1 =new Intent(loginMain.this, finalstartMain.class);
                 startActivity(intent1);
             }
         });
