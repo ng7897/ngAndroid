@@ -14,14 +14,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class signUpMain extends AppCompatActivity {
     private Button backToStart,finalSighUp;
     private ImageView arrowImage;
+    private FirebaseAuth mAuth;
     private SharedPreferences sp1;
     private EditText et_firstName,et_email,et_lastName,et_password,et_passwordAgain;
     @SuppressLint({"MissingInflatedId", "WrongViewCast"})
@@ -32,6 +38,10 @@ public class signUpMain extends AppCompatActivity {
 
         backToStart=findViewById(R.id.backToStart);
         finalSighUp=findViewById(R.id.finalSighUp);
+        mAuth = FirebaseAuth.getInstance();
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference usersListRef = database.getReference("userList");
 
         backToStart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,6 +112,7 @@ public class signUpMain extends AppCompatActivity {
                              editor.putString("key_lastName", et_lastName.getText().toString());
                              editor.commit();
                              saveUser();
+                             login();
                              Intent intent2=new Intent(signUpMain.this, search1Main.class);
                              startActivity(intent2);
                          }
@@ -160,6 +171,21 @@ public class signUpMain extends AppCompatActivity {
         newUserRef.setValue(user);
 
         Toast.makeText(this,"user added", Toast.LENGTH_SHORT).show();
+    }
+
+    public void login() {
+        mAuth.createUserWithEmailAndPassword(et_email.getText().toString(), et_password.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    Intent intent2 = new Intent(signUpMain.this, search1Main.class);
+                    startActivity(intent2);
+                } else {
+                    Toast.makeText(signUpMain.this, "register failed :(", Toast.LENGTH_LONG).show();
+
+                }
+            }
+        });
     }
 
 }

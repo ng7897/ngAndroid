@@ -38,14 +38,12 @@ public class    loginMain extends AppCompatActivity {
     private ImageView arrowImage;
     private SharedPreferences sp;
     EditText et_email, et_password;
-    private FirebaseAuth mAuth;
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-        mAuth = FirebaseAuth.getInstance();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference flyRef = database.getReference("userList");
 
@@ -93,11 +91,12 @@ public class    loginMain extends AppCompatActivity {
                 }
 
                 if (!ifError) {
-                    login();
                     SharedPreferences.Editor editor = sp.edit();
                     editor.putString("key_email", et_email.getText().toString());
                     editor.putString("key_password", et_password.getText().toString());
                     editor.commit();
+                    Intent intent2 = new Intent(loginMain.this, search1Main.class);
+                    startActivity(intent2);
                 }
             }
         });
@@ -132,18 +131,5 @@ public class    loginMain extends AppCompatActivity {
         return true;
     }
 
-    public void login() {
-        mAuth.createUserWithEmailAndPassword(et_email.getText().toString(), et_password.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    Intent intent2 = new Intent(loginMain.this, search1Main.class);
-                    startActivity(intent2);
-                } else {
-                    Toast.makeText(loginMain.this, "register failed :(", Toast.LENGTH_LONG).show();
 
-                }
-            }
-        });
-    }
 }
