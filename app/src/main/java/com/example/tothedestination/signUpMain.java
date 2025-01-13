@@ -14,8 +14,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -23,12 +28,14 @@ public class signUpMain extends AppCompatActivity {
     private Button backToStart,finalSighUp;
     private ImageView arrowImage;
     private SharedPreferences sp1;
+    private FirebaseAuth mAuth;
     private EditText et_firstName,et_email,et_lastName,et_password,et_passwordAgain;
     @SuppressLint({"MissingInflatedId", "WrongViewCast"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup);
+        mAuth = FirebaseAuth.getInstance();
 
         backToStart=findViewById(R.id.backToStart);
         finalSighUp=findViewById(R.id.finalSighUp);
@@ -95,6 +102,7 @@ public class signUpMain extends AppCompatActivity {
 
                          if (!ifError)
                          {
+                             register();
                              SharedPreferences.Editor editor = sp1.edit();
                              editor.putString("key_email",et_email.getText().toString());
                              editor.putString("key_password", et_password.getText().toString());
@@ -162,4 +170,18 @@ public class signUpMain extends AppCompatActivity {
         Toast.makeText(this,"user added", Toast.LENGTH_SHORT).show();
     }
 
+    public void register() {
+        mAuth.createUserWithEmailAndPassword(et_email.getText().toString(), et_password.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    Intent intent2 = new Intent(signUpMain.this, search1Main.class);
+                    startActivity(intent2);
+                } else {
+                    Toast.makeText(signUpMain.this, "register failed :(", Toast.LENGTH_LONG).show();
+
+                }
+            }
+        });
+    }
 }

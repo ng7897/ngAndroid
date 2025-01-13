@@ -37,7 +37,7 @@ public class    loginMain extends AppCompatActivity {
     private Button backToStart, finalLogIn;
     private ImageView arrowImage;
     private SharedPreferences sp;
-    EditText et_email, et_password;
+    private EditText et_email, et_password;
     private FirebaseAuth mAuth;
 
     @SuppressLint("MissingInflatedId")
@@ -93,7 +93,6 @@ public class    loginMain extends AppCompatActivity {
                 }
 
                 if (!ifError) {
-                    login();
                     SharedPreferences.Editor editor = sp.edit();
                     editor.putString("key_email", et_email.getText().toString());
                     editor.putString("key_password", et_password.getText().toString());
@@ -101,8 +100,22 @@ public class    loginMain extends AppCompatActivity {
                 }
             }
         });
+      //  FirebaseAuth.getInstance().signOut();
+       // Intent intent1 = new Intent(loginMain.this, finalstartMain.class);
+      //  startActivity(intent1);
 
+    }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser !=null)
+        {
+            Intent intent = new Intent(loginMain.this, search1Main.class);
+            startActivity(intent);
+        }
     }
 
     @Override
@@ -133,17 +146,19 @@ public class    loginMain extends AppCompatActivity {
     }
 
     public void login() {
-        mAuth.createUserWithEmailAndPassword(et_email.getText().toString(), et_password.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        mAuth.signInWithEmailAndPassword(et_email.getText().toString(), et_password.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     Intent intent2 = new Intent(loginMain.this, search1Main.class);
                     startActivity(intent2);
                 } else {
-                    Toast.makeText(loginMain.this, "register failed :(", Toast.LENGTH_LONG).show();
+                    Toast.makeText(loginMain.this, "login failed :(", Toast.LENGTH_LONG).show();
 
                 }
             }
         });
     }
+
+
 }
