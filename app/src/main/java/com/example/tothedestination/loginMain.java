@@ -93,10 +93,8 @@ public class    loginMain extends AppCompatActivity {
                 }
 
                 if (!ifError) {
-                    SharedPreferences.Editor editor = sp.edit();
-                    editor.putString("key_email", et_email.getText().toString());
-                    editor.putString("key_password", et_password.getText().toString());
-                    editor.commit();
+                    login();
+
                 }
             }
         });
@@ -106,17 +104,6 @@ public class    loginMain extends AppCompatActivity {
 
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser !=null)
-        {
-            Intent intent = new Intent(loginMain.this, search1Main.class);
-            startActivity(intent);
-        }
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -131,15 +118,29 @@ public class    loginMain extends AppCompatActivity {
             Toast.makeText(this, "you selected login", Toast.LENGTH_SHORT).show();
             Intent intent1 = new Intent(loginMain.this, loginMain.class);
             startActivity(intent1);
-        } else if (id == R.id.action_setting) {
+        }
+        else if (id == R.id.action_setting)
+        {
             Toast.makeText(this, "you selected setting", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.About_programmer) {
+        }
+        else if (id == R.id.About_programmer)
+        {
             Toast.makeText(this, "you selected About programmer", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.about_app) {
+        }
+        else if (id == R.id.about_app)
+        {
             Toast.makeText(this, "you selected About app", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.fav_flights) {
+        }
+        else if (id == R.id.fav_flights)
+        {
             Toast.makeText(this, "you selected Favorite Flights", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.action_exit) {
+        }
+        else if (id == R.id.action_signout)
+        {
+            Toast.makeText(this, "you selected sign out", Toast.LENGTH_SHORT).show();
+        }
+        else if (id == R.id.action_exit)
+        {
             Toast.makeText(this, "you selected exit", Toast.LENGTH_SHORT).show();
         }
         return true;
@@ -150,6 +151,10 @@ public class    loginMain extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
+                    SharedPreferences.Editor editor = sp.edit();
+                    editor.putString("key_email", et_email.getText().toString());
+                    editor.putString("key_password", et_password.getText().toString());
+                    editor.commit();
                     Intent intent2 = new Intent(loginMain.this, search1Main.class);
                     startActivity(intent2);
                 } else {

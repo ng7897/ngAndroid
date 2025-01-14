@@ -15,6 +15,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class search1Main extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     private SharedPreferences sp1;
@@ -111,6 +113,13 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
         else if(id==R.id.fav_flights)
         {
             Toast.makeText(this,"you selected Favorite Flights", Toast.LENGTH_SHORT).show();
+        }
+         else if (id == R.id.action_signout)
+        {
+            Toast.makeText(this, "you selected sign out", Toast.LENGTH_SHORT).show();
+            FirebaseAuth.getInstance().signOut();
+            Intent intent1 = new Intent(search1Main.this, finalstartMain.class);
+            startActivity(intent1);
         }
         else if(id==R.id.action_exit)
         {

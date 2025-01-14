@@ -24,6 +24,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class signUpMain extends AppCompatActivity {
     private Button backToStart,finalSighUp;
     private ImageView arrowImage;
@@ -75,16 +78,42 @@ public class signUpMain extends AppCompatActivity {
                              Toast.makeText(signUpMain.this,"no empty field allowed", Toast.LENGTH_SHORT).show();
                              ifError=true;
                          }
+                         else
+                         {
+                             if(!hasAtSymbol(et_email.getText().toString()))
+                             {
+                                 et_email.setError("needed @ in the email");
+                                 ifError=true;
+                             }
+                         }
                          if(TextUtils.isEmpty(et_password.getText().toString()))
                          {
                              et_password.setError("Password is required");
                              Toast.makeText(signUpMain.this,"no empty field allowed", Toast.LENGTH_SHORT).show();
                              ifError=true;
                          }
+                         else
+                         {
+                             if (!hasUpperCase(et_password.getText().toString())) {
+                                 et_password.setError("Password must contain at least one uppercase letter");
+                                 ifError=true;
+                             }
+                             if(!hasLowerCase(et_password.getText().toString()))
+                             {
+                                 et_password.setError("Password must contain at least one lowercase letter");
+                             }
+
+                         }
                          if(TextUtils.isEmpty(et_passwordAgain.getText().toString()))
                          {
                              et_passwordAgain.setError("Confirm your password");
                              Toast.makeText(signUpMain.this,"no empty field allowed", Toast.LENGTH_SHORT).show();
+                             ifError=true;
+                         }
+                         else if(!(et_password.getText().toString().equals(et_passwordAgain.getText().toString())))
+                         {
+                             et_passwordAgain.setError("Passwords do not match");
+                             Toast.makeText(signUpMain.this,"passwords dont match", Toast.LENGTH_SHORT).show();
                              ifError=true;
                          }
                          if(TextUtils.isEmpty(et_firstName.getText().toString()))
@@ -93,11 +122,37 @@ public class signUpMain extends AppCompatActivity {
                              Toast.makeText(signUpMain.this,"no empty field allowed", Toast.LENGTH_SHORT).show();
                              ifError=true;
                          }
+                         else
+                         {
+                             if (!hasUpperCase(et_firstName.getText().toString())) {
+                                 et_firstName.setError("Password must contain at least one uppercase letter");
+                                 ifError=true;
+                             }
+                             if(!hasLowerCase(et_firstName.getText().toString()))
+                             {
+                                 et_firstName.setError("Password must contain at least one lowercase letter");
+                                 ifError=true;
+                             }
+
+                         }
                          if(TextUtils.isEmpty(et_lastName.getText().toString()))
                          {
                              et_lastName.setError("Last name is required");
                              Toast.makeText(signUpMain.this,"no empty field allowed", Toast.LENGTH_SHORT).show();
                              ifError=true;
+                         }
+                         else
+                         {
+                             if (!hasUpperCase(et_lastName.getText().toString())) {
+                                 et_lastName.setError("Password must contain at least one uppercase letter");
+                                 ifError=true;
+                             }
+                             if(!hasLowerCase(et_lastName.getText().toString()))
+                             {
+                                 et_lastName.setError("Password must contain at least one lowercase letter");
+                                 ifError=true;
+                             }
+
                          }
 
                          if (!ifError)
@@ -151,6 +206,10 @@ public class signUpMain extends AppCompatActivity {
         {
             Toast.makeText(this,"you selected Favorite Flights", Toast.LENGTH_SHORT).show();
         }
+         else if (id == R.id.action_signout)
+        {
+        Toast.makeText(this, "you selected sign out", Toast.LENGTH_SHORT).show();
+        }
         else if(id==R.id.action_exit)
         {
             Toast.makeText(this,"you selected exit", Toast.LENGTH_SHORT).show();
@@ -184,4 +243,19 @@ public class signUpMain extends AppCompatActivity {
             }
         });
     }
+    public static boolean hasUpperCase(String str) {
+        return str.matches(".*[A-Z].*");
+    }
+        public static boolean hasLowerCase(java.lang.String str)
+        {
+            Pattern pattern = Pattern.compile(".*[a-z].*");
+            Matcher matcher = pattern.matcher(str);
+            return matcher.find();
+        }
+    public static boolean hasAtSymbol(String str) {
+        Pattern pattern = Pattern.compile(".*@.*");
+        Matcher matcher = pattern.matcher(str);
+        return matcher.find();
+    }
+
 }

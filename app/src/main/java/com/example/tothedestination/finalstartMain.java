@@ -12,6 +12,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 public class finalstartMain extends AppCompatActivity {
@@ -19,7 +21,7 @@ public class finalstartMain extends AppCompatActivity {
 
     private Button logIn, signUp;
     LottieAnimationView lottie2;
-
+    private FirebaseAuth mAuth;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -30,6 +32,7 @@ public class finalstartMain extends AppCompatActivity {
         logIn = findViewById(R.id.logIn);
         signUp = findViewById(R.id.signUp);
         lottie2 = findViewById(R.id.lottie2);
+        mAuth = FirebaseAuth.getInstance();
 
 
 
@@ -49,7 +52,17 @@ public class finalstartMain extends AppCompatActivity {
         });
 
     }
-
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser !=null)
+        {
+            Intent intent = new Intent(finalstartMain.this, search1Main.class);
+            startActivity(intent);
+        }
+    }
 
 
 }
