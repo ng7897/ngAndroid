@@ -159,7 +159,6 @@ public class    loginMain extends AppCompatActivity {
                     startActivity(intent2);
                 } else {
                     Toast.makeText(loginMain.this, "login failed :(", Toast.LENGTH_LONG).show();
-
                 }
             }
         });
