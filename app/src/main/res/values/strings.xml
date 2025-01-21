@@ -21,6 +21,9 @@
     <string name="flightDate">תאריך טיסה הלוך:</string>
     <string name="howLongFlight">כמות שעות טיסה</string>
     <string name="flySmart">לנפוש חכם</string>
+    <string name="howMuchHours">כמות שעות טיסה:</string>
+    <string name="season">עונה מתאימה:</string>
+    <string name="attraction">אטרקציה:</string>
     <string-array name="Spinner_AgeOfChildren">
         <item>Not Important</item>
         <item>Baby</item>

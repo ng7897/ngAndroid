@@ -2,6 +2,7 @@ package com.example.tothedestination;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +43,17 @@ public class FlyAdapter extends ArrayAdapter<Fly> {
         tvAttraction.setText(temp.getAttraction());
         tvAgeOfChild.setText(temp.getAgeOfChild());
         tvSeason.setText(temp.getSeason());
+
+        ivProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(   context , after_deleteMain.class    );
+                i.putExtra( "flyKey",  temp.getKey()  );
+                context.startActivity(i);
+            }
+        });
+
+
         return view;
     }
 }

@@ -97,6 +97,7 @@ public class    FlyListMain extends AppCompatActivity implements AdapterView.OnI
                                     if (ageOfChildren.equals(currentFlight.getAgeOfChild()) || ageOfChildren.equals("Not Important")) {
                                             Bitmap bitmap = BitmapFactory.decodeResource(getResources(), countryMap.get(currentFlight.getCountry())); // Example: Load from resources
                                             currentFlight.setBitmap(bitmap);
+                                            currentFlight.setKey(flySnapshot.getKey());
                                             flyList.add(currentFlight);
                                     }
                                 }
@@ -143,6 +144,7 @@ public class    FlyListMain extends AppCompatActivity implements AdapterView.OnI
         flyAdapter=new FlyAdapter(this,0,0,flyList);
         lv=(ListView) findViewById(R.id.lv);
         lv.setAdapter(flyAdapter);
+
 
     }
 

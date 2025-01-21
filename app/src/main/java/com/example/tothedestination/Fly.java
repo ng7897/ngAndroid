@@ -10,8 +10,9 @@ public class Fly {
     private String season;
     private String country;
     private Bitmap bitmap;
+    private String key;
 
-    public Fly(int hoursFlight, String attraction, String country, String ageOfChild, String season, Bitmap bitmap)
+    public Fly(int hoursFlight, String attraction, String country, String ageOfChild, String season, Bitmap bitmap,String key)
     {
         this.hoursFlight=hoursFlight;
         this.attraction=attraction;
@@ -19,9 +20,10 @@ public class Fly {
         this.ageOfChild=ageOfChild;
         this.season=season;
         this.bitmap=bitmap;
+        this.key= key;
     }
 
-    public Fly(int hoursFlight, String attraction, String country, String ageOfChild, String season)
+    public Fly(int hoursFlight, String attraction, String country, String ageOfChild, String season,String key)
     {
         this.hoursFlight=hoursFlight;
         this.attraction=attraction;
@@ -29,11 +31,18 @@ public class Fly {
         this.ageOfChild=ageOfChild;
         this.season=season;
         this.bitmap=null;
+        this.key= key;
     }
 
     public Fly()
     {
 
+    }
+
+    public String getKey() {return this.key;}
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public int getHoursFlight() {
