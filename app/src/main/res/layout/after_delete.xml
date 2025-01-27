@@ -21,43 +21,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.061" />
 
-    <Button
-        android:id="@+id/toggleFromCalendarButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#FFFFFF"
-        android:backgroundTint="#000000"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.148"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.161" />
-
-    <!-- Collapsible Calendar Container -->
-
-    <LinearLayout
-        android:id="@+id/calendarFromDateContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/toggleFromCalendarButton"
-        android:visibility="gone"
-        android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/toggleFromCalendarButton"
-        tools:layout_editor_absoluteX="0dp">
-
-        <!-- CalendarView -->
-        <CalendarView
-            android:id="@+id/calendarView"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:background="#FFFFFF"
-            android:dateTextAppearance="?android:attr/textAppearanceMedium"
-            android:weekDayTextAppearance="?android:attr/textAppearanceSmall" />
-    </LinearLayout>
-
     <TextView
         android:id="@+id/whenGo"
         android:layout_width="wrap_content"
@@ -79,7 +42,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.725"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calendarFromDateContainer"
+        app:layout_constraintTop_toBottomOf="@+id/whenGo"
         app:layout_constraintVertical_bias="0.071" />
 
     <TextView
@@ -92,10 +55,10 @@
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.952"
+        app:layout_constraintHorizontal_bias="0.913"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/whenBack"
-        app:layout_constraintVertical_bias="0.352" />
+        app:layout_constraintVertical_bias="0.062" />
 
     <TextView
         android:id="@+id/textView8"
@@ -132,5 +95,38 @@
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <Button
+        android:id="@+id/datePickerButton"
+        style="?android:spinnerStyle"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="108dp"
+        android:onClick="openDatePicker"
+        android:text="jan 01 2020"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        app:layout_constraintEnd_toStartOf="@+id/whenGo"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/datePickerButton2"
+        style="?android:spinnerStyle"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="164dp"
+        android:onClick="openDatePicker"
+        android:text="jan 01 2020"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        app:layout_constraintEnd_toStartOf="@+id/whenGo"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

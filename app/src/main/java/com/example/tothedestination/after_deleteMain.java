@@ -1,7 +1,11 @@
 package com.example.tothedestination;
 
+//import static com.example.tothedestination.R.id.datePicker;
+
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 
 import android.view.View;
@@ -9,50 +13,100 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import java.util.Calendar;
 
 public class after_deleteMain extends AppCompatActivity {
 
     private LinearLayout calendarContainer;
     private Button toggleCalendarButton;
-    private CalendarView calendarView;
     private boolean isCalendarVisible = false;
+    private DatePickerDialog datePickerDialog;
+    private Button dateButton;
+    private Button dateButton2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.after_delete);
 
+        initDatePicker();
+
         // Initialize views
-        calendarContainer = findViewById(R.id.calendarFromDateContainer);
-        toggleCalendarButton = findViewById(R.id.toggleFromCalendarButton);
-        calendarView = findViewById(R.id.calendarView);
+        dateButton = findViewById(R.id.datePickerButton);
+        dateButton.setText(getTodayDate());
 
-        // Set calendar listener
-        calendarView.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
-            String selectedDate = dayOfMonth + "/" + (month + 1) + "/" + year;
-            Toast.makeText(this, "Selected Date: " + selectedDate, Toast.LENGTH_SHORT).show();
-        });
-
-        // Toggle calendar visibility
-        toggleCalendarButton.setOnClickListener(v -> toggleCalendar());
 
     }
 
+    private String getTodayDate()
+    {
+        Calendar cal = Calendar.getInstance();
+        int year= cal.get(Calendar.YEAR);
+        int month= cal.get(Calendar.MONTH);
+        month = month + 1;
+        int day= cal.get(Calendar.DAY_OF_MONTH);
+        return makeDateString(day, month, year);
+    }
 
-    private void toggleCalendar() {
-        if (isCalendarVisible) {
-            // Close calendar
-            Animation slideUp = AnimationUtils.loadAnimation(this, R.anim.slide_up);
-            calendarContainer.startAnimation(slideUp);
-            calendarContainer.setVisibility(View.GONE);
-        } else {
-            // Open calendar
-            Animation slideDown = AnimationUtils.loadAnimation(this, R.anim.slide_down);
-            calendarContainer.startAnimation(slideDown);
-            calendarContainer.setVisibility(View.VISIBLE);
+    private void initDatePicker()
+    {
+
+        DatePickerDialog.OnDateSetListener dateSetListener=new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month = month + 1;
+                String date = makeDateString(day, month, year);
+                dateButton.setText(date);
+            }
+        };
+        Calendar cal = Calendar.getInstance();
+        int year= cal.get(Calendar.YEAR);
+        int month= cal.get(Calendar.MONTH);
+        int day= cal.get(Calendar.DAY_OF_MONTH);
+        int style= AlertDialog.THEME_HOLO_LIGHT;
+        datePickerDialog = new DatePickerDialog(this,style,dateSetListener,year,month,day);
         }
-        isCalendarVisible = !isCalendarVisible;
+
+            private String makeDateString(int day, int month, int year) {
+                return getMonthFormat(month) + " " + day + " " + year;
+            }
+
+            private String getMonthFormat(int month)
+            {
+                if(month == 1)
+                   return "JAN";
+                if(month == 2)
+                    return "FEB";
+                if(month == 3)
+                    return "MAR";
+                if(month == 4)
+                    return "APR";
+                if(month == 5)
+                    return "MAY";
+                if(month == 6)
+                    return "JUN";
+                if(month == 7)
+                    return "JUL";
+                if(month == 8)
+                    return "AUG";
+                if(month == 9)
+                    return "SEP";
+                if(month == 10)
+                    return "OCT";
+                if(month == 11)
+                    return "NOV";
+                if(month == 12)
+                    return "DEC";
+
+                return "JAN";
+            }
+            public void openDatePicker(View view)
+            {
+                datePickerDialog.show();
+            }
     }
-}
