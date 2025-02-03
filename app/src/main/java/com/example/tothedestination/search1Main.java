@@ -3,6 +3,8 @@ package com.example.tothedestination;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,21 +13,42 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.app.DatePickerDialog;
 
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.Calendar;
 
 public class search1Main extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     private SharedPreferences sp1;
+    private LinearLayout calendarContainer;
+    private Button toggleCalendarButton;
+    private boolean isCalendarVisible = false;
+    private DatePickerDialog datePickerDialog;
+    private Button dateButtonFrom;
+    private Button dateButtonTo;
+    private String whichCalenderWasClicked = "";
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search1);
+
+        initDatePicker();
+
+        // Initialize views
+        dateButtonFrom = findViewById(R.id.datePickerButtonFrom);
+        dateButtonFrom.setText(getTodayDate());
+
+        dateButtonTo = findViewById(R.id.datePickerButtonTo);
+        dateButtonTo.setText(getTodayDate());
 
         Spinner aSpinner1=findViewById(R.id.aSpinner1);
         aSpinner1.setOnItemSelectedListener(this);
@@ -128,4 +151,78 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
         return true;
     }
 
+    private String getTodayDate()
+    {
+        Calendar cal = Calendar.getInstance();
+        int year= cal.get(Calendar.YEAR);
+        int month= cal.get(Calendar.MONTH);
+        month = month + 1;
+        int day= cal.get(Calendar.DAY_OF_MONTH);
+        return makeDateString(day, month, year);
+    }
+
+    private void initDatePicker()
+    {
+        DatePickerDialog.OnDateSetListener dateSetListener=new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month = month + 1;
+                String date = makeDateString(day, month, year);
+                if (whichCalenderWasClicked == "From")
+                    dateButtonFrom.setText(date);
+                else
+                    dateButtonTo.setText(date);
+            }
+        };
+        Calendar cal = Calendar.getInstance();
+        int year= cal.get(Calendar.YEAR);
+        int month= cal.get(Calendar.MONTH);
+        int day= cal.get(Calendar.DAY_OF_MONTH);
+        int style= AlertDialog.THEME_HOLO_LIGHT;
+        datePickerDialog = new DatePickerDialog(this,style,dateSetListener,year,month,day);
+    }
+
+    private String makeDateString(int day, int month, int year) {
+        return getMonthFormat(month) + " " + day + " " + year;
+    }
+
+    private String getMonthFormat(int month)
+    {
+        if(month == 1)
+            return "JAN";
+        if(month == 2)
+            return "FEB";
+        if(month == 3)
+            return "MAR";
+        if(month == 4)
+            return "APR";
+        if(month == 5)
+            return "MAY";
+        if(month == 6)
+            return "JUN";
+        if(month == 7)
+            return "JUL";
+        if(month == 8)
+            return "AUG";
+        if(month == 9)
+            return "SEP";
+        if(month == 10)
+            return "OCT";
+        if(month == 11)
+            return "NOV";
+        if(month == 12)
+            return "DEC";
+
+        return "JAN";
+    }
+    public void openDatePicker(View view)
+    {
+        if (view.getId() == R.id.datePickerButtonFrom)
+            whichCalenderWasClicked = "From";
+        else
+            whichCalenderWasClicked = "To";
+
+        datePickerDialog.show();
+
+    }
 }
