@@ -57,14 +57,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="53dp"
         android:entries="@array/Spinner_AgeOfChildren"
         android:scrollbarSize="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/aSpinner3"
-        app:layout_constraintVertical_bias="0.034"
+        app:layout_constraintVertical_bias="0.066"
         tools:ignore="MissingConstraints" />
 
     <TextView

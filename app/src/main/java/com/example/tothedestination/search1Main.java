@@ -21,8 +21,15 @@ import android.widget.Toast;
 import android.app.DatePickerDialog;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class search1Main extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
@@ -40,6 +47,9 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search1);
+
+        FirebaseDatabase database=FirebaseDatabase.getInstance();
+        DatabaseReference vacRef=database.getReference("vacations");
 
         initDatePicker();
 
@@ -61,6 +71,12 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
 
         Button b=findViewById(R.id.button);
         sp1=getSharedPreferences("myPref",0);
+
+//למלא את הנתונים של הdate וגם את הנתונים של המאפיינים האמיתייים.
+           vacation vac1=new vacation(Integer.parseInt(aSpinner1.getSelectedItem().toString()),aSpinner2.getSelectedItem().toString(),aSpinner3.getSelectedItem().toString(),aSpinner4.getSelectedItem().toString(),getDateFromString(dateButtonTo.getText().toString(),"dd/MMM/yyyy" )  ,getDateFromString(dateButtonTo.getText().toString(),"dd/MMM/yyyy" ) );
+            DatabaseReference newVacRef= vacRef.push();
+            newVacRef.setValue(vac1);
+
 
         b.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,6 +111,18 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
         });
 
     }
+
+
+    public static Date getDateFromString(String dateString, String format) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(format);
+        try {
+            return dateFormat.parse(dateString);
+        } catch (ParseException e) {
+            System.err.println("Error parsing date: " + e.getMessage());
+            return null;
+        }
+    }
+
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
