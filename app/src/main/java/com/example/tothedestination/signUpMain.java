@@ -218,6 +218,7 @@ public class signUpMain extends AppCompatActivity {
     }
     public void saveUser()
     {
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference usersListRef = database.getReference("userList");
 
@@ -225,6 +226,10 @@ public class signUpMain extends AppCompatActivity {
         User user=new User(et_firstName.getText().toString(),et_lastName.getText().toString(),et_password.getText().toString(),et_email.getText().toString());
         DatabaseReference newUserRef= usersListRef.push();
         newUserRef.setValue(user);
+        sp1=getSharedPreferences("myPref",0);
+        SharedPreferences.Editor editor = sp1.edit();
+        editor.putString("key_user", String.valueOf(newUserRef));
+        editor.commit();
 
         Toast.makeText(this,"user added", Toast.LENGTH_SHORT).show();
     }

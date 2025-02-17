@@ -48,8 +48,6 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search1);
 
-        FirebaseDatabase database=FirebaseDatabase.getInstance();
-        DatabaseReference vacRef=database.getReference("vacations");
 
         initDatePicker();
 
@@ -73,9 +71,10 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
         sp1=getSharedPreferences("myPref",0);
 
 //למלא את הנתונים של הdate וגם את הנתונים של המאפיינים האמיתייים.
-           vacation vac1=new vacation(Integer.parseInt(aSpinner1.getSelectedItem().toString()),aSpinner2.getSelectedItem().toString(),aSpinner3.getSelectedItem().toString(),aSpinner4.getSelectedItem().toString(),getDateFromString(dateButtonTo.getText().toString(),"dd/MMM/yyyy" )  ,getDateFromString(dateButtonTo.getText().toString(),"dd/MMM/yyyy" ) );
-            DatabaseReference newVacRef= vacRef.push();
-            newVacRef.setValue(vac1);
+      //  vacation vac1=new vacation(Integer.parseInt(aSpinner1.getSelectedItem().toString()),aSpinner2.getSelectedItem().toString(),aSpinner3.getSelectedItem().toString(),aSpinner4.getSelectedItem().toString(),getDateFromString(dateButtonTo.getText().toString(),"dd/MMM/yyyy" )  ,getDateFromString(dateButtonTo.getText().toString(),"dd/MMM/yyyy" ) );
+      //  DatabaseReference newVacRef= vacRef.push();
+       // newVacRef.setValue(vac1);
+
 
 
         b.setOnClickListener(new View.OnClickListener() {
@@ -105,6 +104,7 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
                 intent2.putExtra("season", aSpinner3.getSelectedItem().toString());
                 intent2.putExtra("ageOfChildren", aSpinner4.getSelectedItem().toString());
 
+                saveVacation(aSpinner1,aSpinner2,aSpinner3,aSpinner4);
 
                 startActivity(intent2);
             }
@@ -252,5 +252,17 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
 
         datePickerDialog.show();
 
+    }
+    public void saveVacation(Spinner aSpinner1,Spinner aSpinner2,Spinner aSpinner3,Spinner aSpinner4)
+    {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference usersListRef = database.getReference("vacations");
+
+
+        vacation vac1=new vacation(Integer.parseInt(aSpinner1.getSelectedItem().toString()),aSpinner2.getSelectedItem().toString(),aSpinner3.getSelectedItem().toString(),aSpinner4.getSelectedItem().toString(),getDateFromString(dateButtonTo.getText().toString(),"dd/MMM/yyyy" )  ,getDateFromString(dateButtonTo.getText().toString(),"dd/MMM/yyyy" ));
+        DatabaseReference newUserRef= usersListRef.push();
+        newUserRef.setValue(vac1);
+
+        Toast.makeText(this,"vacation added", Toast.LENGTH_SHORT).show();
     }
 }
