@@ -253,13 +253,14 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
         datePickerDialog.show();
 
     }
-    public void saveVacation(Spinner aSpinner1,Spinner aSpinner2,Spinner aSpinner3,Spinner aSpinner4)
-    {
+    public void saveVacation(Spinner aSpinner1,Spinner aSpinner2,Spinner aSpinner3,Spinner aSpinner4) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference usersListRef = database.getReference("vacations");
+       // searchUserByEmail(  ,sp1,usersListRef,);
+        String userKey = sp1.getString("key_user", null);
 
 
-        vacation vac1=new vacation(Integer.parseInt(aSpinner1.getSelectedItem().toString()),aSpinner2.getSelectedItem().toString(),aSpinner3.getSelectedItem().toString(),aSpinner4.getSelectedItem().toString(),getDateFromString(dateButtonTo.getText().toString(),"dd/MMM/yyyy" )  ,getDateFromString(dateButtonTo.getText().toString(),"dd/MMM/yyyy" ));
+        vacation vac1 = new vacation(Integer.parseInt(aSpinner1.getSelectedItem().toString()), aSpinner2.getSelectedItem().toString(), aSpinner3.getSelectedItem().toString(), aSpinner4.getSelectedItem().toString(), getDateFromString(dateButtonFrom.getText().toString(), "dd/MMM/yyyy"), getDateFromString(dateButtonTo.getText().toString(), "dd/MMM/yyyy"), userKey);
         DatabaseReference newUserRef= usersListRef.push();
         newUserRef.setValue(vac1);
 

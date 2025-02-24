@@ -23,15 +23,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.Dictionary;
-import java.util.Hashtable;
 
 public class    loginMain extends AppCompatActivity {
 
@@ -40,7 +36,7 @@ public class    loginMain extends AppCompatActivity {
     private SharedPreferences sp;
     private EditText et_email, et_password;
     private FirebaseAuth mAuth;
-    private DatabaseReference flyRef;
+    private DatabaseReference usersRef;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -49,7 +45,7 @@ public class    loginMain extends AppCompatActivity {
         setContentView(R.layout.login);
         mAuth = FirebaseAuth.getInstance();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        flyRef = database.getReference("userList");
+        usersRef = database.getReference("userList");
 
         backToStart = findViewById(R.id.backToStart);
         finalLogIn = findViewById(R.id.finalLogIn);
@@ -172,7 +168,7 @@ public class    loginMain extends AppCompatActivity {
     private void searchUserByEmail(String email) {
         // Initialize Firebase Database reference
         //עובדת על הרשימה של המשתמשים בפיירבייס ובודקת האם המייל שיש לנו פה כפרמטר שווה לאחד המיילים שם פעולה ש
-        flyRef.orderByChild("mail").equalTo(email)
+        usersRef.orderByChild("mail").equalTo(email)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -182,7 +178,8 @@ public class    loginMain extends AppCompatActivity {
                                 String foundEmail = snapshot.child("email").getValue(String.class);
                                 Log.d(TAG, "User found: " + userId + " - " + foundEmail);
                                 SharedPreferences.Editor editor = sp.edit();
-                                editor.putString("key_user", et_email.getText().toString());
+                                editor.putString("email_user", et_email.getText().toString());
+                                editor.putString("key_user", userId);
                                 editor.commit();
                             }
                         } else {

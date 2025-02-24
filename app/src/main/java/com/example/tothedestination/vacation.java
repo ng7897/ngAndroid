@@ -12,14 +12,16 @@ public class vacation {
     private String season;
     private Date fromDate;
     private Date toDate;
+    private String keyUser;
 
-    public vacation(int hoursFlight, String attraction, String ageOfChild, String season, Date fromDate, Date toDate) {
+    public vacation(int hoursFlight, String attraction, String ageOfChild, String season, Date fromDate, Date toDate, String keyUser) {
         this.hoursFlight = hoursFlight;
         this.attraction = attraction;
         this.ageOfChild = ageOfChild;
         this.season = season;
         this.fromDate = fromDate;
         this.toDate = toDate;
+        this.keyUser = keyUser;
     }
 
     public String getAttraction() {
@@ -36,6 +38,9 @@ public class vacation {
 
     public String getSeason() {
         return season;
+    }
+    public String getKeyUser() {
+        return keyUser;
     }
 
     public Date getFromDate() {
@@ -64,6 +69,10 @@ public class vacation {
 
     public void setFromDate(Date fromDate) {
         this.fromDate = fromDate;
+    }
+
+    public void setKeyUser(String keyUser) {
+        this.keyUser = keyUser;
     }
 
     public void setToDate(Date toDate) {

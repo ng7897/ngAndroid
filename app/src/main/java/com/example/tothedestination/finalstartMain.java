@@ -57,6 +57,7 @@ public class finalstartMain extends AppCompatActivity {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
+
         if(currentUser !=null)
         {
             Intent intent = new Intent(finalstartMain.this, search1Main.class);

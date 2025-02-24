@@ -40,7 +40,6 @@
         android:id="@+id/flightGo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:shadowColor="#000000"
         android:text="@string/flightDate"
         android:textColor="#000000"
@@ -49,14 +48,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.946"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fightBack"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/flightAttraction"
+        app:layout_constraintVertical_bias="0.025" />
 
     <TextView
         android:id="@+id/fightBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:shadowColor="#000000"
         android:text="@string/flightDateBack"
@@ -64,10 +62,10 @@
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.975"
+        app:layout_constraintHorizontal_bias="0.972"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/flightAttraction"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/flightGo"
+        app:layout_constraintVertical_bias="0.038" />
 
     <TextView
         android:id="@+id/flightHours"
@@ -105,7 +103,64 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/flightSeason" />
 
+    <TextView
+        android:id="@+id/countryFinal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textColor="#000000"
+        tools:layout_editor_absoluteX="230dp"
+        tools:layout_editor_absoluteY="117dp" />
 
+    <TextView
+        android:id="@+id/hoursFinal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        android:textColor="#000000"
+        app:layout_constraintTop_toBottomOf="@+id/countryFinal"
+        tools:layout_editor_absoluteX="204dp" />
+
+    <TextView
+        android:id="@+id/seasonFinal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="TextView"
+        android:textColor="#000000"
+        app:layout_constraintTop_toBottomOf="@+id/hoursFinal"
+        tools:layout_editor_absoluteX="220dp" />
+
+    <TextView
+        android:id="@+id/attractionFinal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        android:textColor="#000000"
+        app:layout_constraintTop_toBottomOf="@+id/seasonFinal"
+        tools:layout_editor_absoluteX="227dp" />
+
+    <TextView
+        android:id="@+id/dateToFinal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        android:textColor="#000000"
+        app:layout_constraintTop_toBottomOf="@+id/attractionFinal"
+        tools:layout_editor_absoluteX="204dp" />
+
+    <TextView
+        android:id="@+id/dateFromFinal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        android:textColor="#000000"
+        app:layout_constraintTop_toBottomOf="@+id/dateToFinal"
+        tools:layout_editor_absoluteX="204dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
