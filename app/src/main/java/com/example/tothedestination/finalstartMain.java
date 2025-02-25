@@ -60,6 +60,7 @@ public class finalstartMain extends AppCompatActivity {
 
         if(currentUser !=null)
         {
+            Helpers.searchUserByEmail(currentUser.getEmail(),getSharedPreferences("myPref", 0));
             Intent intent = new Intent(finalstartMain.this, search1Main.class);
             startActivity(intent);
         }

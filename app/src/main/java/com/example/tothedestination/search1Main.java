@@ -21,6 +21,7 @@ import android.widget.Toast;
 import android.app.DatePickerDialog;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -257,6 +258,9 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference usersListRef = database.getReference("vacations");
        // searchUserByEmail(  ,sp1,usersListRef,);
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
         String userKey = sp1.getString("key_user", null);
 
 

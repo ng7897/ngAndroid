@@ -29,7 +29,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class    loginMain extends AppCompatActivity {
+public class loginMain extends AppCompatActivity {
 
     private Button backToStart, finalLogIn;
     private ImageView arrowImage;
@@ -155,7 +155,7 @@ public class    loginMain extends AppCompatActivity {
                     editor.putString("key_password", et_password.getText().toString());
 
                     editor.commit();
-                    searchUserByEmail(et_email.getText().toString());
+                    Helpers.searchUserByEmail(et_email.getText().toString(),sp);
                     Intent intent2 = new Intent(loginMain.this, search1Main.class);
                     startActivity(intent2);
                 } else {
@@ -165,34 +165,7 @@ public class    loginMain extends AppCompatActivity {
         });
     }
 
-    private void searchUserByEmail(String email) {
-        // Initialize Firebase Database reference
-        //עובדת על הרשימה של המשתמשים בפיירבייס ובודקת האם המייל שיש לנו פה כפרמטר שווה לאחד המיילים שם פעולה ש
-        usersRef.orderByChild("mail").equalTo(email)
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.exists()) {
-                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                                String userId = snapshot.getKey();
-                                String foundEmail = snapshot.child("email").getValue(String.class);
-                                Log.d(TAG, "User found: " + userId + " - " + foundEmail);
-                                SharedPreferences.Editor editor = sp.edit();
-                                editor.putString("email_user", et_email.getText().toString());
-                                editor.putString("key_user", userId);
-                                editor.commit();
-                            }
-                        } else {
-                            Log.d(TAG, "No user found with this email.");
-                        }
-                    }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                        Log.e(TAG, "Database error: " + databaseError.getMessage());
-                    }
-                });
-    }
 
 
 }
