@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,7 +26,7 @@ import java.util.Calendar;
 public class after_deleteMain extends AppCompatActivity {
 
     private String keyFly;
-    private String countryFinal, hoursFinal, seasonFinal;
+    private TextView countryFinal, hoursFinal, seasonFinal;
 
 
     @Override
@@ -37,23 +38,6 @@ public class after_deleteMain extends AppCompatActivity {
         countryFinal=findViewById(R.id.countryFinal);
         hoursFinal=findViewById(R.id.hoursFinal);
         seasonFinal=findViewById(R.id.seasonFinal);
-
-        for (DataSnapshot flySnapshot : dataSnapshot.getChildren()) {
-            Fly currentFlight = flySnapshot.getValue(Fly.class);
-            if (currentFlight.getKey()==keyFly)
-            {
-                countryFinal=currentFlight.getCountry();
-                hoursFinal= currentFlight.getHours();
-                seasonFinal=currentFlight.getSeason();
-            }
-        }
-    }
-
-    @Override
-    public void onCancelled(DatabaseError error) {
-        Log.w(TAG, "Failed to read value.", error.toException());
-    }
-});
 
 
 
