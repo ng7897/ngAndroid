@@ -46,10 +46,10 @@
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.946"
+        app:layout_constraintHorizontal_bias="0.936"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/flightAttraction"
-        app:layout_constraintVertical_bias="0.025" />
+        app:layout_constraintTop_toBottomOf="@+id/flightSeason"
+        app:layout_constraintVertical_bias="0.029" />
 
     <TextView
         android:id="@+id/fightBack"
@@ -92,75 +92,59 @@
         app:layout_constraintTop_toBottomOf="@+id/flightHours" />
 
     <TextView
-        android:id="@+id/flightAttraction"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/attraction"
-        android:textColor="#000000"
-        android:textStyle="bold|italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/flightSeason" />
-
-    <TextView
         android:id="@+id/countryFinal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="236dp"
+        android:layout_marginTop="116dp"
         android:text="TextView"
         android:textColor="#000000"
-        tools:layout_editor_absoluteX="230dp"
-        tools:layout_editor_absoluteY="117dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/hoursFinal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="204dp"
         android:layout_marginTop="16dp"
         android:text="TextView"
         android:textColor="#000000"
-        app:layout_constraintTop_toBottomOf="@+id/countryFinal"
-        tools:layout_editor_absoluteX="204dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/countryFinal" />
 
     <TextView
         android:id="@+id/seasonFinal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="TextView"
-        android:textColor="#000000"
-        app:layout_constraintTop_toBottomOf="@+id/hoursFinal"
-        tools:layout_editor_absoluteX="220dp" />
-
-    <TextView
-        android:id="@+id/attractionFinal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_marginStart="220dp"
         android:layout_marginTop="16dp"
         android:text="TextView"
         android:textColor="#000000"
-        app:layout_constraintTop_toBottomOf="@+id/seasonFinal"
-        tools:layout_editor_absoluteX="227dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hoursFinal" />
 
     <TextView
         android:id="@+id/dateToFinal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="204dp"
         android:layout_marginTop="16dp"
         android:text="TextView"
         android:textColor="#000000"
-        app:layout_constraintTop_toBottomOf="@+id/attractionFinal"
-        tools:layout_editor_absoluteX="204dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seasonFinal" />
 
     <TextView
         android:id="@+id/dateFromFinal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="204dp"
         android:layout_marginTop="16dp"
         android:text="TextView"
         android:textColor="#000000"
-        app:layout_constraintTop_toBottomOf="@+id/dateToFinal"
-        tools:layout_editor_absoluteX="204dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dateToFinal" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
