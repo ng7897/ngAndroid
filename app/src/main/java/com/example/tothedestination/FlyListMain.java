@@ -87,9 +87,9 @@ public class    FlyListMain extends AppCompatActivity implements AdapterView.OnI
                 countryMap.put("Iceland",R.drawable.country5);
                 countryMap.put("Belgium",R.drawable.country6);
 
-
                 for (DataSnapshot flySnapshot : dataSnapshot.getChildren()) {
-                    // Rule base ML הרבה תנאים
+                    // Rule base
+                    // ML הרבה תנאים
                     Fly currentFlight = flySnapshot.getValue(Fly.class);
                         if (currentFlight.getHoursFlight() == hoursFlight || hoursFlight==0) {
                             if (attraction.equals(currentFlight.getAttraction()) || attraction.equals("Not Important")) {

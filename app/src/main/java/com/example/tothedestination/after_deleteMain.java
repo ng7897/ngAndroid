@@ -20,6 +20,9 @@ import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
 
@@ -39,11 +42,32 @@ public class after_deleteMain extends AppCompatActivity {
         hoursFinal=findViewById(R.id.hoursFinal);
         seasonFinal=findViewById(R.id.seasonFinal);
 
+        FirebaseDatabase database=FirebaseDatabase.getInstance();
+        DatabaseReference flyRef=database.getReference("flyList");
 
+        flyRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
+                for (DataSnapshot flySnapshot : dataSnapshot.getChildren()) {
+                    // Rule base ML הרבה תנאים
+                    Fly currentFlight = flySnapshot.getValue(Fly.class);
+                    if (currentFlight.getKey() == keyFly) {
+                        countryFinal.setText(currentFlight.getCountry());
+                        hoursFinal.setText(currentFlight.getHoursFlight());
+                        seasonFinal.setText(currentFlight.getSeason());
+                    }
+                }
+            }
 
-
+            @Override
+            public void onCancelled(DatabaseError error) {
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
     }
+
+
 
 
     }
