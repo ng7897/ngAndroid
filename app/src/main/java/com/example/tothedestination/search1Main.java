@@ -100,15 +100,18 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
 //                editor.commit();
 
                 Intent intent2=new Intent(search1Main.this, FlyListMain.class);
-                intent2.putExtra("hoursFlight",aSpinner1.getSelectedItem().toString());
-                intent2.putExtra("attraction", aSpinner2.getSelectedItem().toString());
-                intent2.putExtra("season", aSpinner3.getSelectedItem().toString());
-                intent2.putExtra("ageOfChildren", aSpinner4.getSelectedItem().toString());
-
-                saveVacation(aSpinner1,aSpinner2,aSpinner3,aSpinner4);
+              //  intent2.putExtra("hoursFlight",aSpinner1.getSelectedItem().toString());
+              //  intent2.putExtra("attraction", aSpinner2.getSelectedItem().toString());
+             //   intent2.putExtra("season", aSpinner3.getSelectedItem().toString());
+             //   intent2.putExtra("ageOfChildren", aSpinner4.getSelectedItem().toString());
+                SharedPreferences.Editor editor = sp1.edit();
+                editor.putInt((getDateFromString(dateButtonFrom.getText().toString(), "dd/MMM/yyyy").getTime());
+                editor.putInt((getDateFromString(dateButtonFrom.getText().toString(), "dd/MMM/yyyy").getTime());
+                editor.commit();
 
                 startActivity(intent2);
             }
+
         });
 
     }
@@ -254,20 +257,5 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
         datePickerDialog.show();
 
     }
-    public void saveVacation(Spinner aSpinner1,Spinner aSpinner2,Spinner aSpinner3,Spinner aSpinner4) {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference usersListRef = database.getReference("vacations");
-       // searchUserByEmail(  ,sp1,usersListRef,);
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
 
-        String userKey = sp1.getString("key_user", null);
-
-
-        vacation vac1 = new vacation(Integer.parseInt(aSpinner1.getSelectedItem().toString()), aSpinner2.getSelectedItem().toString(), aSpinner3.getSelectedItem().toString(), aSpinner4.getSelectedItem().toString(), getDateFromString(dateButtonFrom.getText().toString(), "dd/MMM/yyyy"), getDateFromString(dateButtonTo.getText().toString(), "dd/MMM/yyyy"), userKey);
-        DatabaseReference newUserRef= usersListRef.push();
-        newUserRef.setValue(vac1);
-
-        Toast.makeText(this,"vacation added", Toast.LENGTH_SHORT).show();
-    }
 }

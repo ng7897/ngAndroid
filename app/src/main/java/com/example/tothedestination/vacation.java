@@ -7,25 +7,25 @@ import java.util.Date;
 public class vacation {
 
     private int hoursFlight;
-    private String attraction;
+    private String country;
     private String ageOfChild;
     private String season;
-    private Date fromDate;
-    private Date toDate;
+    private long fromDate;
+    private long toDate;
     private String keyUser;
 
-    public vacation(int hoursFlight, String attraction, String ageOfChild, String season, Date fromDate, Date toDate, String keyUser) {
+    public vacation(String country,int hoursFlight, String ageOfChild, String season, long fromDate, long toDate, String keyUser) {
         this.hoursFlight = hoursFlight;
-        this.attraction = attraction;
         this.ageOfChild = ageOfChild;
         this.season = season;
+        this.country=country;
         this.fromDate = fromDate;
         this.toDate = toDate;
         this.keyUser = keyUser;
     }
 
-    public String getAttraction() {
-        return attraction;
+    public String getCountry() {
+        return country;
     }
 
     public int getHoursFlight() {
@@ -43,20 +43,16 @@ public class vacation {
         return keyUser;
     }
 
-    public Date getFromDate() {
+    public long getFromDate() {
         return fromDate;
     }
 
-    public Date getToDate() {
+    public long getToDate() {
         return toDate;
     }
 
     public void setHoursFlight(int hoursFlight) {
         this.hoursFlight = hoursFlight;
-    }
-
-    public void setAttraction(String attraction) {
-        this.attraction = attraction;
     }
 
     public void setAgeOfChild(String ageOfChild) {
@@ -67,15 +63,18 @@ public class vacation {
         this.season = season;
     }
 
-    public void setFromDate(Date fromDate) {
+    public void setFromDate(long fromDate) {
         this.fromDate = fromDate;
     }
 
     public void setKeyUser(String keyUser) {
         this.keyUser = keyUser;
     }
+    public void setCountry(String country) {
+        this.country = country;
+    }
 
-    public void setToDate(Date toDate) {
+    public void setToDate(long toDate) {
         this.toDate = toDate;
     }
 }
