@@ -62,11 +62,16 @@ public class    FlyListMain extends AppCompatActivity implements AdapterView.OnI
 
         // בונה "מנוע" לוגי שלפי המאפיינים משנה את הסינונים
 
-        //SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
-        int hoursFlight = getIntent().getExtras().getInt("hoursFlight");
-        String attraction = getIntent().getExtras().getString("attraction");
-        String season = getIntent().getExtras().getString("season");
-        String ageOfChildren = getIntent().getExtras().getString("ageOfChildren");
+        SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+        int hoursFlight = sharedPreferences.getInt("key_hoursFlight", 0);
+        String attraction = sharedPreferences.getString("key_attraction", "Not Important");
+        String season = sharedPreferences.getString("key_season", "Not Important");
+        String ageOfChildren = sharedPreferences.getString("key_ageOfChildren", "Not Important");
+
+        //int hoursFlight = getIntent().getExtras().getInt("hoursFlight");
+       // String attraction = getIntent().getExtras().getString("attraction");
+       // String season = getIntent().getExtras().getString("season");
+       // String ageOfChildren = getIntent().getExtras().getString("ageOfChildren");
 
         //Query query = flyRef.orderByChild("country").equalTo("Belgium");
 

@@ -30,13 +30,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class after_deleteMain extends AppCompatActivity {
 
     private String keyFly;
-    private TextView dateFromFinal;
+    private TextView dateFromFinal, dateToFinal;
     private TextView countryFinal, hoursFinal, seasonFinal;
+    private String ageOfChildrenFinal;
+    private Button saveVac;
 
 
     @Override
@@ -49,25 +54,31 @@ public class after_deleteMain extends AppCompatActivity {
         hoursFinal=findViewById(R.id.hoursFinal);
         seasonFinal=findViewById(R.id.seasonFinal);
         dateFromFinal=findViewById(R.id.dateFromFinal);
+        dateToFinal=findViewById(R.id.dateToFinal);
+        saveVac=findViewById(R.id.saveVac);
+
 
 
         FirebaseDatabase database=FirebaseDatabase.getInstance();
-        DatabaseReference flyRef=database.getReference("flyList");
+        DatabaseReference flyRef=database.getReference("flyList").child(keyFly);
 
         flyRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
-                for (DataSnapshot flySnapshot : dataSnapshot.getChildren()) {
                     // Rule base ML הרבה תנאים
-                    Fly currentFlight = flySnapshot.getValue(Fly.class);
-                    if (currentFlight.getKey() == keyFly) {
+                    Fly currentFlight = dataSnapshot.getValue(Fly.class);
                         countryFinal.setText(currentFlight.getCountry());
-                        hoursFinal.setText(currentFlight.getHoursFlight());
+                        hoursFinal.setText( Integer.toString(currentFlight.getHoursFlight()));
                         seasonFinal.setText(currentFlight.getSeason());
-                    }
+                        ageOfChildrenFinal=currentFlight.getAgeOfChild();
+                        SharedPreferences sharedPreferences = getSharedPreferences("myPref", 0);
+                        String dateFrom = sharedPreferences.getString("key_From", "Not Important");
+                        String dateTo = sharedPreferences.getString("key_To", "Not Important");
 
-                }
+                        dateFromFinal.setText(dateFrom);
+                        dateToFinal.setText(dateTo);
+
+
             }
 
             @Override
@@ -76,35 +87,39 @@ public class after_deleteMain extends AppCompatActivity {
             }
         });
 
-
-        DatabaseReference vacRef=database.getReference("vacations");
-        vacRef.addValueEventListener(new ValueEventListener() {
+        saveVac.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                saveVacation(countryFinal,hoursFinal,seasonFinal,dateFromFinal,   getIntent().getStringExtra("flyKey") );
+            public void onClick(View view) {
+
+                saveVacation(countryFinal.getText().toString(), Integer.parseInt(hoursFinal.getText().toString()), ageOfChildrenFinal, seasonFinal.getText().toString(), convertStringToDate(dateFromFinal.getText().toString(), "MMM dd yyyy").getTime(), convertStringToDate(dateToFinal.getText().toString(), "MMM dd yyyy").getTime(), getIntent().getStringExtra("flyKey"));
+
             }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        })
+        });
 
     }
-
-public void saveVacation(String country, int hoursFlight, String season, String ageOfChildren, long dateFrom, long dateTo) {
+    public static Date convertStringToDate(String dateString, String format) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(format);
+        try {
+            return dateFormat.parse(dateString);
+        } catch (ParseException e) {
+            System.err.println("Error parsing date: " + e.getMessage());
+            return null; // Or throw the exception if you prefer
+        }
+    }
+public void saveVacation(String country, int hoursFlight, String ageOfChildren, String season, long dateFrom, long dateTo, String keyFly) {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference usersListRef = database.getReference("vacations");
-    // searchUserByEmail(  ,sp1,usersListRef,);
+    DatabaseReference refVac = database.getReference("vacations");
+    // searchUserByEmail(  ,sp1,refVac,);
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseUser currentUser = mAuth.getCurrentUser();
 
     SharedPreferences sp1=getSharedPreferences("myPref",0);
     String userKey = sp1.getString("key_user", null);
 
-    vacation vac1 = new vacation(country, hoursFlight, season, ageOfChildren, dateFrom, dateFrom, userKey);
-    DatabaseReference newUserRef= usersListRef.push();
-    newUserRef.setValue(vac1);
+    vacation vac1 = new vacation(country, hoursFlight, ageOfChildren, season, dateFrom, dateFrom, userKey);
+    DatabaseReference newRefVac= refVac.push();
+    newRefVac.setValue(vac1);
 
     Toast.makeText(this,"vacation added", Toast.LENGTH_SHORT).show();
 }
