@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -39,8 +40,9 @@ public class after_deleteMain extends AppCompatActivity {
 
     private String keyFly;
     private TextView dateFromFinal, dateToFinal;
-    private TextView countryFinal, hoursFinal, seasonFinal;
+    private TextView countryFinal, hoursFinal, seasonFinal, airportFinal;
     private String ageOfChildrenFinal;
+    private double coordinatesX, coordinatesY;
     private Button saveVac;
 
 
@@ -56,6 +58,7 @@ public class after_deleteMain extends AppCompatActivity {
         dateFromFinal=findViewById(R.id.dateFromFinal);
         dateToFinal=findViewById(R.id.dateToFinal);
         saveVac=findViewById(R.id.saveVac);
+        airportFinal=findViewById(R.id.airportFinal);
 
 
 
@@ -71,6 +74,9 @@ public class after_deleteMain extends AppCompatActivity {
                         hoursFinal.setText( Integer.toString(currentFlight.getHoursFlight()));
                         seasonFinal.setText(currentFlight.getSeason());
                         ageOfChildrenFinal=currentFlight.getAgeOfChild();
+                        airportFinal.setText(currentFlight.getAirport());
+                        coordinatesX=currentFlight.getCoordinatesX();
+                        coordinatesY=currentFlight.getCoordinatesY();
                         SharedPreferences sharedPreferences = getSharedPreferences("myPref", 0);
                         String dateFrom = sharedPreferences.getString("key_From", "Not Important");
                         String dateTo = sharedPreferences.getString("key_To", "Not Important");
@@ -90,9 +96,7 @@ public class after_deleteMain extends AppCompatActivity {
         saveVac.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                saveVacation(countryFinal.getText().toString(), Integer.parseInt(hoursFinal.getText().toString()), ageOfChildrenFinal, seasonFinal.getText().toString(), convertStringToDate(dateFromFinal.getText().toString(), "MMM dd yyyy").getTime(), convertStringToDate(dateToFinal.getText().toString(), "MMM dd yyyy").getTime(), getIntent().getStringExtra("flyKey"));
-
+                saveVacation(countryFinal.getText().toString(), Integer.parseInt(hoursFinal.getText().toString()), ageOfChildrenFinal, seasonFinal.getText().toString(), convertStringToDate(dateFromFinal.getText().toString(), "MMM dd yyyy").getTime(), convertStringToDate(dateToFinal.getText().toString(), "MMM dd yyyy").getTime(), getIntent().getStringExtra("flyKey"),airportFinal.getText().toString(),coordinatesX,coordinatesY);
             }
 
         });
@@ -107,7 +111,7 @@ public class after_deleteMain extends AppCompatActivity {
             return null; // Or throw the exception if you prefer
         }
     }
-public void saveVacation(String country, int hoursFlight, String ageOfChildren, String season, long dateFrom, long dateTo, String keyFly) {
+public void saveVacation(String country, int hoursFlight, String ageOfChildren, String season, long dateFrom, long dateTo, String keyFly, String airport, double coordinatesX, double coordinatesY) {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference refVac = database.getReference("vacations");
     // searchUserByEmail(  ,sp1,refVac,);
@@ -117,7 +121,7 @@ public void saveVacation(String country, int hoursFlight, String ageOfChildren, 
     SharedPreferences sp1=getSharedPreferences("myPref",0);
     String userKey = sp1.getString("key_user", null);
 
-    vacation vac1 = new vacation(country, hoursFlight, ageOfChildren, season, dateFrom, dateFrom, userKey);
+    vacation vac1 = new vacation(country, hoursFlight, ageOfChildren, season, dateFrom, dateFrom, userKey, airport, coordinatesX, coordinatesY);
     DatabaseReference newRefVac= refVac.push();
     newRefVac.setValue(vac1);
 

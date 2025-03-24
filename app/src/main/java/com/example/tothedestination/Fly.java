@@ -5,6 +5,9 @@ import android.graphics.Bitmap;
 public class Fly {
 
     private int hoursFlight;
+    private String Airport;
+    private double CoordinatesX;
+    private double CoordinatesY;
     private String attraction;
     private String ageOfChild;
     private String season;
@@ -12,7 +15,7 @@ public class Fly {
     private Bitmap bitmap;
     private String key;
 
-    public Fly(int hoursFlight, String attraction, String country, String ageOfChild, String season, Bitmap bitmap,String key)
+    public Fly(int hoursFlight, String attraction, String country, String ageOfChild, String season, Bitmap bitmap,String key, String airport, double coordinatesX, double coordinatesY)
     {
         this.hoursFlight=hoursFlight;
         this.attraction=attraction;
@@ -21,9 +24,12 @@ public class Fly {
         this.season=season;
         this.bitmap=bitmap;
         this.key= key;
+        this.Airport =airport;
+        this.CoordinatesX =coordinatesX;
+        this.CoordinatesY =coordinatesY;
     }
 
-    public Fly(int hoursFlight, String attraction, String country, String ageOfChild, String season,String key)
+    public Fly(int hoursFlight, String attraction, String country, String ageOfChild, String season,String key, String airport, double coordinatesX, double coordinatesY)
     {
         this.hoursFlight=hoursFlight;
         this.attraction=attraction;
@@ -32,11 +38,25 @@ public class Fly {
         this.season=season;
         this.bitmap=null;
         this.key= key;
+        this.Airport =airport;
+        this.CoordinatesX =coordinatesX;
+        this.CoordinatesY =coordinatesY;
     }
 
     public Fly()
     {
 
+    }
+
+    public String getAirport() {
+        return Airport;
+    }
+
+    public double getCoordinatesX() {
+        return CoordinatesX;
+    }
+    public double getCoordinatesY() {
+        return CoordinatesY;
     }
 
     public String getKey() {return this.key;}
@@ -87,5 +107,15 @@ public class Fly {
 
     public void setBitmap(Bitmap bitmap) {
         this.bitmap = bitmap;
+    }
+    public void setAirport(String airport) {
+        this.Airport = airport;
+    }
+
+    public void setCoordinatesX(double coordinatesX) {
+        this.CoordinatesX = coordinatesX;
+    }
+    public void setCoordinatesY(double coordinatesY) {
+        this.CoordinatesY = coordinatesY;
     }
 }

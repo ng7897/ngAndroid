@@ -7,6 +7,9 @@ import java.util.Date;
 public class vacation {
 
     private int hoursFlight;
+    private String airport;
+    private double coordinatesX;
+    private double coordinatesY;
     private String country;
     private String ageOfChild;
     private String season;
@@ -14,7 +17,7 @@ public class vacation {
     private long toDate;
     private String keyUser;
 
-    public vacation(String country,int hoursFlight, String ageOfChild, String season, long fromDate, long toDate, String keyUser) {
+    public vacation(String country,int hoursFlight, String ageOfChild, String season, long fromDate, long toDate, String keyUser, String airport, double coordinatesX, double coordinatesY) {
         this.hoursFlight = hoursFlight;
         this.ageOfChild = ageOfChild;
         this.season = season;
@@ -22,10 +25,24 @@ public class vacation {
         this.fromDate = fromDate;
         this.toDate = toDate;
         this.keyUser = keyUser;
+        this.airport=airport;
+        this.coordinatesX=coordinatesX;
+        this.coordinatesY=coordinatesY;
+
     }
 
     public String getCountry() {
         return country;
+    }
+
+    public String getAirport() {
+        return airport;
+    }
+    public double getCoordinatesX() {
+        return coordinatesX;
+    }
+    public double getCoordinatesY() {
+        return coordinatesY;
     }
 
     public int getHoursFlight() {
@@ -72,6 +89,16 @@ public class vacation {
     }
     public void setCountry(String country) {
         this.country = country;
+    }
+    public void setAirport(String airport) {
+        this.airport = airport;
+    }
+
+    public void setCoordinatesX(double coordinatesX) {
+        this.coordinatesX = coordinatesX;
+    }
+    public void setCoordinatesY(double coordinatesY) {
+        this.coordinatesY = coordinatesY;
     }
 
     public void setToDate(long toDate) {
