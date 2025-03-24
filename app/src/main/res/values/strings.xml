@@ -60,5 +60,6 @@
         <item>Spring</item>
         <item>Fall</item>
     </string-array>
+    <string name="title_activity_maps">MapsActivity</string>
 
 </resources>

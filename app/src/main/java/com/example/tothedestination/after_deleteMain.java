@@ -43,7 +43,7 @@ public class after_deleteMain extends AppCompatActivity {
     private TextView countryFinal, hoursFinal, seasonFinal, airportFinal;
     private String ageOfChildrenFinal;
     private double coordinatesX, coordinatesY;
-    private Button saveVac;
+    private Button saveVac, map;
 
 
     @Override
@@ -51,38 +51,38 @@ public class after_deleteMain extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.after_delete);
 
-        keyFly=getIntent().getStringExtra("flyKey");
-        countryFinal=findViewById(R.id.countryFinal);
-        hoursFinal=findViewById(R.id.hoursFinal);
-        seasonFinal=findViewById(R.id.seasonFinal);
-        dateFromFinal=findViewById(R.id.dateFromFinal);
-        dateToFinal=findViewById(R.id.dateToFinal);
-        saveVac=findViewById(R.id.saveVac);
-        airportFinal=findViewById(R.id.airportFinal);
+        keyFly = getIntent().getStringExtra("flyKey");
+        countryFinal = findViewById(R.id.countryFinal);
+        hoursFinal = findViewById(R.id.hoursFinal);
+        seasonFinal = findViewById(R.id.seasonFinal);
+        dateFromFinal = findViewById(R.id.dateFromFinal);
+        dateToFinal = findViewById(R.id.dateToFinal);
+        saveVac = findViewById(R.id.saveVac);
+        airportFinal = findViewById(R.id.airportFinal);
+        map = findViewById(R.id.map);
 
 
-
-        FirebaseDatabase database=FirebaseDatabase.getInstance();
-        DatabaseReference flyRef=database.getReference("flyList").child(keyFly);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference flyRef = database.getReference("flyList").child(keyFly);
 
         flyRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                    // Rule base ML הרבה תנאים
-                    Fly currentFlight = dataSnapshot.getValue(Fly.class);
-                        countryFinal.setText(currentFlight.getCountry());
-                        hoursFinal.setText( Integer.toString(currentFlight.getHoursFlight()));
-                        seasonFinal.setText(currentFlight.getSeason());
-                        ageOfChildrenFinal=currentFlight.getAgeOfChild();
-                        airportFinal.setText(currentFlight.getAirport());
-                        coordinatesX=currentFlight.getCoordinatesX();
-                        coordinatesY=currentFlight.getCoordinatesY();
-                        SharedPreferences sharedPreferences = getSharedPreferences("myPref", 0);
-                        String dateFrom = sharedPreferences.getString("key_From", "Not Important");
-                        String dateTo = sharedPreferences.getString("key_To", "Not Important");
+                // Rule base ML הרבה תנאים
+                Fly currentFlight = dataSnapshot.getValue(Fly.class);
+                countryFinal.setText(currentFlight.getCountry());
+                hoursFinal.setText(Integer.toString(currentFlight.getHoursFlight()));
+                seasonFinal.setText(currentFlight.getSeason());
+                ageOfChildrenFinal = currentFlight.getAgeOfChild();
+                airportFinal.setText(currentFlight.getAirport());
+                coordinatesX = currentFlight.getCoordinatesX();
+                coordinatesY = currentFlight.getCoordinatesY();
+                SharedPreferences sharedPreferences = getSharedPreferences("myPref", 0);
+                String dateFrom = sharedPreferences.getString("key_From", "Not Important");
+                String dateTo = sharedPreferences.getString("key_To", "Not Important");
 
-                        dateFromFinal.setText(dateFrom);
-                        dateToFinal.setText(dateTo);
+                dateFromFinal.setText(dateFrom);
+                dateToFinal.setText(dateTo);
 
 
             }
@@ -96,12 +96,24 @@ public class after_deleteMain extends AppCompatActivity {
         saveVac.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                saveVacation(countryFinal.getText().toString(), Integer.parseInt(hoursFinal.getText().toString()), ageOfChildrenFinal, seasonFinal.getText().toString(), convertStringToDate(dateFromFinal.getText().toString(), "MMM dd yyyy").getTime(), convertStringToDate(dateToFinal.getText().toString(), "MMM dd yyyy").getTime(), getIntent().getStringExtra("flyKey"),airportFinal.getText().toString(),coordinatesX,coordinatesY);
+                saveVacation(countryFinal.getText().toString(), Integer.parseInt(hoursFinal.getText().toString()), ageOfChildrenFinal, seasonFinal.getText().toString(), convertStringToDate(dateFromFinal.getText().toString(), "MMM dd yyyy").getTime(), convertStringToDate(dateToFinal.getText().toString(), "MMM dd yyyy").getTime(), getIntent().getStringExtra("flyKey"), airportFinal.getText().toString(), coordinatesX, coordinatesY);
             }
 
         });
 
+        map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(after_deleteMain.this, MapsActivity.class);
+                intent.putExtra("coordinatesX", coordinatesX);
+                intent.putExtra("coordinatesY", coordinatesY);
+                intent.putExtra("airport", airportFinal.getText().toString());
+                startActivity(intent);
+
+            }
+        });
     }
+
     public static Date convertStringToDate(String dateString, String format) {
         SimpleDateFormat dateFormat = new SimpleDateFormat(format);
         try {

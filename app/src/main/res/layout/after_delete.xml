@@ -96,7 +96,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="236dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="116dp"
         android:text="TextView"
         android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
@@ -173,12 +173,20 @@
         android:id="@+id/airportFinal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="220dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="224dp"
+        android:layout_marginTop="24dp"
         android:text="TextView"
         android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dateFromFinal" />
+
+    <Button
+        android:id="@+id/map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="map"
+        tools:layout_editor_absoluteX="155dp"
+        tools:layout_editor_absoluteY="407dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
