@@ -43,7 +43,7 @@ public class after_deleteMain extends AppCompatActivity {
     private TextView countryFinal, hoursFinal, seasonFinal, airportFinal;
     private String ageOfChildrenFinal;
     private double coordinatesX, coordinatesY;
-    private Button saveVac, map;
+    private Button saveVac, map, moveForward;
 
 
     @Override
@@ -60,7 +60,7 @@ public class after_deleteMain extends AppCompatActivity {
         saveVac = findViewById(R.id.saveVac);
         airportFinal = findViewById(R.id.airportFinal);
         map = findViewById(R.id.map);
-
+        moveForward=findViewById(R.id.moveForward);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference flyRef = database.getReference("flyList").child(keyFly);
@@ -112,7 +112,15 @@ public class after_deleteMain extends AppCompatActivity {
 
             }
         });
+        moveForward.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(after_deleteMain.this, myTripsMain.class);
+                startActivity(intent);
+            }
+        });
     }
+
 
     public static Date convertStringToDate(String dateString, String format) {
         SimpleDateFormat dateFormat = new SimpleDateFormat(format);

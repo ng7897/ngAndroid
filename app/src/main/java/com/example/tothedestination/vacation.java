@@ -16,6 +16,22 @@ public class vacation {
     private long fromDate;
     private long toDate;
     private String keyUser;
+    private Bitmap bitmap;
+
+    public vacation(String country,int hoursFlight, String ageOfChild, String season, long fromDate, long toDate, String keyUser, String airport, double coordinatesX, double coordinatesY, Bitmap bitmap) {
+        this.hoursFlight = hoursFlight;
+        this.ageOfChild = ageOfChild;
+        this.season = season;
+        this.country=country;
+        this.fromDate = fromDate;
+        this.toDate = toDate;
+        this.keyUser = keyUser;
+        this.airport=airport;
+        this.coordinatesX=coordinatesX;
+        this.coordinatesY=coordinatesY;
+        this.bitmap=bitmap;
+
+    }
 
     public vacation(String country,int hoursFlight, String ageOfChild, String season, long fromDate, long toDate, String keyUser, String airport, double coordinatesX, double coordinatesY) {
         this.hoursFlight = hoursFlight;
@@ -29,6 +45,14 @@ public class vacation {
         this.coordinatesX=coordinatesX;
         this.coordinatesY=coordinatesY;
 
+    }
+    public vacation()
+    {
+
+    }
+
+    public Bitmap getBitmap() {
+        return bitmap;
     }
 
     public String getCountry() {
@@ -103,5 +127,8 @@ public class vacation {
 
     public void setToDate(long toDate) {
         this.toDate = toDate;
+    }
+    public void setBitmap(Bitmap bitmap) {
+        this.bitmap = bitmap;
     }
 }
