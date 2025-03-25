@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ABC6C4"
+    tools:context=".customLayout3Main">
+
+    <ImageView
+        android:id="@+id/ivProduct"
+        android:layout_width="115dp"
+        android:layout_height="134dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvAtName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="10dp"
+        android:text="Country"
+        android:textColor="#009688"
+        android:textSize="16dp"
+        app:layout_constraintStart_toEndOf="@+id/ivProduct"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvAtCoordinatesY"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="204dp"
+        android:layout_marginTop="10dp"
+        android:text="Coordinates Y"
+        android:textColor="#009688"
+        android:textSize="16dp"
+        app:layout_constraintStart_toEndOf="@+id/ivProduct"
+        app:layout_constraintTop_toBottomOf="@+id/tvAtCoordinatesX" />
+
+    <TextView
+        android:id="@+id/tvExplain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="10dp"
+        android:text="explain"
+        android:textColor="@color/white"
+        android:textSize="16dp"
+        app:layout_constraintStart_toEndOf="@+id/ivProduct"
+        app:layout_constraintTop_toBottomOf="@+id/tvAtCoordinatesY" />
+
+    <TextView
+        android:id="@+id/tvAtCoordinatesX"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="204dp"
+        android:layout_marginTop="10dp"
+        android:text="Coordinates X"
+        android:textColor="#FFFFFF"
+        android:textSize="16dp"
+        app:layout_constraintStart_toEndOf="@+id/ivProduct"
+        app:layout_constraintTop_toBottomOf="@+id/tvAtName" />
+
+    <TextView
+        android:id="@+id/attractionCoordinatesX"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="136dp"
+        android:layout_marginTop="10dp"
+        android:text="Attraction coordinates X:"
+        android:textSize="16dp"
+        android:textStyle="bold|italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/attractionName" />
+
+    <TextView
+        android:id="@+id/attractionName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="136dp"
+        android:layout_marginTop="10dp"
+        android:text="Attraction name:"
+        android:textSize="16dp"
+        android:textStyle="bold|italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/attractionCoordinatesY"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="136dp"
+        android:layout_marginTop="10dp"
+        android:text="Attraction coordinates Y:"
+        android:textSize="16dp"
+        android:textStyle="bold|italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/attractionCoordinatesX" />
+
+    <TextView
+        android:id="@+id/explainAboutAttraction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="136dp"
+        android:layout_marginTop="10dp"
+        android:text="explain:"
+        android:textSize="16dp"
+        android:textStyle="bold|italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/attractionCoordinatesY" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
