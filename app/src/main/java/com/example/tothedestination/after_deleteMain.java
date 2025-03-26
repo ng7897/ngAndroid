@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +34,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -44,6 +46,9 @@ public class after_deleteMain extends AppCompatActivity {
     private String ageOfChildrenFinal;
     private double coordinatesX, coordinatesY;
     private Button saveVac, map, moveForward;
+    ArrayList<Attraction> attList;
+    ListView lv;
+    AttractionAdapter attAdapter;
 
 
     @Override
@@ -61,9 +66,12 @@ public class after_deleteMain extends AppCompatActivity {
         airportFinal = findViewById(R.id.airportFinal);
         map = findViewById(R.id.map);
         moveForward=findViewById(R.id.moveForward);
+        attList = new ArrayList<Attraction>();
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference flyRef = database.getReference("flyList").child(keyFly);
+
+        DatabaseReference attRef=database.getReference("attList");
 
         flyRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -119,6 +127,33 @@ public class after_deleteMain extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        attRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                attList.clear();
+
+                // Rule base ML הרבה תנאים
+                Attraction currentFlight = dataSnapshot.getValue(Attraction.class);
+                countryFinal.setText(currentFlight.getNameAtt());
+                seasonFinal.setText(currentFlight.getExplain());
+                coordinatesX = currentFlight.getCoordinatesX();
+                coordinatesY = currentFlight.getCoordinatesY();
+                attList.add(currentFlight);
+                attAdapter.notifyDataSetChanged();
+
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
+        attAdapter=new attAdapter(this,0,0,attList);
+        lv=(ListView) findViewById(R.id.lv);
+        lv.setAdapter(attList);
     }
 
 

@@ -195,9 +195,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="124dp"
-        android:layout_marginTop="444dp"
+        android:layout_marginTop="436dp"
         android:text="Move Forward"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ListView
+        android:id="@+id/lv"
+        android:layout_width="402dp"
+        android:layout_height="282dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="492dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+    </ListView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
