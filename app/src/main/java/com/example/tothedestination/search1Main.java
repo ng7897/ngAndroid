@@ -77,7 +77,6 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
        // newVacRef.setValue(vac1);
 
 
-
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -99,6 +98,7 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
 //                editor.putString("key_ageOfChildren", aSpinner4.getSelectedItem().toString());
 //                editor.commit();
 
+                String a=aSpinner3.getSelectedItem().toString();
 
               //  intent2.putExtra("hoursFlight",aSpinner1.getSelectedItem().toString());
               //  intent2.putExtra("attraction", aSpinner2.getSelectedItem().toString());
@@ -107,7 +107,8 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
                 SharedPreferences.Editor editor = sp1.edit();
                 editor.putString("key_From",dateButtonFrom.getText().toString());
                 editor.putString("key_To",dateButtonFrom.getText().toString());
-                editor.putString("key_hoursFlight",aSpinner1.getSelectedItem().toString());
+               // editor.putString("key_airport", aSpinner2.getSelectedItem().toString());
+                editor.putInt("key_hoursFlight", Integer.parseInt(aSpinner1.getSelectedItem().toString()));
                 editor.putString("key_attraction", aSpinner2.getSelectedItem().toString());
                 editor.putString("key_season", aSpinner3.getSelectedItem().toString());
                 editor.putString("key_ageOfChildren", aSpinner4.getSelectedItem().toString());

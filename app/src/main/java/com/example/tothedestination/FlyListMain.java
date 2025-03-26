@@ -39,7 +39,7 @@ public class    FlyListMain extends AppCompatActivity implements AdapterView.OnI
     ArrayList<Fly> flyList;
     ListView lv;
     FlyAdapter flyAdapter;
-    Random random = new Random();
+    //Random random = new Random();
     private SharedPreferences sp1;
 
     @Override
@@ -61,14 +61,14 @@ public class    FlyListMain extends AppCompatActivity implements AdapterView.OnI
 
         // בונה "מנוע" לוגי שלפי המאפיינים משנה את הסינונים
 
-        SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
-        int hoursFlight = sharedPreferences.getInt("key_hoursFlight", 0);
-        String attraction = sharedPreferences.getString("key_attraction", "Not Important");
-        String season = sharedPreferences.getString("key_season", "Not Important");
-        String ageOfChildren = sharedPreferences.getString("key_ageOfChildren", "Not Important");
-        String airport = sharedPreferences.getString("key_airport", "Not Important");
-        double coordinatesX = sharedPreferences.getFloat("key_coordinatesX", 0);
-        double coordinatesY = sharedPreferences.getFloat("key_coordinatesY", 0);
+        sp1=getSharedPreferences("myPref",0);
+        int hoursFlight = sp1.getInt("key_hoursFlight", 0);
+        String attraction = sp1.getString("key_attraction", "Not Important");
+        String season = sp1.getString("key_season", "Not Important");
+        String ageOfChildren = sp1.getString("key_ageOfChildren", "Not Important");
+        //String airport = sp1.getString("key_airport", "Not Important");
+        //double coordinatesX = sp1.getFloat("key_coordinatesX", 0);
+        //double coordinatesY = sp1.getFloat("key_coordinatesY", 0);
 
 
         //int hoursFlight = getIntent().getExtras().getInt("hoursFlight");
