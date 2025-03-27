@@ -5,12 +5,18 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+
 import java.util.List;
 
-public class AttractionAdapter {
+public class AttractionAdapter extends ArrayAdapter<Attraction>{
     Context context;
     List<Attraction> objects;
 
@@ -33,7 +39,7 @@ public class AttractionAdapter {
         ivProduct.setImageBitmap(temp.getBitmap());
         tvAtName.setText(temp.getNameAtt());
         tvAtCoordinatesX.setText(String.valueOf(temp.getCoordinatesX()));
-        tvAtCoordinatesY.setText(String.valueOf(temp.getCoordinatesY());
+        tvAtCoordinatesY.setText(String.valueOf(temp.getCoordinatesY()));
         tvExplain.setText(temp.getExplain());
 
         return view;

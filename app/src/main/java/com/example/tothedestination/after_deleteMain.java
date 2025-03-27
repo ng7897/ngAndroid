@@ -16,6 +16,7 @@ import android.os.Bundle;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
@@ -38,7 +39,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-public class after_deleteMain extends AppCompatActivity {
+public class after_deleteMain extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private String keyFly;
     private TextView dateFromFinal, dateToFinal;
@@ -134,15 +135,17 @@ public class after_deleteMain extends AppCompatActivity {
                 attList.clear();
 
                 // Rule base ML הרבה תנאים
-                Attraction currentFlight = dataSnapshot.getValue(Attraction.class);
-                countryFinal.setText(currentFlight.getNameAtt());
-                seasonFinal.setText(currentFlight.getExplain());
-                coordinatesX = currentFlight.getCoordinatesX();
-                coordinatesY = currentFlight.getCoordinatesY();
-                attList.add(currentFlight);
-                attAdapter.notifyDataSetChanged();
-
-
+                for (DataSnapshot flySnapshot : dataSnapshot.getChildren()) {
+                    Attraction currentAttraction = dataSnapshot.getValue(Attraction.class);
+                    countryFinal.setText(currentAttraction.getNameAtt());
+                    seasonFinal.setText(currentAttraction.getExplain());
+                    coordinatesX = currentAttraction.getCoordinatesX();
+                    coordinatesY = currentAttraction.getCoordinatesY();
+                    attList.add(currentAttraction);
+                    attAdapter.notifyDataSetChanged();
+                    //france, spring:3,1,2,4  other: 6
+                    //netherlands: 5,
+                }
 
             }
 
@@ -151,11 +154,20 @@ public class after_deleteMain extends AppCompatActivity {
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
-        attAdapter=new attAdapter(this,0,0,attList);
+        attAdapter=new AttractionAdapter(this,0,0,attList);
         lv=(ListView) findViewById(R.id.lv);
-        lv.setAdapter(attList);
+        lv.setAdapter(attAdapter);
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        Toast.makeText(this, adapterView.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
 
     public static Date convertStringToDate(String dateString, String format) {
         SimpleDateFormat dateFormat = new SimpleDateFormat(format);

@@ -19,6 +19,14 @@ public class Attraction {
 
     }
 
+    public Attraction(String nameAtt, Double coordinatesX, Double coordinatesY, String explain) {
+        this.nameAtt = nameAtt;
+        this.coordinatesX = coordinatesX;
+        this.coordinatesY = coordinatesY;
+        this.explain = explain;
+
+    }
+
     public Bitmap getBitmap() {
         return bitmap;
     }
