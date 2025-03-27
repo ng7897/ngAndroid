@@ -9,18 +9,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-
 import java.util.List;
 
-public class AttractionAdapter extends ArrayAdapter<Attraction>{
+public class AttractionAdapter extends ArrayAdapter<attraction>{
     Context context;
-    List<Attraction> objects;
+    List<attraction> objects;
 
-    public AttractionAdapter(Context context, int resource, int textViewResourceld, List<Attraction> objects) {
+    public AttractionAdapter(Context context, int resource, int textViewResourceld, List<attraction> objects) {
         super(context, resource, textViewResourceld, objects);
         this.context = context;
         this.objects = objects;
@@ -35,9 +30,9 @@ public class AttractionAdapter extends ArrayAdapter<Attraction>{
         TextView tvExplain = (TextView) view.findViewById(R.id.tvExplain);
         ImageView ivProduct = (ImageView) view.findViewById(R.id.ivProduct);
 
-        Attraction temp = objects.get(position);
+        attraction temp = objects.get(position);
         ivProduct.setImageBitmap(temp.getBitmap());
-        tvAtName.setText(temp.getNameAtt());
+        tvAtName.setText(temp.getAttName());
         tvAtCoordinatesX.setText(String.valueOf(temp.getCoordinatesX()));
         tvAtCoordinatesY.setText(String.valueOf(temp.getCoordinatesY()));
         tvExplain.setText(temp.getExplain());

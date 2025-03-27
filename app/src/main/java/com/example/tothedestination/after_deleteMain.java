@@ -4,24 +4,17 @@ package com.example.tothedestination;
 
 import static android.content.ContentValues.TAG;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,7 +29,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 
 public class after_deleteMain extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -47,7 +39,7 @@ public class after_deleteMain extends AppCompatActivity implements AdapterView.O
     private String ageOfChildrenFinal;
     private double coordinatesX, coordinatesY;
     private Button saveVac, map, moveForward;
-    ArrayList<Attraction> attList;
+    ArrayList<attraction> attList;
     ListView lv;
     AttractionAdapter attAdapter;
 
@@ -67,12 +59,12 @@ public class after_deleteMain extends AppCompatActivity implements AdapterView.O
         airportFinal = findViewById(R.id.airportFinal);
         map = findViewById(R.id.map);
         moveForward=findViewById(R.id.moveForward);
-        attList = new ArrayList<Attraction>();
+        attList = new ArrayList<attraction>();
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference flyRef = database.getReference("flyList").child(keyFly);
 
-        DatabaseReference attRef=database.getReference("attList");
+        DatabaseReference attRef=database.getReference("attraction");
 
         flyRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -135,12 +127,9 @@ public class after_deleteMain extends AppCompatActivity implements AdapterView.O
                 attList.clear();
 
                 // Rule base ML הרבה תנאים
-                for (DataSnapshot flySnapshot : dataSnapshot.getChildren()) {
-                    Attraction currentAttraction = dataSnapshot.getValue(Attraction.class);
-                    countryFinal.setText(currentAttraction.getNameAtt());
-                    seasonFinal.setText(currentAttraction.getExplain());
-                    coordinatesX = currentAttraction.getCoordinatesX();
-                    coordinatesY = currentAttraction.getCoordinatesY();
+                for (DataSnapshot attSnapshot : dataSnapshot.getChildren())
+                {
+                    attraction currentAttraction = attSnapshot.getValue(attraction.class);
                     attList.add(currentAttraction);
                     attAdapter.notifyDataSetChanged();
                     //france, spring:3,1,2,4  other: 6

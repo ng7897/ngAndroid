@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="148dp"
         android:layout_marginTop="10dp"
-        android:text="Country"
+        android:text="AtName"
         android:textColor="#009688"
         android:textSize="16dp"
         app:layout_constraintStart_toEndOf="@+id/ivProduct"
