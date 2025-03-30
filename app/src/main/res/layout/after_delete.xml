@@ -16,10 +16,10 @@
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.422"
+        app:layout_constraintHorizontal_bias="0.388"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.061" />
+        app:layout_constraintVertical_bias="0.049" />
 
     <TextView
         android:id="@+id/nameCountry"
@@ -31,10 +31,10 @@
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.952"
+        app:layout_constraintHorizontal_bias="0.044"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.165" />
+        app:layout_constraintVertical_bias="0.136" />
 
     <TextView
         android:id="@+id/flightGo"
@@ -46,10 +46,10 @@
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.936"
+        app:layout_constraintHorizontal_bias="0.629"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/flightSeason"
-        app:layout_constraintVertical_bias="0.029" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.134" />
 
     <TextView
         android:id="@+id/fightBack"
@@ -62,17 +62,17 @@
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.972"
+        app:layout_constraintHorizontal_bias="0.642"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/flightGo"
-        app:layout_constraintVertical_bias="0.038" />
+        app:layout_constraintVertical_bias="0.02" />
 
     <TextView
         android:id="@+id/flightHours"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="300dp"
         android:text="@string/howMuchHours"
         android:textColor="#000000"
         android:textStyle="bold|italic"
@@ -83,8 +83,8 @@
         android:id="@+id/flightSeason"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="352dp"
         android:text="@string/season"
         android:textColor="#000000"
         android:textStyle="bold|italic"
@@ -95,8 +95,8 @@
         android:id="@+id/countryFinal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="236dp"
-        android:layout_marginTop="116dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="96dp"
         android:text="TextView"
         android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
@@ -106,8 +106,8 @@
         android:id="@+id/hoursFinal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="220dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="8dp"
         android:text="TextView"
         android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
@@ -117,7 +117,7 @@
         android:id="@+id/seasonFinal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="224dp"
+        android:layout_marginStart="84dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
         android:textColor="#000000"
@@ -128,19 +128,19 @@
         android:id="@+id/dateToFinal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="192dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="312dp"
+        android:layout_marginTop="96dp"
         android:text="TextView"
         android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seasonFinal" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/dateFromFinal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="204dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="312dp"
+        android:layout_marginTop="8dp"
         android:text="TextView"
         android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
@@ -150,9 +150,9 @@
         android:id="@+id/saveVac"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="156dp"
-        android:layout_marginTop="340dp"
-        android:text="Button"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="180dp"
+        android:text="Save"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -160,12 +160,12 @@
         android:id="@+id/airport"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="8dp"
         android:text="@string/airport"
         android:textColor="#000000"
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.927"
+        app:layout_constraintHorizontal_bias="0.585"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fightBack" />
 
@@ -173,8 +173,8 @@
         android:id="@+id/airportFinal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="224dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="308dp"
+        android:layout_marginTop="8dp"
         android:text="TextView"
         android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
@@ -184,8 +184,8 @@
         android:id="@+id/map"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="388dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="180dp"
         android:text="map"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -194,22 +194,34 @@
         android:id="@+id/moveForward"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="124dp"
-        android:layout_marginTop="436dp"
+        android:layout_marginStart="248dp"
+        android:layout_marginTop="180dp"
         android:text="Move Forward"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
         android:id="@+id/lv"
-        android:layout_width="402dp"
-        android:layout_height="282dp"
+        android:layout_width="440dp"
+        android:layout_height="484dp"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="492dp"
+        android:layout_marginTop="268dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
 
     </ListView>
+
+    <TextView
+        android:id="@+id/Attraction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="228dp"
+        android:text="@string/Attraction"
+        android:textColor="@color/white"
+        android:textSize="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

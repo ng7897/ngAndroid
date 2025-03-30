@@ -2,12 +2,22 @@ package com.example.tothedestination;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.List;
 
@@ -25,17 +35,35 @@ public class AttractionAdapter extends ArrayAdapter<attraction>{
         LayoutInflater layoutInflater = ((Activity) context).getLayoutInflater();
         View view = layoutInflater.inflate(R.layout.custom_layout3, parent, false);
         TextView tvAtName = (TextView) view.findViewById(R.id.tvAtName);
-        TextView tvAtCoordinatesX = (TextView) view.findViewById(R.id.tvAtCoordinatesX);
-        TextView tvAtCoordinatesY = (TextView) view.findViewById(R.id.tvAtCoordinatesY);
         TextView tvExplain = (TextView) view.findViewById(R.id.tvExplain);
         ImageView ivProduct = (ImageView) view.findViewById(R.id.ivProduct);
 
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReference();
+
+
         attraction temp = objects.get(position);
-        ivProduct.setImageBitmap(temp.getBitmap());
         tvAtName.setText(temp.getAttName());
-        tvAtCoordinatesX.setText(String.valueOf(temp.getCoordinatesX()));
-        tvAtCoordinatesY.setText(String.valueOf(temp.getCoordinatesY()));
         tvExplain.setText(temp.getExplain());
+        StorageReference imageRef = storageRef.child(temp.getImage());
+
+        // Download the image as a byte array
+        final long ONE_MEGABYTE = 1024 * 1024;
+        imageRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                // Got the image data as a byte array
+                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+
+                // Display the bitmap in the ImageView
+                ivProduct.setImageBitmap(bitmap);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+            }
+        });
 
         return view;
     }

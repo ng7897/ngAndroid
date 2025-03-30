@@ -8,14 +8,14 @@ public class attraction {
     private Double CoordinatesX;
     private Double CoordinatesY;
     private String explain;
-    private Bitmap bitmap;
+    private String image;
 
-    public attraction(String attName, Double CoordinatesX, Double CoordinatesY, String explain, Bitmap bitmap) {
+    public attraction(String attName, Double CoordinatesX, Double CoordinatesY, String explain, String image) {
         this.attName = attName;
         this.CoordinatesX = CoordinatesX;
         this.CoordinatesY = CoordinatesY;
         this.explain = explain;
-        this.bitmap = bitmap;
+        this.image = image;
 
     }
 
@@ -31,8 +31,8 @@ public class attraction {
 
     }
 
-    public Bitmap getBitmap() {
-        return bitmap;
+    public String getImage() {
+        return image;
     }
     public String getAttName() {
         return attName;
@@ -65,7 +65,7 @@ public class attraction {
     public void setExplain(String explain) {
         this.explain = explain;
     }
-    public void setBitmap(Bitmap bitmap) {
-        this.bitmap = bitmap;
+    public void setBitmap(String image) {
+        this.image = image;
     }
 }
