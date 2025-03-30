@@ -30,6 +30,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class after_deleteMain extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -58,19 +59,19 @@ public class after_deleteMain extends AppCompatActivity implements AdapterView.O
         saveVac = findViewById(R.id.saveVac);
         airportFinal = findViewById(R.id.airportFinal);
         map = findViewById(R.id.map);
-        moveForward=findViewById(R.id.moveForward);
+        moveForward = findViewById(R.id.moveForward);
         attList = new ArrayList<attraction>();
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference flyRef = database.getReference("flyList").child(keyFly);
 
-        DatabaseReference attRef=database.getReference("attraction");
+        DatabaseReference attRef = database.getReference("attraction");
 
         flyRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(DataSnapshot flyListDataSnapshot) {
                 // Rule base ML הרבה תנאים
-                Fly currentFlight = dataSnapshot.getValue(Fly.class);
+                Fly currentFlight = flyListDataSnapshot.getValue(Fly.class);
                 countryFinal.setText(currentFlight.getCountry());
                 hoursFinal.setText(Integer.toString(currentFlight.getHoursFlight()));
                 seasonFinal.setText(currentFlight.getSeason());
@@ -85,7 +86,30 @@ public class after_deleteMain extends AppCompatActivity implements AdapterView.O
                 dateFromFinal.setText(dateFrom);
                 dateToFinal.setText(dateTo);
 
+                DataSnapshot attractionsSnapshot = flyListDataSnapshot.child("AttractionList");
+                // Get the attraction keys
+                attList.clear();
+                List<String> attractionKeys = new ArrayList<>();
+                for (DataSnapshot attractionKeySnapshot : attractionsSnapshot.getChildren()) {
+                    attractionKeys.add(attractionKeySnapshot.getKey());
+                }
+                for (int i = 0; i < attractionKeys.size(); i++) {
+                    DatabaseReference attractionRef = attRef.child(attractionKeys.get(i));
+                    attractionRef.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
 
+                            attraction currentAttraction = dataSnapshot.getValue(attraction.class);
+                            attList.add(currentAttraction);
+                            attAdapter.notifyDataSetChanged();
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError error) {
+                            Log.w(TAG, "Failed to read value.", error.toException());
+                        }
+                    });
+                }
             }
 
             @Override
@@ -101,6 +125,9 @@ public class after_deleteMain extends AppCompatActivity implements AdapterView.O
             }
 
         });
+        attAdapter=new AttractionAdapter(this,0,0,attList);
+        lv=(ListView) findViewById(R.id.lv);
+        lv.setAdapter(attAdapter);
 
         map.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,33 +148,33 @@ public class after_deleteMain extends AppCompatActivity implements AdapterView.O
             }
         });
 
-        attRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                attList.clear();
-
-                // Rule base ML הרבה תנאים
-                for (DataSnapshot attSnapshot : dataSnapshot.getChildren())
-                {
-                    attraction currentAttraction = attSnapshot.getValue(attraction.class);
-                    attList.add(currentAttraction);
-                    attAdapter.notifyDataSetChanged();
-                    //france, spring:3,1,2,4  other: 6
-                    //netherlands: 5,
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                Log.w(TAG, "Failed to read value.", error.toException());
-            }
-        });
-        attAdapter=new AttractionAdapter(this,0,0,attList);
-        lv=(ListView) findViewById(R.id.lv);
-        lv.setAdapter(attAdapter);
+//        attRef.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                attList.clear();
+//
+//                // Rule base ML הרבה תנאים
+//                for (DataSnapshot attSnapshot : dataSnapshot.getChildren())
+//                {
+//                    attraction currentAttraction = attSnapshot.getValue(attraction.class);
+//                    attList.add(currentAttraction);
+//                    attAdapter.notifyDataSetChanged();
+//                    //france, spring:3,1,2,4,6
+//                    //netherlands: 5,
+//                }
+//
+////            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError error) {
+//                Log.w(TAG, "Failed to read value.", error.toException());
+//            }
+//        });
+//        attAdapter=new AttractionAdapter(this,0,0,attList);
+//        lv=(ListView) findViewById(R.id.lv);
+//        lv.setAdapter(attAdapter);
+//    }
     }
-
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         Toast.makeText(this, adapterView.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
