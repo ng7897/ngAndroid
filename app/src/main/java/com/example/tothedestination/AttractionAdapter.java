@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,17 +17,16 @@ import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.List;
 
-public class AttractionAdapter extends ArrayAdapter<attraction>{
+public class AttractionAdapter extends ArrayAdapter<Attraction>{
     Context context;
-    List<attraction> objects;
+    List<Attraction> objects;
 
-    public AttractionAdapter(Context context, int resource, int textViewResourceld, List<attraction> objects) {
+    public AttractionAdapter(Context context, int resource, int textViewResourceld, List<Attraction> objects) {
         super(context, resource, textViewResourceld, objects);
         this.context = context;
         this.objects = objects;
@@ -41,11 +42,24 @@ public class AttractionAdapter extends ArrayAdapter<attraction>{
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
 
-
-        attraction temp = objects.get(position);
+        Attraction temp = objects.get(position);
         tvAtName.setText(temp.getAttName());
         tvExplain.setText(temp.getExplain());
         StorageReference imageRef = storageRef.child(temp.getImage());
+
+
+
+        CheckBox cbChecked = view.findViewById(R.id.isSelected);
+        cbChecked.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                 temp.setChecked(isChecked);
+            }
+        });
+
+
+
+
 
         // Download the image as a byte array
         final long ONE_MEGABYTE = 1024 * 1024;

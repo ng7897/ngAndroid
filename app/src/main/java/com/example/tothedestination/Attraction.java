@@ -1,36 +1,41 @@
 package com.example.tothedestination;
 
-import android.graphics.Bitmap;
+import java.io.Serializable;
 
-public class attraction {
+public class Attraction implements Serializable {
 
     private String attName;
     private Double CoordinatesX;
     private Double CoordinatesY;
     private String explain;
     private String image;
+    private boolean isChecked;
 
-    public attraction(String attName, Double CoordinatesX, Double CoordinatesY, String explain, String image) {
+    public Attraction(String attName, Double CoordinatesX, Double CoordinatesY, String explain, String image) {
         this.attName = attName;
         this.CoordinatesX = CoordinatesX;
         this.CoordinatesY = CoordinatesY;
         this.explain = explain;
         this.image = image;
-
+        this.isChecked = false;
     }
 
-    public attraction(String attName, Double CoordinatesX, Double CoordinatesY, String explain) {
+    public Attraction(String attName, Double CoordinatesX, Double CoordinatesY, String explain) {
         this.attName = attName;
         this.CoordinatesX = CoordinatesX;
         this.CoordinatesY = CoordinatesY;
         this.explain = explain;
+        this.isChecked = false;
 
     }
-    public attraction()
+    public Attraction()
     {
 
     }
 
+    public boolean isChecked() {
+        return isChecked;
+    }
     public String getImage() {
         return image;
     }
@@ -67,5 +72,8 @@ public class attraction {
     }
     public void setBitmap(String image) {
         this.image = image;
+    }
+    public void setChecked(boolean isChecked) {
+        this.isChecked = isChecked;
     }
 }

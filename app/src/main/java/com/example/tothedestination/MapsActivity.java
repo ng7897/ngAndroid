@@ -2,6 +2,7 @@ package com.example.tothedestination;
 
 import androidx.fragment.app.FragmentActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -12,10 +13,14 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.tothedestination.databinding.ActivityMapsBinding;
 
+import java.util.ArrayList;
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
+    private ArrayList<Attraction> attList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +28,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         binding = ActivityMapsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        Intent intent = getIntent();
+        attList = (ArrayList<Attraction>) intent.getSerializableExtra("attList");
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -50,5 +58,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(airtport1).title("Marker in airtport"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(airtport1));
 
+        // Add markers for each attraction
+        for (Attraction attraction : attList) {
+            LatLng location = new LatLng(attraction.getCoordinatesX(), attraction.getCoordinatesY());
+            mMap.addMarker(new MarkerOptions()
+                    .position(location)
+                    .title(attraction.getAttName()));
+
+        }
     }
 }

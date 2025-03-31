@@ -14,6 +14,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,7 +42,7 @@ public class after_deleteMain extends AppCompatActivity implements AdapterView.O
     private String ageOfChildrenFinal;
     private double coordinatesX, coordinatesY;
     private Button saveVac, map, moveForward;
-    ArrayList<attraction> attList;
+    ArrayList<Attraction> attList, checkList;
     ListView lv;
     AttractionAdapter attAdapter;
 
@@ -51,6 +53,7 @@ public class after_deleteMain extends AppCompatActivity implements AdapterView.O
         setContentView(R.layout.after_delete);
 
         keyFly = getIntent().getStringExtra("flyKey");
+
         countryFinal = findViewById(R.id.countryFinal);
         hoursFinal = findViewById(R.id.hoursFinal);
         seasonFinal = findViewById(R.id.seasonFinal);
@@ -58,9 +61,10 @@ public class after_deleteMain extends AppCompatActivity implements AdapterView.O
         dateToFinal = findViewById(R.id.dateToFinal);
         saveVac = findViewById(R.id.saveVac);
         airportFinal = findViewById(R.id.airportFinal);
+        //LinearLayout checkBox= findViewById(R.id.checkBox);
         map = findViewById(R.id.map);
         moveForward = findViewById(R.id.moveForward);
-        attList = new ArrayList<attraction>();
+        attList = new ArrayList<Attraction>();
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference flyRef = database.getReference("flyList").child(keyFly);
@@ -99,7 +103,7 @@ public class after_deleteMain extends AppCompatActivity implements AdapterView.O
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
 
-                            attraction currentAttraction = dataSnapshot.getValue(attraction.class);
+                            Attraction currentAttraction = dataSnapshot.getValue(Attraction.class);
                             attList.add(currentAttraction);
                             attAdapter.notifyDataSetChanged();
                         }
@@ -129,21 +133,34 @@ public class after_deleteMain extends AppCompatActivity implements AdapterView.O
         lv=(ListView) findViewById(R.id.lv);
         lv.setAdapter(attAdapter);
 
+
         map.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ArrayList<Attraction> checkedAttractions = new ArrayList<>();
+                for (Attraction attraction : attList) {
+                    if (attraction.isChecked()) {
+                        checkedAttractions.add(attraction);
+                    }
+                }
                 Intent intent = new Intent(after_deleteMain.this, MapsActivity.class);
                 intent.putExtra("coordinatesX", coordinatesX);
                 intent.putExtra("coordinatesY", coordinatesY);
                 intent.putExtra("airport", airportFinal.getText().toString());
+                // Pass the attList as an extra
+                intent.putExtra("attList", checkedAttractions);
                 startActivity(intent);
 
             }
         });
+
+
+
         moveForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(after_deleteMain.this, myTripsMain.class);
+              //  intent.putExtra(checkList);
                 startActivity(intent);
             }
         });
