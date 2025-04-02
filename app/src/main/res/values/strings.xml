@@ -10,7 +10,8 @@
     <string name="secondPasword">Password Verification:</string>
     <string name="firstName">Name:</string>
     <string name="beCareful">Travel Warning:</string>
-    <string name="secondName">Last Name::</string>
+    <string name="secondName">Last Name:</string>
+    <string name="infromationAboutAttraction">information about attraction:</string>
     <string name="email">Email:</string>
     <string name="myTrips">My Trips:</string>
     <string name="airport">Airport:</string>
@@ -25,6 +26,12 @@
     <string name="flySmart">Fly Smart</string>
     <string name="howMuchHours">Hours of Flight:</string>
     <string name="season">Season:</string>
+    <string name="delete">Delete:</string>
+    <string name="add">Add:</string>
+    <string name="attExplain">Att Explain:</string>
+    <string name="attractionName">Attraction Name:</string>
+    <string name="CoordinatesX">Coordinates X:</string>
+    <string name="CoordinatesY">Coordinates Y:</string>
     <string name="Attraction">Attraction:</string>
     <string name="attraction">Attraction:</string>
     <string-array name="Spinner_AgeOfChildren">

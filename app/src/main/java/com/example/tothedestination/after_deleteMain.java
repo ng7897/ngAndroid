@@ -191,6 +191,15 @@ public class after_deleteMain extends AppCompatActivity implements AdapterView.O
 //        lv=(ListView) findViewById(R.id.lv);
 //        lv.setAdapter(attAdapter);
 //    }
+
+//        TextView textView8=findViewById(R.id.pp);
+//        textView8.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(after_deleteMain.this, MasterattractionMain.class);
+//                startActivity(intent);
+//            }
+//        });
     }
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {

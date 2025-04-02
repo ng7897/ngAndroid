@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:entries="@array/Spinner_HoursFlight"
+        android:minHeight="48dp"
         android:scrollbarSize="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,6 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:entries="@array/Spinner_attraction"
+        android:minHeight="48dp"
         android:scrollbarSize="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,6 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:entries="@array/Spinner_season"
+        android:minHeight="48dp"
         android:scrollbarSize="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/aSpinner1"
@@ -60,6 +63,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="53dp"
         android:entries="@array/Spinner_AgeOfChildren"
+        android:minHeight="48dp"
         android:scrollbarSize="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -132,7 +136,8 @@
         app:layout_constraintEnd_toStartOf="@+id/whenGo"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextSizeCheck" />
 
     <Button
         android:id="@+id/datePickerButtonTo"
@@ -148,7 +153,8 @@
         app:layout_constraintEnd_toStartOf="@+id/whenGo"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/datePickerButtonFrom" />
+        app:layout_constraintTop_toBottomOf="@+id/datePickerButtonFrom"
+        tools:ignore="TextSizeCheck" />
 
     <TextView
         android:id="@+id/whenGo"
@@ -177,5 +183,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/whenGo"
         app:layout_constraintVertical_bias="0.071" />
+
+    <TextView
+        android:id="@+id/pp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="59dp"
+        tools:layout_editor_absoluteY="514dp"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

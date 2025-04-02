@@ -36,16 +36,16 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.832"
+        app:layout_constraintHorizontal_bias="0.153"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.314" />
+        app:layout_constraintVertical_bias="0.316" />
 
     <TextView
         android:id="@+id/passwordText1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/alexandria_bold"
         android:text="@string/password"
         android:textColor="#000000"
@@ -53,23 +53,23 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.837"
+        app:layout_constraintHorizontal_bias="0.095"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameText2"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/passwordText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_width="140dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/alexandria_bold"
         android:text="@string/secondPasword"
         android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.919"
+        app:layout_constraintHorizontal_bias="0.077"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordText1"
         app:layout_constraintVertical_bias="0.0" />
@@ -78,16 +78,17 @@
         android:id="@+id/emailText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/alexandria_bold"
         android:text="@string/email"
         android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.847"
+        app:layout_constraintHorizontal_bias="0.153"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordText2"
-        app:layout_constraintVertical_bias="0.1" />
+        app:layout_constraintVertical_bias="0.031" />
 
     <EditText
         android:id="@+id/editTextTextEmailAddress"
@@ -97,12 +98,13 @@
         android:ems="10"
         android:hint="Enter Email"
         android:inputType="textEmailAddress"
+        android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.184"
+        app:layout_constraintHorizontal_bias="0.815"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextNumberPassword2"
-        app:layout_constraintVertical_bias="0.008" />
+        app:layout_constraintVertical_bias="0.013" />
 
     <EditText
         android:id="@+id/editTextTextPersonName"
@@ -111,56 +113,58 @@
         android:ems="10"
         android:hint="Enter First Name"
         android:inputType="textPersonName"
+        android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.184"
+        app:layout_constraintHorizontal_bias="0.82"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.317" />
+        app:layout_constraintVertical_bias="0.306" />
 
     <Button
         android:id="@+id/finalSighUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/alexandria_bold"
         android:text="@string/SignUp1"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:fontFamily="@font/alexandria_bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintHorizontal_bias="0.527"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.765" />
+        app:layout_constraintVertical_bias="0.77" />
 
     <TextView
         android:id="@+id/nameText2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/alexandria_bold"
         android:text="@string/secondName"
         android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.875"
+        app:layout_constraintHorizontal_bias="0.07"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameText1"
-        app:layout_constraintVertical_bias="0.012" />
+        app:layout_constraintVertical_bias="0.004" />
 
     <EditText
         android:id="@+id/editTextTextPersonName2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Enter Second Name"
         android:inputType="textPersonName"
+        android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.184"
+        app:layout_constraintHorizontal_bias="0.815"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.002" />
 
     <Button
         android:id="@+id/backToStart"
@@ -193,11 +197,12 @@
         android:id="@+id/editTextNumberPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="164dp"
+        android:layout_marginTop="4dp"
         android:ems="10"
         android:hint="Enter Password"
         android:inputType="text"
+        android:minHeight="48dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
 
@@ -205,11 +210,12 @@
         android:id="@+id/editTextNumberPassword2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="164dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Enter Second Password"
         android:inputType="text"
+        android:minHeight="48dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextNumberPassword" />
 

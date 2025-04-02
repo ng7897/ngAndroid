@@ -77,6 +77,15 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
        // newVacRef.setValue(vac1);
 
 
+        TextView textView8=findViewById(R.id.pp);
+        textView8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(search1Main.this, MasterattractionMain.class);
+                startActivity(intent);
+            }
+        });
+
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -114,7 +123,6 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
                 editor.putString("key_ageOfChildren", aSpinner4.getSelectedItem().toString());
                 editor.commit();
                 Intent intent2=new Intent(search1Main.this, FlyListMain.class);
-
                 startActivity(intent2);
             }
 
