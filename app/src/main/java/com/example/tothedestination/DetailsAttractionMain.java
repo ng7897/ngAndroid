@@ -5,8 +5,11 @@ import static android.content.ContentValues.TAG;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -19,10 +22,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class DetailsAttractionMain extends AppCompatActivity {
 
     private EditText etAtName, etExplain, etCoordiantesX, etCoordinatesY;
     private String keyAtt;
+    private Button saveChanges;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -32,14 +39,9 @@ public class DetailsAttractionMain extends AppCompatActivity {
 
         keyAtt = getIntent().getStringExtra("attKey");
 
-        if (keyAtt == null) {
-            Toast.makeText(this, "Error: Attraction key is missing!", Toast.LENGTH_LONG).show();
-            finish(); // Stop the activity so it doesn't crash
-            return;
-        }
-
         etAtName = findViewById(R.id.etAtName);
         etExplain = findViewById(R.id.etExplain);
+        saveChanges = findViewById(R.id.saveChanges);
         etCoordiantesX = findViewById(R.id.etCoordinatesX);
         etCoordinatesY = findViewById(R.id.etCoordinatesY);
 
@@ -65,6 +67,39 @@ public class DetailsAttractionMain extends AppCompatActivity {
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
+
+//        saveChanges.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                String name = etAtName.getText().toString();
+//                String location = etExplain.getText().toString().trim();
+//                String description = etCoordiantesX.getText().toString().trim();
+//                String rating = etCoordinatesY.getText().toString().trim();
+//
+//                if (name.isEmpty() || location.isEmpty()) {
+//                    Toast.makeText(DetailsAttractionMain.this, "Name and location required", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
+//
+//                Map<String, Object> updates = new HashMap<>();
+//                updates.put("name", name);
+//                updates.put("location", location);
+//                updates.put("description", description);
+//                updates.put("rating", rating);
+//
+//                attRef.updateChildren(updates).addOnCompleteListener(task -> {
+//                    if (task.isSuccessful()) {
+//                        // Successfully updated the data in Firebase
+//                        Toast.makeText(DetailsAttractionMain.this, "Data updated successfully", Toast.LENGTH_SHORT).show();
+//                    } else {
+//                        // Failed to update data
+//                        Toast.makeText(DetailsAttractionMain.this, "Failed to update data", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//            }
+//       });
+
+
     }
 
 }

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ABC6C4"
-    tools:context=".MasterattractionMain">
+    tools:context=".MasterFlyMain">
 
     <TextView
         android:id="@+id/attractionMaster"
@@ -14,10 +14,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="144dp"
         android:layout_marginTop="16dp"
-        android:text="@string/Attraction"
-        android:textStyle="bold"
+        android:text="@string/FlyList"
         android:textColor="@color/black"
         android:textSize="25dp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

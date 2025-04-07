@@ -86,6 +86,15 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
             }
         });
 
+        TextView textView9=findViewById(R.id.ppFly);
+        textView9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(search1Main.this, MasterFlyMain.class);
+                startActivity(intent);
+            }
+        });
+
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -7,6 +7,8 @@
     <string name="LogIn2">Log In</string>
     <string name="back1">Back</string>
     <string name="password">Password:</string>
+    <string name="AgeOfChild">Age Of Child:</string>
+    <string name="detailsFly">Information About The Flight:</string>
     <string name="secondPasword">Password Verification:</string>
     <string name="firstName">Name:</string>
     <string name="detailsAtt">Information About The Attraction:</string>
@@ -15,7 +17,9 @@
     <string name="infromationAboutAttraction">information about attraction:</string>
     <string name="email">Email:</string>
     <string name="myTrips">My Trips:</string>
+    <string name="FlyList">Fly List:</string>
     <string name="airport">Airport:</string>
+    <string name="saveChangeAtt">Save Changes</string>
     <string name="allName">Full Name:</string>
     <string name="country">Country:</string>
     <string name="choosing">Choose Flight features:</string>

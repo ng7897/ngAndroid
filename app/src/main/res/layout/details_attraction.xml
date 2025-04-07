@@ -123,4 +123,14 @@
         app:layout_constraintTop_toBottomOf="@+id/CoordinatesX"
         tools:ignore="MissingConstraints" />
 
+    <Button
+        android:id="@+id/saveChanges"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="292dp"
+        android:text="@string/saveChangeAtt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
