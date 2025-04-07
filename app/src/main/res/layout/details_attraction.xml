@@ -12,10 +12,13 @@
         android:id="@+id/infromationAboutAttraction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="20dp"
-        tools:layout_editor_absoluteX="175dp"
-        tools:layout_editor_absoluteY="19dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/detailsAtt"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
     <ImageView
@@ -27,8 +30,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvAtName"
+    <EditText
+        android:id="@+id/etAtName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="192dp"
@@ -40,50 +43,51 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvExplain"
+    <EditText
+        android:id="@+id/etExplain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="188dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="172dp"
+        android:layout_marginTop="8dp"
         android:text="explain"
         android:textColor="@color/white"
         android:textSize="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvCoordinatesY" />
+        app:layout_constraintTop_toBottomOf="@+id/etCoordinatesY" />
 
-    <TextView
-        android:id="@+id/tvCoordinatesX"
+    <EditText
+        android:id="@+id/etCoordinatesX"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="172dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="180dp"
+        android:layout_marginTop="8dp"
         android:text="coordinatesX"
         android:textColor="@color/white"
         android:textSize="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvAtName" />
+        app:layout_constraintTop_toBottomOf="@+id/etAtName" />
 
-    <TextView
-        android:id="@+id/tvCoordinatesY"
+    <EditText
+        android:id="@+id/etCoordinatesY"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="188dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="172dp"
+        android:layout_marginTop="8dp"
         android:text="coordinatesY"
         android:textColor="@color/white"
         android:textSize="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvCoordinatesX" />
+        app:layout_constraintTop_toBottomOf="@+id/etCoordinatesX" />
 
     <TextView
         android:id="@+id/CoordinatesX"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="40dp"
         android:text="@string/CoordinatesX"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/attractionName"
-        tools:layout_editor_absoluteX="69dp"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -101,20 +105,22 @@
         android:id="@+id/attExplain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="36dp"
         android:text="@string/attExplain"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CoordinatesY"
-        tools:layout_editor_absoluteX="91dp"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/CoordinatesY"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="36dp"
         android:text="@string/CoordinatesY"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CoordinatesX"
-        tools:layout_editor_absoluteX="70dp"
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

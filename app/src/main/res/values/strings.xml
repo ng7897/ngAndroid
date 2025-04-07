@@ -9,6 +9,7 @@
     <string name="password">Password:</string>
     <string name="secondPasword">Password Verification:</string>
     <string name="firstName">Name:</string>
+    <string name="detailsAtt">Information About The Attraction:</string>
     <string name="beCareful">Travel Warning:</string>
     <string name="secondName">Last Name:</string>
     <string name="infromationAboutAttraction">information about attraction:</string>

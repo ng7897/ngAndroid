@@ -2,6 +2,7 @@ package com.example.tothedestination;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
@@ -57,7 +58,15 @@ public class AttractionAdapter extends ArrayAdapter<Attraction>{
             }
         });
 
-
+        //make it only for the admin to be able to tp to that activity
+        ivProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(   context , DetailsAttractionMain.class    );
+                i.putExtra( "attKey",  temp.getKey()  );
+                context.startActivity(i);
+            }
+        });
 
 
 

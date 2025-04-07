@@ -49,6 +49,7 @@ public class MasterattractionMain extends AppCompatActivity implements AdapterVi
                 for (DataSnapshot attSnapshot : dataSnapshot.getChildren())
                 {
                     Attraction currentAttraction = attSnapshot.getValue(Attraction.class);
+                    currentAttraction.setKey(attSnapshot.getKey());
                     attList.add(currentAttraction);
                     attAdapter.notifyDataSetChanged();
                 }

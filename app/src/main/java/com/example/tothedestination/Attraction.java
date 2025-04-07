@@ -10,27 +10,38 @@ public class Attraction implements Serializable {
     private String explain;
     private String image;
     private boolean isChecked;
+    private String key;
 
-    public Attraction(String attName, Double CoordinatesX, Double CoordinatesY, String explain, String image) {
+    public Attraction(String attName, Double CoordinatesX, Double CoordinatesY, String explain, String image, String key) {
         this.attName = attName;
         this.CoordinatesX = CoordinatesX;
         this.CoordinatesY = CoordinatesY;
         this.explain = explain;
         this.image = image;
         this.isChecked = false;
+        this.key=key;
     }
 
-    public Attraction(String attName, Double CoordinatesX, Double CoordinatesY, String explain) {
+    public Attraction(String attName, Double CoordinatesX, Double CoordinatesY, String explain, String key) {
         this.attName = attName;
         this.CoordinatesX = CoordinatesX;
         this.CoordinatesY = CoordinatesY;
         this.explain = explain;
         this.isChecked = false;
+        this.key=key;
 
     }
     public Attraction()
     {
 
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public boolean isChecked() {
