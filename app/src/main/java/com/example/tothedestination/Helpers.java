@@ -19,7 +19,7 @@ public class Helpers {
     public static void searchUserByEmail(String email,SharedPreferences sp) {
         // Initialize Firebase Database reference
         //עובדת על הרשימה של המשתמשים בפיירבייס ובודקת האם המייל שיש לנו פה כפרמטר שווה לאחד המיילים שם פעולה ש
-
+        SharedPreferences.Editor editor = sp.edit();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference usersListRef = database.getReference("userList");
         usersListRef.orderByChild("mail").equalTo(email)
@@ -29,9 +29,14 @@ public class Helpers {
                         if (dataSnapshot.exists()) {
                             for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                                 String userId = snapshot.getKey();
+                                User user = dataSnapshot.getValue(User.class);
+                                if (user != null) {
+                                    if (user instanceof AdminUser) {
+                                        editor.putBoolean("CanEditAttraction", true);
+                                    }
+                                }
                                 String foundEmail = snapshot.child("email").getValue(String.class);
                                 Log.d(TAG, "User found: " + userId + " - " + foundEmail);
-                                SharedPreferences.Editor editor = sp.edit();
                                 editor.putString("key_user", userId);
                                 editor.commit();
                             }

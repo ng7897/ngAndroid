@@ -154,6 +154,7 @@ public class loginMain extends AppCompatActivity {
                     editor.putString("key_email", et_email.getText().toString());
                     editor.putString("key_password", et_password.getText().toString());
 
+
                     editor.commit();
                     Helpers.searchUserByEmail(et_email.getText().toString(),sp);
                     Intent intent2 = new Intent(loginMain.this, search1Main.class);
