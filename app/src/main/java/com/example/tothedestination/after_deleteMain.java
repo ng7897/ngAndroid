@@ -6,6 +6,10 @@ import static android.content.ContentValues.TAG;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -31,8 +35,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class after_deleteMain extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -129,8 +135,8 @@ public class after_deleteMain extends AppCompatActivity implements AdapterView.O
             }
 
         });
-        attAdapter=new AttractionAdapter(this,0,0,attList);
-        lv=(ListView) findViewById(R.id.lv);
+        attAdapter = new AttractionAdapter(this, 0, 0, attList);
+        lv = (ListView) findViewById(R.id.lv);
         lv.setAdapter(attAdapter);
 
 
@@ -155,12 +161,11 @@ public class after_deleteMain extends AppCompatActivity implements AdapterView.O
         });
 
 
-
         moveForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(after_deleteMain.this, myTripsMain.class);
-              //  intent.putExtra(checkList);
+                //  intent.putExtra(checkList);
                 startActivity(intent);
             }
         });
@@ -201,6 +206,7 @@ public class after_deleteMain extends AppCompatActivity implements AdapterView.O
 //            }
 //        });
     }
+
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         Toast.makeText(this, adapterView.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
@@ -212,7 +218,7 @@ public class after_deleteMain extends AppCompatActivity implements AdapterView.O
     }
 
     public static Date convertStringToDate(String dateString, String format) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat(format);
+        SimpleDateFormat dateFormat = new SimpleDateFormat(format, Locale.ENGLISH);
         try {
             return dateFormat.parse(dateString);
         } catch (ParseException e) {
@@ -220,23 +226,63 @@ public class after_deleteMain extends AppCompatActivity implements AdapterView.O
             return null; // Or throw the exception if you prefer
         }
     }
-public void saveVacation(String country, int hoursFlight, String ageOfChildren, String season, long dateFrom, long dateTo, String keyFly, String airport, double coordinatesX, double coordinatesY) {
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference refVac = database.getReference("vacations");
-    // searchUserByEmail(  ,sp1,refVac,);
-    FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    FirebaseUser currentUser = mAuth.getCurrentUser();
 
-    SharedPreferences sp1=getSharedPreferences("myPref",0);
-    String userKey = sp1.getString("key_user", null);
+    public void saveVacation(String country, int hoursFlight, String ageOfChildren, String season, long dateFrom, long dateTo, String keyFly, String airport, double coordinatesX, double coordinatesY) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference refVac = database.getReference("vacations");
+        // searchUserByEmail(  ,sp1,refVac,);
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
 
-    vacation vac1 = new vacation(country, hoursFlight, ageOfChildren, season, dateFrom, dateFrom, userKey, airport, coordinatesX, coordinatesY);
-    DatabaseReference newRefVac= refVac.push();
-    newRefVac.setValue(vac1);
+        SharedPreferences sp1 = getSharedPreferences("myPref", 0);
+        String userKey = sp1.getString("key_user", null);
 
-    Toast.makeText(this,"vacation added", Toast.LENGTH_SHORT).show();
-}
+        vacation vac1 = new vacation(country, hoursFlight, ageOfChildren, season, dateFrom, dateFrom, userKey, airport, coordinatesX, coordinatesY);
+        DatabaseReference newRefVac = refVac.push();
+        newRefVac.setValue(vac1);
+        scheduleFlightNotification();
+        Toast.makeText(this, "vacation added", Toast.LENGTH_SHORT).show();
+    }
+//---------------------------------------------------------------------------------------------------------
+    @SuppressLint("ScheduleExactAlarm")
+    public void scheduleFlightNotification() {
+        SharedPreferences sp1 = this.getSharedPreferences("myPref", 0);
+        String dateStr = sp1.getString("key_From", null);
 
+        if (dateStr == null) return;
+
+        SimpleDateFormat sdf = new SimpleDateFormat("MMM dd yyyy", Locale.ENGLISH);
+        try {
+            Date flightDate = sdf.parse(dateStr);
+
+            // Subtract 1 day
+            Calendar notifyTime = Calendar.getInstance();
+            notifyTime.setTime(flightDate);
+            notifyTime.add(Calendar.DAY_OF_YEAR, -1);
+            notifyTime.set(Calendar.HOUR_OF_DAY, 9); // 9 AM
+            notifyTime.set(Calendar.MINUTE, 0);
+            notifyTime.set(Calendar.SECOND, 0);
+
+            // Update for testing  ---------------
+//            notifyTime.add(Calendar.SECOND, 5);
+            /// --------------
+
+            if (notifyTime.before(Calendar.getInstance())) {
+                // Don't schedule if it's in the past
+                return;
+            }
+
+            Intent intent = new Intent(this, NotificationReceiver.class);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                    this, 100, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+
+            AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, notifyTime.getTimeInMillis(), pendingIntent);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     }

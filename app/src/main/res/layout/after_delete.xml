@@ -7,6 +7,9 @@
     android:background="#ABC6C4"
     tools:context=".after_deleteMain">
 
+
+
+
     <TextView
         android:id="@+id/information"
         android:layout_width="wrap_content"
@@ -223,5 +226,7 @@
         android:textSize="24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
