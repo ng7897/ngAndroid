@@ -27,7 +27,7 @@ import java.util.Map;
 
 public class DetailsAttractionMain extends AppCompatActivity {
 
-    private EditText etAtName, etExplain, etCoordiantesX, etCoordinatesY;
+    private EditText etAtName, etExplain, etCoordinatesX, etCoordinatesY;
     private String keyAtt;
     private Button saveChanges;
 
@@ -42,7 +42,7 @@ public class DetailsAttractionMain extends AppCompatActivity {
         etAtName = findViewById(R.id.etAtName);
         etExplain = findViewById(R.id.etExplain);
         saveChanges = findViewById(R.id.saveChanges);
-        etCoordiantesX = findViewById(R.id.etCoordinatesX);
+        etCoordinatesX = findViewById(R.id.etCoordinatesX);
         etCoordinatesY = findViewById(R.id.etCoordinatesY);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -58,7 +58,7 @@ public class DetailsAttractionMain extends AppCompatActivity {
                 Attraction currentAttraction = attListDataSnapshot.getValue(Attraction.class);
                 etAtName.setText(currentAttraction.getAttName());
                 etExplain.setText(currentAttraction.getExplain());
-                etCoordiantesX.setText(Double.toString(currentAttraction.getCoordinatesX()));
+                etCoordinatesX.setText(Double.toString(currentAttraction.getCoordinatesX()));
                 etCoordinatesY.setText(Double.toString(currentAttraction.getCoordinatesY()));
 
             }
@@ -68,37 +68,23 @@ public class DetailsAttractionMain extends AppCompatActivity {
             }
         });
 
-//        saveChanges.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                String name = etAtName.getText().toString();
-//                String location = etExplain.getText().toString().trim();
-//                String description = etCoordiantesX.getText().toString().trim();
-//                String rating = etCoordinatesY.getText().toString().trim();
-//
-//                if (name.isEmpty() || location.isEmpty()) {
-//                    Toast.makeText(DetailsAttractionMain.this, "Name and location required", Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//
-//                Map<String, Object> updates = new HashMap<>();
-//                updates.put("name", name);
-//                updates.put("location", location);
-//                updates.put("description", description);
-//                updates.put("rating", rating);
-//
-//                attRef.updateChildren(updates).addOnCompleteListener(task -> {
-//                    if (task.isSuccessful()) {
-//                        // Successfully updated the data in Firebase
-//                        Toast.makeText(DetailsAttractionMain.this, "Data updated successfully", Toast.LENGTH_SHORT).show();
-//                    } else {
-//                        // Failed to update data
-//                        Toast.makeText(DetailsAttractionMain.this, "Failed to update data", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//            }
-//       });
+        //make me be able to change the information about the attraction and it changes it in the firebase as well
+        saveChanges.setOnClickListener(v -> {
+            String name = etAtName.getText().toString();
+            String explain = etExplain.getText().toString();
+            double etcoordinatesX = Double.parseDouble(etCoordinatesX.getText().toString());
+            double etcoordinatesY = Double.parseDouble(etCoordinatesY.getText().toString());
 
+            Map<String, Object> updatedData = new HashMap<>();
+            updatedData.put("attName", name);
+            updatedData.put("explain", explain);
+            updatedData.put("CoordinatesX", etcoordinatesX);
+            updatedData.put("CoordinatesY", etcoordinatesY);
+
+            attRef.updateChildren(updatedData)
+                    .addOnSuccessListener(unused -> Toast.makeText(DetailsAttractionMain.this, "Updated successfully!", Toast.LENGTH_SHORT).show())
+                    .addOnFailureListener(e -> Toast.makeText(DetailsAttractionMain.this, "Update failed!", Toast.LENGTH_SHORT).show());
+        });
 
     }
 

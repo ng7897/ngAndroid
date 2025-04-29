@@ -9,15 +9,15 @@ private boolean canEditFlyList;
 private boolean canDeleteFlyList;
 private boolean canAddFlyList;
 
-public AdminUser( boolean canEditAttraction, boolean canDeleteAttraction, boolean canAddAttraction, boolean canEditFlyList, boolean canDeleteFlyList, boolean canAddFlyList) {
-    this.canEditAttraction = canEditAttraction;
-    this.canDeleteAttraction = canDeleteAttraction;
-    this.canAddAttraction = canAddAttraction;
-    this.canEditFlyList = canEditFlyList;
-    this.canDeleteFlyList = canDeleteFlyList;
-    this.canAddFlyList = canAddFlyList;
-
-}
+    public AdminUser(String firstName, String lastName, String password, String mail, boolean canEditAttraction, boolean canDeleteAttraction, boolean canAddAttraction, boolean canEditFlyList, boolean canDeleteFlyList, boolean canAddFlyList)  {
+        super(firstName, lastName, password, mail);
+        this.canEditAttraction = canEditAttraction;
+        this.canDeleteAttraction = canDeleteAttraction;
+        this.canAddAttraction = canAddAttraction;
+        this.canEditFlyList = canEditFlyList;
+        this.canDeleteFlyList = canDeleteFlyList;
+        this.canAddFlyList = canAddFlyList;
+    }
 
     public boolean isCanEditAttraction() {
         return canEditAttraction;

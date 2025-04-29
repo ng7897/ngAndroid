@@ -33,8 +33,35 @@ public class Helpers {
                                 if (user != null) {
                                     if (user instanceof AdminUser) {
                                         editor.putBoolean("CanEditAttraction", true);
+                                        editor.putBoolean("CanDeleteAttraction", true);
+                                        editor.putBoolean("CanAddAttraction", true);
+                                        editor.putBoolean("CanEditFlyList", true);
+                                        editor.putBoolean("CanDeleteFlyList", true);
+                                        editor.putBoolean("CanAddFlyList", true);
+                                        //AdminUser user1=user;
                                     }
                                 }
+ //                               if (snapshot.hasChild("canEditAttraction")) {
+//                                    AdminUser user = snapshot.getValue(AdminUser.class);
+//                                    if (user != null) {
+//                                        if (user instanceof AdminUser) {
+//                                            editor.putBoolean("canEditAttraction", user.isCanEditAttraction());
+//                                            editor.putBoolean("CanEditFly", user.isCanEditFlyList());
+//                                            editor.putBoolean("canDeleteAttraction", user.isCanDeleteAttraction());
+//                                            editor.putBoolean("canAddAttraction", user.isCanAddAttraction());
+//                                            editor.putBoolean("canDeleteFlyList", user.isCanDeleteFlyList());
+//                                            editor.putBoolean("canAddFlyList", user.isCanAddFlyList());
+//                                        }
+//                                    }
+//                                }
+//                                else {
+//                                    editor.putBoolean("CanEditAttraction", false);
+//                                    editor.putBoolean("CanEditFly", false);
+//                                    editor.putBoolean("canDeleteAttraction", false);
+//                                    editor.putBoolean("canAddAttraction", false);
+//                                    editor.putBoolean("canDeleteFlyList", false);
+//                                    editor.putBoolean("canAddFlyList", false);
+//                                }
                                 String foundEmail = snapshot.child("email").getValue(String.class);
                                 Log.d(TAG, "User found: " + userId + " - " + foundEmail);
                                 editor.putString("key_user", userId);

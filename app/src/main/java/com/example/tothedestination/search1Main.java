@@ -124,7 +124,7 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
              //   intent2.putExtra("ageOfChildren", aSpinner4.getSelectedItem().toString());
                 SharedPreferences.Editor editor = sp1.edit();
                 editor.putString("key_From",dateButtonFrom.getText().toString());
-                editor.putString("key_To",dateButtonFrom.getText().toString());
+                editor.putString("key_To",dateButtonTo.getText().toString());
                // editor.putString("key_airport", aSpinner2.getSelectedItem().toString());
                 editor.putInt("key_hoursFlight", Integer.parseInt(aSpinner1.getSelectedItem().toString()));
                 editor.putString("key_attraction", aSpinner2.getSelectedItem().toString());
@@ -202,6 +202,16 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
         else if(id==R.id.action_exit)
         {
             Toast.makeText(this,"you selected exit", Toast.LENGTH_SHORT).show();
+        }
+        else if(id==R.id.action_attractionListChange)
+        {
+            Toast.makeText(this,"you selected change attraction list", Toast.LENGTH_SHORT).show();
+
+
+        }
+        else if(id==R.id.action_flyListChange)
+        {
+            Toast.makeText(this,"you selected change fly list", Toast.LENGTH_SHORT).show();
         }
         return true;
     }
