@@ -29,8 +29,8 @@ public class Helpers {
                         if (dataSnapshot.exists()) {
                             for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                                 String userId = snapshot.getKey();
-                                User user = dataSnapshot.getValue(User.class);
-                                if (user != null) {
+                                if (snapshot.hasChild("canEditAttraction")) {
+                                    AdminUser user = snapshot.getValue(AdminUser.class);
                                     if (user instanceof AdminUser) {
                                         editor.putBoolean("CanEditAttraction", true);
                                         editor.putBoolean("CanDeleteAttraction", true);

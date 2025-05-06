@@ -9,6 +9,11 @@ private boolean canEditFlyList;
 private boolean canDeleteFlyList;
 private boolean canAddFlyList;
 
+    public AdminUser()
+    {
+
+    }
+
     public AdminUser(String firstName, String lastName, String password, String mail, boolean canEditAttraction, boolean canDeleteAttraction, boolean canAddAttraction, boolean canEditFlyList, boolean canDeleteFlyList, boolean canAddFlyList)  {
         super(firstName, lastName, password, mail);
         this.canEditAttraction = canEditAttraction;
