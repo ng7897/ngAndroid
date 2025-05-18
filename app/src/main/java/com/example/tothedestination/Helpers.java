@@ -28,10 +28,12 @@ public class Helpers {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()) {
                             for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                boolean hasDataAdmin=false;
                                 String userId = snapshot.getKey();
                                 if (snapshot.hasChild("canEditAttraction")) {
                                     AdminUser user = snapshot.getValue(AdminUser.class);
                                     if (user instanceof AdminUser) {
+                                        hasDataAdmin=true;
                                         editor.putBoolean("CanEditAttraction", true);
                                         editor.putBoolean("CanDeleteAttraction", true);
                                         editor.putBoolean("CanAddAttraction", true);
@@ -62,7 +64,8 @@ public class Helpers {
 //                                    editor.putBoolean("canDeleteFlyList", false);
 //                                    editor.putBoolean("canAddFlyList", false);
 //                                }
-                                String foundEmail = snapshot.child("email").getValue(String.class);
+                                editor.putBoolean("hasDataAdmin", hasDataAdmin);
+                                String foundEmail = snapshot.child("mail").getValue(String.class);
                                 Log.d(TAG, "User found: " + userId + " - " + foundEmail);
                                 editor.putString("key_user", userId);
                                 editor.commit();

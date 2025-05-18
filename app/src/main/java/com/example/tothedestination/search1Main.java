@@ -162,8 +162,29 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
         getMenuInflater().inflate(R.menu.options, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem attractionListChange = menu.findItem(R.id.action_attractionListChange);
+        MenuItem flyListChange = menu.findItem(R.id.action_flyListChange);
+        SharedPreferences sp = getSharedPreferences("myPref", 0);
+
+        // For example, hide if user is not admin
+        boolean hadDataAdmin1=sp.getBoolean("hasDataAdmin",false);
+        if(hadDataAdmin1)
+        {
+            attractionListChange.setVisible(hadDataAdmin1);
+            flyListChange.setVisible(hadDataAdmin1);
+        }
+       // boolean isAdmin = sp.getBoolean("CanEditAttraction",false); // replace with your condition
+        //attractionListChange.setVisible(isAdmin);
+        //flyListChange.setVisible(isAdmin);
+
+        return super.onPrepareOptionsMenu(menu);
     }
 
     public boolean onOptionsItemSelected(MenuItem item)
@@ -206,8 +227,6 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
         else if(id==R.id.action_attractionListChange)
         {
             Toast.makeText(this,"you selected change attraction list", Toast.LENGTH_SHORT).show();
-
-
         }
         else if(id==R.id.action_flyListChange)
         {
