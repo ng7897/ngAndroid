@@ -3,6 +3,7 @@ package com.example.tothedestination;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,9 +48,20 @@ public class FlyAdapter extends ArrayAdapter<Fly> {
         ivProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(   context , after_deleteMain.class    );
-                i.putExtra( "flyKey",  temp.getKey()  );
-                context.startActivity(i);
+                SharedPreferences sp = context.getSharedPreferences("myPref", 0);
+                boolean isAdmin = sp.getBoolean("CanEditAttraction",false);
+                if(isAdmin)
+                {
+                    Intent i = new Intent(context, DetailsFlyMain.class);
+                    i.putExtra("flyKey", temp.getKey());
+                    context.startActivity(i);
+                }
+                else
+                {
+                    Intent i = new Intent(context, after_deleteMain.class);
+                    i.putExtra("flyKey", temp.getKey());
+                    context.startActivity(i);
+                }
             }
         });
 

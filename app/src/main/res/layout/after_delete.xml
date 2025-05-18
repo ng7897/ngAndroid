@@ -7,9 +7,6 @@
     android:background="#ABC6C4"
     tools:context=".after_deleteMain">
 
-
-
-
     <TextView
         android:id="@+id/information"
         android:layout_width="wrap_content"

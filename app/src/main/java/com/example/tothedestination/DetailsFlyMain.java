@@ -57,7 +57,7 @@ public class DetailsFlyMain extends AppCompatActivity {
                 etAirport.setText(currentFly.getAirport());
                 etAttraction.setText(currentFly.getAttraction());
                 etCountry.setText(currentFly.getCountry());
-                etHoursFlight.setText(currentFly.getHoursFlight());
+                etHoursFlight.setText(Integer.toString(currentFly.getHoursFlight()));
                 etSeason.setText(currentFly.getSeason());
                 etAgeOfChild.setText(currentFly.getAgeOfChild());
                 etCoordinatesX.setText(Double.toString(currentFly.getCoordinatesX()));

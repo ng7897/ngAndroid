@@ -77,23 +77,7 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
        // newVacRef.setValue(vac1);
 
 
-        TextView textView8=findViewById(R.id.pp);
-        textView8.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(search1Main.this, MasterattractionMain.class);
-                startActivity(intent);
-            }
-        });
 
-        TextView textView9=findViewById(R.id.ppFly);
-        textView9.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(search1Main.this, MasterFlyMain.class);
-                startActivity(intent);
-            }
-        });
 
         b.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -174,13 +158,7 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
         SharedPreferences sp = getSharedPreferences("myPref", 0);
 
         // TODO: check Why CanEditAttraction
-        // For example, hide if user is not admin
-//        boolean hadDataAdmin1=sp.getBoolean("hasDataAdmin",false);
-//        if(hadDataAdmin1)
-//        {
-//            attractionListChange.setVisible(hadDataAdmin1);
-//            flyListChange.setVisible(hadDataAdmin1);
-//        }
+
         boolean isAdmin = sp.getBoolean("CanEditAttraction",false); // replace with your condition
         attractionListChange.setVisible(isAdmin);
         flyListChange.setVisible(isAdmin);
@@ -228,10 +206,14 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
         else if(id==R.id.action_attractionListChange)
         {
             Toast.makeText(this,"you selected change attraction list", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(search1Main.this, MasterattractionMain.class);
+            startActivity(intent);
         }
         else if(id==R.id.action_flyListChange)
         {
             Toast.makeText(this,"you selected change fly list", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(search1Main.this, MasterFlyMain.class);
+            startActivity(intent);
         }
         return true;
     }
