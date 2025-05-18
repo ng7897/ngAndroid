@@ -173,16 +173,17 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
         MenuItem flyListChange = menu.findItem(R.id.action_flyListChange);
         SharedPreferences sp = getSharedPreferences("myPref", 0);
 
+        // TODO: check Why CanEditAttraction
         // For example, hide if user is not admin
-        boolean hadDataAdmin1=sp.getBoolean("hasDataAdmin",false);
-        if(hadDataAdmin1)
-        {
-            attractionListChange.setVisible(hadDataAdmin1);
-            flyListChange.setVisible(hadDataAdmin1);
-        }
-       // boolean isAdmin = sp.getBoolean("CanEditAttraction",false); // replace with your condition
-        //attractionListChange.setVisible(isAdmin);
-        //flyListChange.setVisible(isAdmin);
+//        boolean hadDataAdmin1=sp.getBoolean("hasDataAdmin",false);
+//        if(hadDataAdmin1)
+//        {
+//            attractionListChange.setVisible(hadDataAdmin1);
+//            flyListChange.setVisible(hadDataAdmin1);
+//        }
+        boolean isAdmin = sp.getBoolean("CanEditAttraction",false); // replace with your condition
+        attractionListChange.setVisible(isAdmin);
+        flyListChange.setVisible(isAdmin);
 
         return super.onPrepareOptionsMenu(menu);
     }
