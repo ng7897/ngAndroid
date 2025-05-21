@@ -48,6 +48,7 @@ public class after_deleteMain extends AppCompatActivity implements AdapterView.O
     private String ageOfChildrenFinal;
     private double coordinatesX, coordinatesY;
     private Button saveVac, map, moveForward;
+    private String attraction;
     ArrayList<Attraction> attList, checkList;
     ListView lv;
     AttractionAdapter attAdapter;
@@ -85,6 +86,7 @@ public class after_deleteMain extends AppCompatActivity implements AdapterView.O
                 countryFinal.setText(currentFlight.getCountry());
                 hoursFinal.setText(Integer.toString(currentFlight.getHoursFlight()));
                 seasonFinal.setText(currentFlight.getSeason());
+                attraction =currentFlight.getAttraction();
                 ageOfChildrenFinal = currentFlight.getAgeOfChild();
                 airportFinal.setText(currentFlight.getAirport());
                 coordinatesX = currentFlight.getCoordinatesX();
@@ -131,7 +133,7 @@ public class after_deleteMain extends AppCompatActivity implements AdapterView.O
         saveVac.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                saveVacation(countryFinal.getText().toString(), Integer.parseInt(hoursFinal.getText().toString()), ageOfChildrenFinal, seasonFinal.getText().toString(), convertStringToDate(dateFromFinal.getText().toString(), "MMM dd yyyy").getTime(), convertStringToDate(dateToFinal.getText().toString(), "MMM dd yyyy").getTime(), getIntent().getStringExtra("flyKey"), airportFinal.getText().toString(), coordinatesX, coordinatesY);
+                saveVacation(countryFinal.getText().toString(), attraction,Integer.parseInt(hoursFinal.getText().toString()), ageOfChildrenFinal, seasonFinal.getText().toString(), convertStringToDate(dateFromFinal.getText().toString(), "MMM dd yyyy").getTime(), convertStringToDate(dateToFinal.getText().toString(), "MMM dd yyyy").getTime(), getIntent().getStringExtra("flyKey"), airportFinal.getText().toString(), coordinatesX, coordinatesY);
             }
 
         });
@@ -227,7 +229,7 @@ public class after_deleteMain extends AppCompatActivity implements AdapterView.O
         }
     }
 
-    public void saveVacation(String country, int hoursFlight, String ageOfChildren, String season, long dateFrom, long dateTo, String keyFly, String airport, double coordinatesX, double coordinatesY) {
+    public void saveVacation(String country,String attraction, int hoursFlight, String ageOfChildren, String season, long dateFrom, long dateTo, String keyFly, String airport, double coordinatesX, double coordinatesY) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference refVac = database.getReference("vacations");
         // searchUserByEmail(  ,sp1,refVac,);
@@ -237,7 +239,7 @@ public class after_deleteMain extends AppCompatActivity implements AdapterView.O
         SharedPreferences sp1 = getSharedPreferences("myPref", 0);
         String userKey = sp1.getString("key_user", null);
 
-        vacation vac1 = new vacation(country, hoursFlight, ageOfChildren, season, dateFrom, dateFrom, userKey, airport, coordinatesX, coordinatesY);
+        vacation vac1 = new vacation(country,attraction, hoursFlight, ageOfChildren, season, dateFrom, dateFrom, userKey, airport, coordinatesX, coordinatesY);
         DatabaseReference newRefVac = refVac.push();
         newRefVac.setValue(vac1);
         scheduleFlightNotification();

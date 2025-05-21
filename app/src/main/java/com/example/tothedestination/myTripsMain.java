@@ -62,6 +62,7 @@ public class myTripsMain extends AppCompatActivity  implements AdapterView.OnIte
                     vacation currentVac = vacSnapshot.getValue(vacation.class);
                     Bitmap bitmap = BitmapFactory.decodeResource(getResources(), countryMap.get(currentVac.getCountry())); // Example: Load from resources
                     currentVac.setBitmap(bitmap);
+                    currentVac.setKey(vacSnapshot.getKey());
                     vacList.add(currentVac);
                     tripsAdapter.notifyDataSetChanged();
                 }

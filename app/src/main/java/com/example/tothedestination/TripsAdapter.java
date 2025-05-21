@@ -33,6 +33,7 @@ public class TripsAdapter  extends ArrayAdapter<vacation> {
         TextView tvCountry = (TextView) view.findViewById(R.id.tvCountry);
         TextView tvAgeOfChild = (TextView) view.findViewById(R.id.tvAgeOfChild);
         TextView tvSeason = (TextView) view.findViewById(R.id.tvSeason);
+        TextView tvAttraction = (TextView) view.findViewById(R.id.tvAttraction);
         TextView tvDateFrom = (TextView) view.findViewById(R.id.tvDateFrom);
         TextView tvDateTo = (TextView) view.findViewById(R.id.tvDateTo);
         ImageView ivProduct = (ImageView) view.findViewById(R.id.ivProduct);
@@ -42,6 +43,7 @@ public class TripsAdapter  extends ArrayAdapter<vacation> {
         tvHoursFly.setText(String.valueOf(temp.getHoursFlight()));
         tvCountry.setText(temp.getCountry());
         tvAgeOfChild.setText(temp.getAgeOfChild());
+        tvAttraction.setText(temp.getAttraction());
         tvSeason.setText(temp.getSeason());
         // Create a Date object from the timestamp
         Date date = new Date(temp.getFromDate());
@@ -56,8 +58,9 @@ public class TripsAdapter  extends ArrayAdapter<vacation> {
         ivProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(context, after_deleteMain.class);
+                Intent i = new Intent(context, tripData.class);
                 i.putExtra("vacUserKey", temp.getKeyUser());
+                i.putExtra("vacKey", temp.getKey());
                 context.startActivity(i);
             }
         });
