@@ -1,57 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/action_login"
         android:title="Login"
         android:orderInCategory="100"
-    />
+        tools:ignore="HardcodedText" />
     <item
         android:id="@+id/About_programmer"
         android:title="information About the programmer"
         android:orderInCategory="100"
-        />
+        tools:ignore="HardcodedText" />
     <item
         android:id="@+id/about_app"
         android:title="information About the app"
         android:orderInCategory="100"
-        />
+        tools:ignore="HardcodedText" />
     <item
         android:id="@+id/fav_flights"
         android:title="Favorite Flights"
         android:orderInCategory="100"
-        />
+        tools:ignore="HardcodedText" />
     <item
         android:id="@+id/action_setting"
         android:title="setting"
         android:orderInCategory="200"
-        />
+        tools:ignore="HardcodedText" />
     <item
         android:id="@+id/change_user"
         android:title="change user"
         android:orderInCategory="200"
-        />
+        tools:ignore="HardcodedText" />
     <item
         android:id="@+id/action_signout"
         android:title="sign out"
         android:orderInCategory="200"
-        />
+        tools:ignore="HardcodedText" />
     <item
         android:id="@+id/action_exit"
         android:title="exit"
         android:orderInCategory="200"
-        />
+        tools:ignore="HardcodedText" />
     <item
         android:id="@+id/action_attractionListChange"
         android:title="Change attraction list"
         android:orderInCategory="200"
         android:visible="false"
-        />
+        tools:ignore="HardcodedText" />
     <item
         android:id="@+id/action_flyListChange"
         android:title="Change fly list"
         android:orderInCategory="200"
         android:visible="false"
-        />
+        tools:ignore="HardcodedText" />
 
 </menu>
