@@ -2,11 +2,14 @@ package com.example.tothedestination;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -88,5 +91,45 @@ public class myTripsMain extends AppCompatActivity  implements AdapterView.OnIte
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.options, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+        int id = item.getItemId();
+        if (id == R.id.action_login) {
+            Toast.makeText(this, "you selected login", Toast.LENGTH_SHORT).show();
+            Intent intent1 = new Intent(myTripsMain.this, loginMain.class);
+            startActivity(intent1);
+        }
+        else if (id == R.id.action_setting)
+        {
+            Toast.makeText(this, "you selected setting", Toast.LENGTH_SHORT).show();
+        }
+        else if (id == R.id.About_programmer)
+        {
+            Toast.makeText(this, "you selected About programmer", Toast.LENGTH_SHORT).show();
+        }
+        else if (id == R.id.about_app)
+        {
+            Toast.makeText(this, "you selected About app", Toast.LENGTH_SHORT).show();
+        }
+        else if (id == R.id.fav_flights)
+        {
+            Toast.makeText(this, "you selected Favorite Flights", Toast.LENGTH_SHORT).show();
+        }
+        else if (id == R.id.action_signout)
+        {
+            Toast.makeText(this, "you selected sign out", Toast.LENGTH_SHORT).show();
+        }
+        else if (id == R.id.action_exit)
+        {
+            Toast.makeText(this, "you selected exit", Toast.LENGTH_SHORT).show();
+        }
+        return true;
     }
 }

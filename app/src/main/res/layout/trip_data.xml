@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ABC6C4"
-    tools:context=".tripData">
+    tools:context=".tripData"
+    tools:ignore="ExtraText">
 
     <TextView
         android:id="@+id/countryName1"
@@ -186,10 +187,13 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="400dp"
+        android:layout_marginEnd="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.038"
+        app:layout_constraintHorizontal_bias="0.102"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.674" />
+        app:layout_constraintVertical_bias="0.498" />
+    app:layout_constraintVertical_bias="0.674" />
 </androidx.constraintlayout.widget.ConstraintLayout>

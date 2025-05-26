@@ -7,14 +7,18 @@ import static com.google.android.material.color.utilities.MaterialDynamicColors.
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import androidx.annotation.Nullable;
@@ -29,6 +33,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.io.IOException;
+import java.util.HashMap;
 
 public class tripData extends AppCompatActivity {
 
@@ -117,18 +127,107 @@ public class tripData extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-
         if (resultCode == RESULT_OK) {
-            if (requestCode == REQUEST_CAMERA) {
-                imageView.setImageURI(imageUri); // shows image taken by camera
-            } else if (requestCode == REQUEST_GALLERY && data != null) {
-                imageUri = data.getData();
-                imageView.setImageURI(imageUri); // shows image selected from gallery
+            try {
+                if (requestCode == REQUEST_CAMERA) {
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+                    Bitmap resizedBitmap = Bitmap.createScaledBitmap(bitmap, 1000, 800, true);
+                    imageView.setImageBitmap(resizedBitmap);
+                    uploadImageToFirebase(imageUri);
+                } else if (requestCode == REQUEST_GALLERY && data != null) {
+                    imageUri = data.getData();
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+                    Bitmap resizedBitmap = Bitmap.createScaledBitmap(bitmap, 1000, 800, true);
+                    imageView.setImageBitmap(resizedBitmap);
+                    uploadImageToFirebase(imageUri);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
+        }
+    private void uploadImageToFirebase(Uri imageUri) {
+        if (imageUri == null) return;
+
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+        String fileName = "images/" + System.currentTimeMillis() + ".jpg";
+        StorageReference imageRef = storageRef.child(fileName);
+
+        UploadTask uploadTask = imageRef.putFile(imageUri);
+
+        uploadTask
+                .addOnSuccessListener(taskSnapshot -> {
+                    // Step 1: Get the download URL
+                    imageRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                        String imageUrl = uri.toString();
+
+                        // Step 2: Save the URL to a new field called "image" inside "vacation"
+                        DatabaseReference vacationRef = FirebaseDatabase.getInstance().getReference("vacations").child(keyTrip);
+
+                        HashMap<String, Object> data = new HashMap<>();
+                        data.put("image", imageUrl);
+
+                        vacationRef.updateChildren(data)
+                                .addOnSuccessListener(aVoid -> {
+                                    Toast.makeText(this, "Image uploaded & URL saved under 'vacation/image'", Toast.LENGTH_SHORT).show();
+                                })
+                                .addOnFailureListener(e -> {
+                                    Toast.makeText(this, "DB update failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                });
+
+                    }).addOnFailureListener(e -> {
+                        Toast.makeText(this, "Failed to get image URL: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    });
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(this, "Upload failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.options, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        super.onOptionsItemSelected(item);
+        int id=item.getItemId();
+        if(id==R.id.action_login)
+        {
+            Toast.makeText(this,"you selected login", Toast.LENGTH_SHORT).show();
+            Intent intent1=new Intent(tripData.this, loginMain.class);
+            startActivity(intent1);
+        }
+        else if(id==R.id.action_setting)
+        {
+            Toast.makeText(this,"you selected setting", Toast.LENGTH_SHORT).show();
+        }
+        else if(id==R.id.About_programmer)
+        {
+            Toast.makeText(this,"you selected About programmer", Toast.LENGTH_SHORT).show();
+        }
+        else if(id==R.id.about_app)
+        {
+            Toast.makeText(this,"you selected About app", Toast.LENGTH_SHORT).show();
+        }
+        else if(id==R.id.fav_flights)
+        {
+            Toast.makeText(this,"you selected Favorite Flights", Toast.LENGTH_SHORT).show();
+        }
+        else if (id == R.id.action_signout)
+        {
+            Toast.makeText(this, "you selected sign out", Toast.LENGTH_SHORT).show();
+        }
+        else if(id==R.id.action_exit)
+        {
+            Toast.makeText(this,"you selected exit", Toast.LENGTH_SHORT).show();
+        }
+        return true;
+    }
+    }
 
 
 
 
-}
-}
+

@@ -4,19 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ABC6C4"
+    android:background="@drawable/planescreen1"
     tools:context=".finalstartMain">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="412dp"
-        android:layout_height="124dp"
-        android:background="@color/teal_700"
+        android:layout_height="130dp"
+        android:background="@drawable/rounded_background"
         android:fontFamily="@font/alexandria_bold"
+        android:gravity="center"
         android:text="@string/ArrivedToDestination"
         android:textAlignment="center"
         android:textColor="#000000"
-        android:textSize="45sp"
+        android:textSize="51sp"
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,27 +31,32 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="29dp"
+        android:backgroundTint="@color/white"
         android:fontFamily="@font/alexandria_bold"
         android:text="@string/LogIn1"
+        android:textColor="@color/black"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.581" />
+        app:layout_constraintVertical_bias="0.727" />
 
     <Button
         android:id="@+id/signUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
         android:fontFamily="@font/alexandria_bold"
         android:text="@string/SignUp1"
+        android:textColor="@color/black"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.669" />
+        app:layout_constraintTop_toBottomOf="@+id/logIn"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView4"
@@ -60,6 +66,7 @@
         android:text="@string/flySmart"
         android:textColor="#000000"
         android:textSize="30dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
