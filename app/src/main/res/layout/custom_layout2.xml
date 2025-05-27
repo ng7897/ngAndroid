@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ABC6C4"
+    android:background="#B5CBD7"
     tools:context=".customLayoutMain2">
 
     <ImageView
@@ -24,7 +24,7 @@
         android:layout_marginStart="132dp"
         android:layout_marginTop="10dp"
         android:text="Country"
-        android:textColor="#009688"
+        android:textColor="#7BAAC3"
         android:textSize="16dp"
         app:layout_constraintStart_toEndOf="@+id/ivProduct"
         app:layout_constraintTop_toTopOf="parent" />
@@ -36,7 +36,7 @@
         android:layout_marginStart="136dp"
         android:layout_marginTop="10dp"
         android:text="season"
-        android:textColor="#009688"
+        android:textColor="#7BAAC3"
         android:textSize="16dp"
         app:layout_constraintStart_toEndOf="@+id/ivProduct"
         app:layout_constraintTop_toBottomOf="@+id/tvHoursFlight" />
@@ -144,7 +144,7 @@
         android:layout_marginStart="136dp"
         android:layout_marginTop="10dp"
         android:text="Date leaving"
-        android:textColor="@color/teal_700"
+        android:textColor="#7BAAC3"
         android:textSize="16dp"
         app:layout_constraintStart_toEndOf="@+id/ivProduct"
         app:layout_constraintTop_toBottomOf="@+id/tvAgeOfChild" />
@@ -180,7 +180,7 @@
         android:layout_marginStart="256dp"
         android:layout_marginTop="200dp"
         android:text="Attraction"
-        android:textColor="@color/teal_700"
+        android:textColor="#7BAAC3"
         android:textSize="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

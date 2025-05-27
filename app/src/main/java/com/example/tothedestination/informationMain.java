@@ -10,5 +10,7 @@ public class informationMain extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.information);
+
+        //https://www.gov.il/en/departments/dynamiccollectors/travel-warnings-nsc?skip=0
     }
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ABC6C4"
+    android:background="@drawable/cloudsbirdsscreen4"
     tools:context=".after_deleteMain">
 
     <TextView
@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/informationMap"
-        android:textColor="#000000"
+        android:textColor="#FFFF"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -151,6 +151,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
+        android:backgroundTint="#7BAAC3"
         android:layout_marginTop="180dp"
         android:text="Save"
         app:layout_constraintStart_toStartOf="parent"
@@ -185,6 +186,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="140dp"
+        android:backgroundTint="#7BAAC3"
         android:layout_marginTop="180dp"
         android:text="map"
         app:layout_constraintStart_toStartOf="parent"
@@ -194,6 +196,7 @@
         android:id="@+id/moveForward"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#7BAAC3"
         android:layout_marginStart="248dp"
         android:layout_marginTop="180dp"
         android:text="Move Forward"
@@ -205,7 +208,7 @@
         android:layout_width="440dp"
         android:layout_height="484dp"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="268dp"
+        android:layout_marginTop="360dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -216,14 +219,13 @@
         android:id="@+id/Attraction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="148dp"
-        android:layout_marginTop="228dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="316dp"
         android:text="@string/Attraction"
-        android:textColor="@color/white"
+        android:textColor="#7BAAC3"
         android:textSize="24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

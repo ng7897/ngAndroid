@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ABC6C4"
+    android:background="@drawable/cloudsplanesscreen5"
     tools:context=".search1Main">
 
     <TextView
@@ -13,10 +13,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
         android:layout_marginTop="44dp"
-        android:textStyle="bold|italic"
         android:text="@string/AgeOfChild"
         android:textColor="@color/black"
         android:textSize="20dp"
+        android:textStyle="bold|italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
@@ -26,10 +26,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="36dp"
-        android:textStyle="bold|italic"
         android:text="@string/howMuchHours"
         android:textColor="@color/black"
         android:textSize="20dp"
+        android:textStyle="bold|italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
@@ -106,13 +106,12 @@
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
-        android:layout_height="70dp"
-        android:layout_marginTop="32dp"
-        android:background="@color/teal_700"
-        android:shadowColor="#FFFFFF"
+        android:layout_height="65dp"
+        android:layout_marginTop="44dp"
+        android:background="#7BAAC3"
+        android:shadowColor="#FFFF"
         android:text="@string/choosing"
-        android:textColor="#000000"
-
+        android:textColor="#FFFF"
         android:textSize="40dp"
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
@@ -124,8 +123,8 @@
         android:id="@+id/textView5"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:layout_marginTop="400dp"
-        android:background="@color/teal_700"
+        android:layout_marginTop="420dp"
+        android:background="#7BAAC3"
         android:text=""
         android:textSize="50dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -138,9 +137,11 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="400dp"
+        android:layout_marginStart="156dp"
+        android:layout_marginTop="420dp"
+        android:backgroundTint="#7BAAC3"
         android:text="Save"
+        android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -153,8 +154,8 @@
         android:layout_marginStart="100dp"
         android:layout_marginBottom="96dp"
         android:text="@string/beCareful"
-        android:textSize="30dp"
         android:textColor="@color/black"
+        android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
@@ -164,14 +165,14 @@
         style="?android:spinnerStyle"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="476dp"
+        android:layout_marginTop="484dp"
         android:onClick="openDatePicker"
         android:text="jan 01 2020"
         android:textColor="@color/black"
         android:textSize="15dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.816"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.27"
+        app:layout_constraintStart_toEndOf="@+id/whenGo"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="TextSizeCheck" />
 
@@ -186,8 +187,8 @@
         android:textColor="@color/black"
         android:textSize="15dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.816"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.352"
+        app:layout_constraintStart_toEndOf="@+id/whenBack"
         app:layout_constraintTop_toBottomOf="@+id/datePickerButtonFrom"
         tools:ignore="TextSizeCheck" />
 
@@ -195,7 +196,7 @@
         android:id="@+id/whenGo"
         android:layout_width="135dp"
         android:layout_height="30dp"
-        android:background="@color/teal_700"
+        android:background="#7BAAC3"
         android:shadowColor="#000000"
         android:text="@string/flightDate"
         android:textColor="#000000"
@@ -211,7 +212,7 @@
         android:id="@+id/whenBack"
         android:layout_width="135dp"
         android:layout_height="30dp"
-        android:background="@color/teal_700"
+        android:background="#7BAAC3"
         android:shadowColor="#000000"
         android:text="@string/flightDateBack"
         android:textColor="#0D0B0B"
@@ -230,9 +231,9 @@
         android:layout_marginStart="76dp"
         android:layout_marginTop="136dp"
         android:text="@string/season"
-        android:textStyle="bold|italic"
         android:textColor="@color/black"
         android:textSize="20dp"
+        android:textStyle="bold|italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -241,11 +242,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
-        android:textStyle="bold|italic"
         android:layout_marginTop="52dp"
         android:text="@string/attraction"
         android:textColor="@color/black"
         android:textSize="20dp"
+        android:textStyle="bold|italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 

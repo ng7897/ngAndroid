@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ABC6C4"
+    android:background="#B5CBD7"
     tools:context=".DetailsFlyMain">
 
     <TextView
@@ -13,10 +13,11 @@
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginStart="6dp"
+        android:backgroundTint="#7BAAC3"
         android:layout_marginTop="24dp"
-        android:background="@color/teal_700"
+        android:background="#7BAAC3"
         android:text="@string/detailsFly"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="30dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,7 +31,7 @@
         android:layout_marginStart="176dp"
         android:layout_marginTop="76dp"
         android:text="AtName"
-        android:textColor="#009688"
+        android:textColor="#7BAAC3"
         android:textSize="20dp"
         android:textStyle="bold|italic"
         app:layout_constraintStart_toStartOf="parent"
@@ -126,6 +127,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
         android:layout_marginTop="96dp"
+        android:textStyle="bold|italic"
+        android:textSize="16dp"
         android:text="@string/attractionName"
         android:textColor="#37474F"
         app:layout_constraintStart_toStartOf="parent"
@@ -136,9 +139,10 @@
         android:layout_width="400dp"
         android:layout_height="60dp"
         android:layout_marginStart="4dp"
+        android:backgroundTint="#7BAAC3"
         android:layout_marginTop="460dp"
         android:text="@string/saveChangeAtt"
-        android:textSize="15dp"
+        android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="TextSizeCheck" />
@@ -149,6 +153,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
         android:layout_marginTop="24dp"
+        android:textStyle="bold|italic"
+        android:textSize="16dp"
         android:text="@string/howMuchHours"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/attractionName" />
@@ -158,8 +164,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
         android:text="@string/airport"
+        android:textSize="16dp"
+        android:textStyle="bold|italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/hoursFlight" />
 
@@ -167,9 +175,11 @@
         android:id="@+id/coordinatesX"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="28dp"
         android:text="@string/CoordinatesX"
+        android:textSize="16dp"
+        android:textStyle="bold|italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/airport" />
 
@@ -179,6 +189,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
         android:layout_marginTop="28dp"
+        android:textStyle="bold|italic"
+        android:textSize="16dp"
         android:text="@string/CoordinatesY"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/coordinatesX" />
@@ -190,6 +202,8 @@
         android:layout_marginStart="52dp"
         android:layout_marginTop="28dp"
         android:text="@string/AgeOfChild"
+        android:textStyle="bold|italic"
+        android:textSize="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/coordinatesY" />
 
@@ -199,6 +213,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
         android:layout_marginTop="28dp"
+        android:textStyle="bold|italic"
+        android:textSize="16dp"
         android:text="@string/Attraction"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ageOfChild" />
@@ -208,8 +224,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:text="@string/season"
+        android:textSize="16dp"
+        android:textStyle="bold|italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/attraction" />
 

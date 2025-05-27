@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ABC6C4"
+    android:background="#B5CBD7"
     tools:context=".customLayout3Main">
 
     <ImageView
@@ -19,14 +19,14 @@
 
     <TextView
         android:id="@+id/tvAtName"
-        android:textStyle="bold|italic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="24dp"
         android:text="AtName"
-        android:textColor="#009688"
+        android:textColor="#7BAAC3"
         android:textSize="20dp"
+        android:textStyle="bold|italic"
         app:layout_constraintStart_toEndOf="@+id/ivProduct"
         app:layout_constraintTop_toTopOf="parent" />
 

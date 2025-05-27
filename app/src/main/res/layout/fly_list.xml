@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#A6C3C0"
+    android:background="#B5CBD7"
     android:orientation="vertical"
     tools:context=".FlyListMain">
 
@@ -15,9 +15,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="countries:"
-        android:textColor="#000000"
+        android:textColor="#FFFF"
         android:textSize="30dp"
-
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

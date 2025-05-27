@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ABC6C4"
+    android:background="@drawable/cloudsplanescreen6"
     tools:context=".myTripsMain">
 
     <TextView
@@ -15,7 +15,7 @@
         android:layout_marginStart="104dp"
         android:layout_marginTop="24dp"
         android:text="@string/myTrips"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="40dp"
         android:textStyle="bold|italic"
         app:layout_constraintStart_toStartOf="parent"
