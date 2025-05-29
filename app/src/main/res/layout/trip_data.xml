@@ -49,7 +49,7 @@
         app:layout_constraintTop_toBottomOf="@+id/hoursflight1" />
 
     <TextView
-        android:id="@+id/airpost1"
+        android:id="@+id/airport1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
@@ -72,7 +72,7 @@
         android:textSize="17dp"
         android:textStyle="bold|italic"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/airpost1" />
+        app:layout_constraintTop_toBottomOf="@+id/airport1" />
 
     <TextView
         android:id="@+id/season1"
@@ -104,21 +104,34 @@
         android:id="@+id/ageOfChild2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="240dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="244dp"
+        android:layout_marginTop="32dp"
         android:text="TextView"
         android:textColor="@color/black"
         android:textSize="15dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/country2"
+        app:layout_constraintTop_toBottomOf="@+id/hoursflight2"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/season2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="240dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="244dp"
+        android:layout_marginTop="32dp"
+        android:text="TextView"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/kindOfAttraction2"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/airport2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="244dp"
+        android:layout_marginTop="24dp"
         android:text="TextView"
         android:textColor="@color/black"
         android:textSize="15dp"
@@ -127,24 +140,11 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/airport2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="240dp"
-        android:layout_marginTop="32dp"
-        android:text="TextView"
-        android:textColor="@color/black"
-        android:textSize="15dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/season2"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
         android:id="@+id/kindOfAttraction2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="240dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="244dp"
+        android:layout_marginTop="36dp"
         android:text="TextView"
         android:textColor="@color/black"
         android:textSize="15dp"
@@ -156,13 +156,13 @@
         android:id="@+id/hoursflight2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="240dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="244dp"
+        android:layout_marginTop="32dp"
         android:text="TextView"
         android:textColor="@color/black"
         android:textSize="15dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/kindOfAttraction2"
+        app:layout_constraintTop_toBottomOf="@+id/country2"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -170,10 +170,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="24dp"
+        android:background="#7BAAC3"
         android:text="@string/detailsVac"
         android:textColor="@color/white"
-        android:background="#7BAAC3"
         android:textSize="40dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -183,10 +183,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="432dp"
+        android:layout_marginTop="428dp"
+        android:backgroundTint="#7BAAC3"
         android:text="Add Picture"
         android:textSize="20dp"
-        android:backgroundTint="#7BAAC3"
         android:textStyle="italic|bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

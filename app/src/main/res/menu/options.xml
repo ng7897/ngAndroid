@@ -18,18 +18,8 @@
         android:orderInCategory="100"
         tools:ignore="HardcodedText" />
     <item
-        android:id="@+id/fav_flights"
-        android:title="Favorite Flights"
-        android:orderInCategory="100"
-        tools:ignore="HardcodedText" />
-    <item
         android:id="@+id/action_setting"
         android:title="setting"
-        android:orderInCategory="200"
-        tools:ignore="HardcodedText" />
-    <item
-        android:id="@+id/change_user"
-        android:title="change user"
         android:orderInCategory="200"
         tools:ignore="HardcodedText" />
     <item

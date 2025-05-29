@@ -211,10 +211,6 @@ public class tripData extends AppCompatActivity {
         {
             Toast.makeText(this,"you selected About app", Toast.LENGTH_SHORT).show();
         }
-        else if(id==R.id.fav_flights)
-        {
-            Toast.makeText(this,"you selected Favorite Flights", Toast.LENGTH_SHORT).show();
-        }
         else if (id == R.id.action_signout)
         {
             Toast.makeText(this, "you selected sign out", Toast.LENGTH_SHORT).show();

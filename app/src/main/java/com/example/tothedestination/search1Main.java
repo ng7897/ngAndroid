@@ -61,7 +61,7 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
         Spinner ageChildSpinner=findViewById(R.id.ageChildSpinner);
         ageChildSpinner.setOnItemSelectedListener(this);
 
-        Button b=findViewById(R.id.button);
+        Button saveFeatures=findViewById(R.id.saveFeatures);
         sp1=getSharedPreferences("myPref",0);
 
 //למלא את הנתונים של הdate וגם את הנתונים של המאפיינים האמיתייים.
@@ -72,7 +72,7 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
 
 
 
-        b.setOnClickListener(new View.OnClickListener() {
+        saveFeatures.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -180,10 +180,6 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
         else if(id==R.id.about_app)
         {
             Toast.makeText(this,"you selected About app", Toast.LENGTH_SHORT).show();
-        }
-        else if(id==R.id.fav_flights)
-        {
-            Toast.makeText(this,"you selected Favorite Flights", Toast.LENGTH_SHORT).show();
         }
          else if (id == R.id.action_signout)
         {
