@@ -8,7 +8,7 @@
     tools:context=".signUpMain">
 
     <TextView
-        android:id="@+id/sighUpBig"
+        android:id="@+id/signUpTitle"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/white"
@@ -90,7 +90,7 @@
         app:layout_constraintVertical_bias="0.031" />
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress"
+        android:id="@+id/editTextEmailAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -106,7 +106,7 @@
         app:layout_constraintVertical_bias="0.013" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/editTextPersonName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -121,7 +121,7 @@
         app:layout_constraintVertical_bias="0.306" />
 
     <Button
-        android:id="@+id/finalSighUp"
+        android:id="@+id/finalSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#7BAAC3"
@@ -151,7 +151,7 @@
         app:layout_constraintVertical_bias="0.004" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/editTextPersonName2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -163,22 +163,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.815"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPersonName"
         app:layout_constraintVertical_bias="0.002" />
-
-    <Button
-        android:id="@+id/backToStart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#7BAAC3"
-        android:text="@string/back1"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.066"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976" />
 
     <ImageView
         android:id="@+id/arrowImage"
@@ -189,7 +175,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.902"
+        app:layout_constraintVertical_bias="0.957"
         app:srcCompat="@drawable/img_5" />
 
     <EditText
@@ -203,7 +189,7 @@
         android:inputType="text"
         android:minHeight="48dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextPersonName2" />
 
     <EditText
         android:id="@+id/editTextNumberPassword2"

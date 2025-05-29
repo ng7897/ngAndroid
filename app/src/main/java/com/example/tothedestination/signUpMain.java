@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -28,7 +27,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class signUpMain extends AppCompatActivity {
-    private Button backToStart,finalSighUp;
+    private Button finalSighUp;
     private ImageView arrowImage;
     private SharedPreferences sp1;
     private FirebaseAuth mAuth;
@@ -40,16 +39,7 @@ public class signUpMain extends AppCompatActivity {
         setContentView(R.layout.signup);
         mAuth = FirebaseAuth.getInstance();
 
-        backToStart=findViewById(R.id.backToStart);
-        finalSighUp=findViewById(R.id.finalSighUp);
-
-        backToStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent =new Intent(signUpMain.this, finalstartMain.class);
-                startActivity(intent);
-            }
-        });
+        finalSighUp=findViewById(R.id.finalSignUp);
 
         arrowImage=findViewById(R.id.arrowImage);
         arrowImage.setOnClickListener(new View.OnClickListener() {
@@ -62,9 +52,9 @@ public class signUpMain extends AppCompatActivity {
         // לשמור על המידע שמכניסים בshared preferences
         sp1=getSharedPreferences("myPref",0);
         et_password= findViewById(R.id.editTextNumberPassword);
-        et_email= findViewById(R.id.editTextTextEmailAddress);
-        et_firstName= findViewById(R.id.editTextTextPersonName);
-        et_lastName= findViewById(R.id.editTextTextPersonName2);
+        et_email= findViewById(R.id.editTextEmailAddress);
+        et_firstName= findViewById(R.id.editTextPersonName);
+        et_lastName= findViewById(R.id.editTextPersonName2);
         et_passwordAgain= findViewById(R.id.editTextNumberPassword2);
 
         //Signup לכתוב הודעה אם לא מכניסים את כל הנתונים

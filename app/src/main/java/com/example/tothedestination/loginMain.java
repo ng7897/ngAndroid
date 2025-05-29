@@ -1,7 +1,5 @@
 package com.example.tothedestination;
 
-import static android.content.ContentValues.TAG;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,7 +8,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,15 +20,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class loginMain extends AppCompatActivity {
 
-    private Button backToStart, finalLogIn;
+    private Button finalLogIn;
     private ImageView arrowImage;
     private SharedPreferences sp;
     private EditText et_email, et_password;
@@ -46,18 +40,7 @@ public class loginMain extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         usersRef = database.getReference("userList");
-
-        backToStart = findViewById(R.id.backToStart);
         finalLogIn = findViewById(R.id.finalLogIn);
-
-        // Return to main activity
-        backToStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(loginMain.this, finalstartMain.class);
-                startActivity(intent);
-            }
-        });
 
         // Back to last view
         arrowImage = findViewById(R.id.arrowImage);
@@ -72,7 +55,7 @@ public class loginMain extends AppCompatActivity {
         //49-67 לשמור על המידע שמכניסים בshared preferences
         sp = getSharedPreferences("myPref", 0);
         et_password = findViewById(R.id.editTextNumberPassword);
-        et_email = findViewById(R.id.editTextTextEmailAddress);
+        et_email = findViewById(R.id.editTextEmailAddress);
 
         // Do Login אם לא מכניסים סיסמה או מייל רושם הודעה
         finalLogIn.setOnClickListener(new View.OnClickListener() {

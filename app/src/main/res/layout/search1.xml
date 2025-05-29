@@ -8,20 +8,20 @@
     tools:context=".search1Main">
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/ageOfChildTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="60dp"
         android:text="@string/AgeOfChild"
         android:textColor="@color/black"
         android:textSize="20dp"
         android:textStyle="bold|italic"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintTop_toBottomOf="@+id/hoursOfFlightTitle" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/hoursOfFlightTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -31,10 +31,10 @@
         android:textSize="20dp"
         android:textStyle="bold|italic"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        app:layout_constraintTop_toBottomOf="@+id/seasonTitle" />
 
     <Spinner
-        android:id="@+id/aSpinner1"
+        android:id="@+id/hoursFlySpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
@@ -47,12 +47,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.863"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/aSpinner3"
+        app:layout_constraintTop_toBottomOf="@+id/seasonSpinner"
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints" />
 
     <Spinner
-        android:id="@+id/aSpinner2"
+        android:id="@+id/attractionSpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
@@ -64,12 +64,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.863"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/aSpinner4"
+        app:layout_constraintTop_toBottomOf="@+id/ageChildSpinner"
         app:layout_constraintVertical_bias="0.034"
         tools:ignore="MissingConstraints" />
 
     <Spinner
-        android:id="@+id/aSpinner3"
+        android:id="@+id/seasonSpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
@@ -86,7 +86,7 @@
         tools:ignore="MissingConstraints" />
 
     <Spinner
-        android:id="@+id/aSpinner4"
+        android:id="@+id/ageChildSpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
@@ -97,14 +97,14 @@
         android:scrollbarSize="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.863"
+        app:layout_constraintHorizontal_bias="0.852"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/aSpinner1"
-        app:layout_constraintVertical_bias="0.009"
+        app:layout_constraintTop_toBottomOf="@+id/hoursFlySpinner"
+        app:layout_constraintVertical_bias="0.043"
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/featuresTitle"
         android:layout_width="wrap_content"
         android:layout_height="65dp"
         android:layout_marginTop="44dp"
@@ -148,7 +148,7 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/warningTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
@@ -225,7 +225,7 @@
         app:layout_constraintVertical_bias="0.194" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/seasonTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="76dp"
@@ -238,7 +238,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/attractionTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
@@ -248,7 +248,7 @@
         android:textSize="20dp"
         android:textStyle="bold|italic"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        app:layout_constraintTop_toBottomOf="@+id/ageOfChildTitle" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,16 +16,9 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
-import android.app.DatePickerDialog;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -59,20 +52,20 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
         dateButtonTo = findViewById(R.id.datePickerButtonTo);
         dateButtonTo.setText(getTodayDate());
 
-        Spinner aSpinner1=findViewById(R.id.aSpinner1);
-        aSpinner1.setOnItemSelectedListener(this);
-        Spinner aSpinner2=findViewById(R.id.aSpinner2);
-        aSpinner2.setOnItemSelectedListener(this);
-        Spinner aSpinner3=findViewById(R.id.aSpinner3);
-        aSpinner3.setOnItemSelectedListener(this);
-        Spinner aSpinner4=findViewById(R.id.aSpinner4);
-        aSpinner4.setOnItemSelectedListener(this);
+        Spinner hoursFlySpinner=findViewById(R.id.hoursFlySpinner);
+        hoursFlySpinner.setOnItemSelectedListener(this);
+        Spinner attractionSpinner=findViewById(R.id.attractionSpinner);
+        attractionSpinner.setOnItemSelectedListener(this);
+        Spinner seasonSpinner=findViewById(R.id.seasonSpinner);
+        seasonSpinner.setOnItemSelectedListener(this);
+        Spinner ageChildSpinner=findViewById(R.id.ageChildSpinner);
+        ageChildSpinner.setOnItemSelectedListener(this);
 
         Button b=findViewById(R.id.button);
         sp1=getSharedPreferences("myPref",0);
 
 //למלא את הנתונים של הdate וגם את הנתונים של המאפיינים האמיתייים.
-      //  vacation vac1=new vacation(Integer.parseInt(aSpinner1.getSelectedItem().toString()),aSpinner2.getSelectedItem().toString(),aSpinner3.getSelectedItem().toString(),aSpinner4.getSelectedItem().toString(),getDateFromString(dateButtonTo.getText().toString(),"dd/MMM/yyyy" )  ,getDateFromString(dateButtonTo.getText().toString(),"dd/MMM/yyyy" ) );
+      //  vacation vac1=new vacation(Integer.parseInt(hoursFlySpinner.getSelectedItem().toString()),attractionSpinner.getSelectedItem().toString(),seasonSpinner.getSelectedItem().toString(),ageChildSpinner.getSelectedItem().toString(),getDateFromString(dateButtonTo.getText().toString(),"dd/MMM/yyyy" )  ,getDateFromString(dateButtonTo.getText().toString(),"dd/MMM/yyyy" ) );
       //  DatabaseReference newVacRef= vacRef.push();
        // newVacRef.setValue(vac1);
 
@@ -84,36 +77,36 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
             public void onClick(View view) {
 
                 // נשמור את נתוני החיפוש
-               /* if (aSpinner1.getSelectedItem() == null ||
-                        aSpinner2.getSelectedItem() == null ||
-                        aSpinner3.getSelectedItem() == null ||
-                        aSpinner4.getSelectedItem() == null) {
+               /* if (hoursFlySpinner.getSelectedItem() == null ||
+                        attractionSpinner.getSelectedItem() == null ||
+                        seasonSpinner.getSelectedItem() == null ||
+                        ageChildSpinner.getSelectedItem() == null) {
 
                     Toast.makeText(search1Main.this, "Please select all options", Toast.LENGTH_SHORT).show();
                     return;
                 }*/
 
 //                SharedPreferences.Editor editor = sp1.edit();
-//                editor.putString("key_hoursFlight",aSpinner1.getSelectedItem().toString());
-//                editor.putString("key_attraction", aSpinner2.getSelectedItem().toString());
-//                editor.putString("key_season", aSpinner3.getSelectedItem().toString());
-//                editor.putString("key_ageOfChildren", aSpinner4.getSelectedItem().toString());
+//                editor.putString("key_hoursFlight",hoursFlySpinner.getSelectedItem().toString());
+//                editor.putString("key_attraction", attractionSpinner.getSelectedItem().toString());
+//                editor.putString("key_season", seasonSpinner.getSelectedItem().toString());
+//                editor.putString("key_ageOfChildren", ageChildSpinner.getSelectedItem().toString());
 //                editor.commit();
 
-                String a=aSpinner3.getSelectedItem().toString();
+                String a=seasonSpinner.getSelectedItem().toString();
 
-              //  intent2.putExtra("hoursFlight",aSpinner1.getSelectedItem().toString());
-              //  intent2.putExtra("attraction", aSpinner2.getSelectedItem().toString());
-             //   intent2.putExtra("season", aSpinner3.getSelectedItem().toString());
-             //   intent2.putExtra("ageOfChildren", aSpinner4.getSelectedItem().toString());
+              //  intent2.putExtra("hoursFlight",hoursFlySpinner.getSelectedItem().toString());
+              //  intent2.putExtra("attraction", attractionSpinner.getSelectedItem().toString());
+             //   intent2.putExtra("season", seasonSpinner.getSelectedItem().toString());
+             //   intent2.putExtra("ageOfChildren", ageChildSpinner.getSelectedItem().toString());
                 SharedPreferences.Editor editor = sp1.edit();
                 editor.putString("key_From",dateButtonFrom.getText().toString());
                 editor.putString("key_To",dateButtonTo.getText().toString());
-               // editor.putString("key_airport", aSpinner2.getSelectedItem().toString());
-                editor.putInt("key_hoursFlight", Integer.parseInt(aSpinner1.getSelectedItem().toString()));
-                editor.putString("key_attraction", aSpinner2.getSelectedItem().toString());
-                editor.putString("key_season", aSpinner3.getSelectedItem().toString());
-                editor.putString("key_ageOfChildren", aSpinner4.getSelectedItem().toString());
+               // editor.putString("key_airport", attractionSpinner.getSelectedItem().toString());
+                editor.putInt("key_hoursFlight", Integer.parseInt(hoursFlySpinner.getSelectedItem().toString()));
+                editor.putString("key_attraction", attractionSpinner.getSelectedItem().toString());
+                editor.putString("key_season", seasonSpinner.getSelectedItem().toString());
+                editor.putString("key_ageOfChildren", ageChildSpinner.getSelectedItem().toString());
                 editor.commit();
                 Intent intent2=new Intent(search1Main.this, FlyListMain.class);
                 startActivity(intent2);
