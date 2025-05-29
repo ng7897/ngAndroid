@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="176dp"
         android:layout_marginTop="76dp"
-        android:text="AtName"
+        android:text="FlyName"
         android:textColor="#7BAAC3"
         android:textSize="20dp"
         android:textStyle="bold|italic"
@@ -122,14 +122,14 @@
         app:layout_constraintTop_toBottomOf="@+id/etCoordinatesX" />
 
     <TextView
-        android:id="@+id/attractionName"
+        android:id="@+id/attName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
         android:layout_marginTop="96dp"
         android:textStyle="bold|italic"
         android:textSize="16dp"
-        android:text="@string/attractionName"
+        android:text="@string/flyName"
         android:textColor="#37474F"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -157,7 +157,7 @@
         android:textSize="16dp"
         android:text="@string/howMuchHours"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/attractionName" />
+        app:layout_constraintTop_toBottomOf="@+id/attName" />
 
     <TextView
         android:id="@+id/airport"

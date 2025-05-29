@@ -9,7 +9,7 @@
     tools:context=".MasterattractionMain">
 
     <TextView
-        android:id="@+id/attractionMaster"
+        android:id="@+id/attractionMasterTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="144dp"

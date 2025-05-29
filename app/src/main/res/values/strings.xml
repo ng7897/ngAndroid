@@ -17,6 +17,7 @@
     <string name="infromationAboutAttraction">information about attraction:</string>
     <string name="email">Email:</string>
     <string name="myTrips">My Trips:</string>
+    <string name="flyName">Fly Name:</string>
     <string name="FlyList">Fly List:</string>
     <string name="airport">Airport:</string>
     <string name="saveChangeAtt">Save Changes</string>
