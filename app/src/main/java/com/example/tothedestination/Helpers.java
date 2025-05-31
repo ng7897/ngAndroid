@@ -15,9 +15,7 @@ import com.google.firebase.database.ValueEventListener;
 import android.content.SharedPreferences;
 
 public class Helpers {
-
     public static void searchUserByEmail(String email,SharedPreferences sp) {
-        // Initialize Firebase Database reference
         //עובדת על הרשימה של המשתמשים בפיירבייס ובודקת האם המייל שיש לנו פה כפרמטר שווה לאחד המיילים שם פעולה ש
         SharedPreferences.Editor editor = sp.edit();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -38,34 +36,13 @@ public class Helpers {
                                         editor.putBoolean("CanEditFlyList", true);
                                         editor.putBoolean("CanDeleteFlyList", true);
                                         editor.putBoolean("CanAddFlyList", true);
-                                        //AdminUser user1=user;
                                     }
                                 }
                                 else
                                 {
                                     editor.putBoolean("CanEditAttraction", false);
                                 }
- //                               if (snapshot.hasChild("canEditAttraction")) {
-//                                    AdminUser user = snapshot.getValue(AdminUser.class);
-//                                    if (user != null) {
-//                                        if (user instanceof AdminUser) {
-//                                            editor.putBoolean("canEditAttraction", user.isCanEditAttraction());
-//                                            editor.putBoolean("CanEditFly", user.isCanEditFlyList());
-//                                            editor.putBoolean("canDeleteAttraction", user.isCanDeleteAttraction());
-//                                            editor.putBoolean("canAddAttraction", user.isCanAddAttraction());
-//                                            editor.putBoolean("canDeleteFlyList", user.isCanDeleteFlyList());
-//                                            editor.putBoolean("canAddFlyList", user.isCanAddFlyList());
-//                                        }
-//                                    }
-//                                }
-//                                else {
-//                                    editor.putBoolean("CanEditAttraction", false);
-//                                    editor.putBoolean("CanEditFly", false);
-//                                    editor.putBoolean("canDeleteAttraction", false);
-//                                    editor.putBoolean("canAddAttraction", false);
-//                                    editor.putBoolean("canDeleteFlyList", false);
-//                                    editor.putBoolean("canAddFlyList", false);
-//                                }
+                                // אם מוצאים משתמש כזה ברשימה לפי האימייל שלו אז שומרים את הid שלו
                                 String foundEmail = snapshot.child("mail").getValue(String.class);
                                 Log.d(TAG, "User found: " + userId + " - " + foundEmail);
                                 editor.putString("key_user", userId);
@@ -75,7 +52,6 @@ public class Helpers {
                             Log.d(TAG, "No user found with this email.");
                         }
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
                         Log.e(TAG, "Database error: " + databaseError.getMessage());

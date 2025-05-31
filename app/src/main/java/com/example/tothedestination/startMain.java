@@ -13,8 +13,6 @@ public class startMain extends AppCompatActivity {
 
     LottieAnimationView lottie;
 
-
-
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {

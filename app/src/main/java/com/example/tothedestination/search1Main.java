@@ -28,9 +28,6 @@ import java.util.Date;
 public class search1Main extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     private SharedPreferences sp1;
-    private LinearLayout calendarContainer;
-    private Button toggleCalendarButton;
-    private boolean isCalendarVisible = false;
     private DatePickerDialog datePickerDialog;
     private Button dateButtonFrom;
     private Button dateButtonTo;
@@ -41,17 +38,12 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search1);
-
-
         initDatePicker();
 
-        // Initialize views
         dateButtonFrom = findViewById(R.id.datePickerButtonFrom);
         dateButtonFrom.setText(getTodayDate());
-
         dateButtonTo = findViewById(R.id.datePickerButtonTo);
         dateButtonTo.setText(getTodayDate());
-
         Spinner hoursFlySpinner=findViewById(R.id.hoursFlySpinner);
         hoursFlySpinner.setOnItemSelectedListener(this);
         Spinner attractionSpinner=findViewById(R.id.attractionSpinner);
@@ -60,45 +52,13 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
         seasonSpinner.setOnItemSelectedListener(this);
         Spinner ageChildSpinner=findViewById(R.id.ageChildSpinner);
         ageChildSpinner.setOnItemSelectedListener(this);
-
         Button saveFeatures=findViewById(R.id.saveFeatures);
         sp1=getSharedPreferences("myPref",0);
-
-//למלא את הנתונים של הdate וגם את הנתונים של המאפיינים האמיתייים.
-      //  vacation vac1=new vacation(Integer.parseInt(hoursFlySpinner.getSelectedItem().toString()),attractionSpinner.getSelectedItem().toString(),seasonSpinner.getSelectedItem().toString(),ageChildSpinner.getSelectedItem().toString(),getDateFromString(dateButtonTo.getText().toString(),"dd/MMM/yyyy" )  ,getDateFromString(dateButtonTo.getText().toString(),"dd/MMM/yyyy" ) );
-      //  DatabaseReference newVacRef= vacRef.push();
-       // newVacRef.setValue(vac1);
-
-
-
 
         saveFeatures.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 // נשמור את נתוני החיפוש
-               /* if (hoursFlySpinner.getSelectedItem() == null ||
-                        attractionSpinner.getSelectedItem() == null ||
-                        seasonSpinner.getSelectedItem() == null ||
-                        ageChildSpinner.getSelectedItem() == null) {
-
-                    Toast.makeText(search1Main.this, "Please select all options", Toast.LENGTH_SHORT).show();
-                    return;
-                }*/
-
-//                SharedPreferences.Editor editor = sp1.edit();
-//                editor.putString("key_hoursFlight",hoursFlySpinner.getSelectedItem().toString());
-//                editor.putString("key_attraction", attractionSpinner.getSelectedItem().toString());
-//                editor.putString("key_season", seasonSpinner.getSelectedItem().toString());
-//                editor.putString("key_ageOfChildren", ageChildSpinner.getSelectedItem().toString());
-//                editor.commit();
-
-                String a=seasonSpinner.getSelectedItem().toString();
-
-              //  intent2.putExtra("hoursFlight",hoursFlySpinner.getSelectedItem().toString());
-              //  intent2.putExtra("attraction", attractionSpinner.getSelectedItem().toString());
-             //   intent2.putExtra("season", seasonSpinner.getSelectedItem().toString());
-             //   intent2.putExtra("ageOfChildren", ageChildSpinner.getSelectedItem().toString());
                 SharedPreferences.Editor editor = sp1.edit();
                 editor.putString("key_From",dateButtonFrom.getText().toString());
                 editor.putString("key_To",dateButtonTo.getText().toString());
@@ -111,9 +71,7 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
                 Intent intent2=new Intent(search1Main.this, FlyListMain.class);
                 startActivity(intent2);
             }
-
         });
-
     }
 
 
@@ -149,8 +107,6 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
         MenuItem attractionListChange = menu.findItem(R.id.action_attractionListChange);
         MenuItem flyListChange = menu.findItem(R.id.action_flyListChange);
         SharedPreferences sp = getSharedPreferences("myPref", 0);
-
-        // TODO: check Why CanEditAttraction
 
         boolean isAdmin = sp.getBoolean("CanEditAttraction",false); // replace with your condition
         attractionListChange.setVisible(isAdmin);
@@ -224,12 +180,13 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month + 1;
                 String date = makeDateString(day, month, year);
-                if (whichCalenderWasClicked == "From")
+                if (whichCalenderWasClicked.equals("From"))
                     dateButtonFrom.setText(date);
                 else
                     dateButtonTo.setText(date);
             }
         };
+        //תאריך ברירת מחדל
         Calendar cal = Calendar.getInstance();
         int year= cal.get(Calendar.YEAR);
         int month= cal.get(Calendar.MONTH);

@@ -173,42 +173,6 @@ public class after_deleteMain extends AppCompatActivity implements AdapterView.O
                 startActivity(intent);
             }
         });
-
-//        attRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                attList.clear();
-//
-//                // Rule base ML הרבה תנאים
-//                for (DataSnapshot attSnapshot : dataSnapshot.getChildren())
-//                {
-//                    attraction currentAttraction = attSnapshot.getValue(attraction.class);
-//                    attList.add(currentAttraction);
-//                    attAdapter.notifyDataSetChanged();
-//                    //france, spring:3,1,2,4,6
-//                    //netherlands: 5,
-//                }
-//
-////            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError error) {
-//                Log.w(TAG, "Failed to read value.", error.toException());
-//            }
-//        });
-//        attAdapter=new AttractionAdapter(this,0,0,attList);
-//        lv=(ListView) findViewById(R.id.lv);
-//        lv.setAdapter(attAdapter);
-//    }
-
-//        TextView textView8=findViewById(R.id.pp);
-//        textView8.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(after_deleteMain.this, MasterattractionMain.class);
-//                startActivity(intent);
-//            }
-//        });
     }
 
     @Override

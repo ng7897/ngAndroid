@@ -27,11 +27,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class signUpMain extends AppCompatActivity {
+
     private Button finalSighUp;
     private ImageView arrowImage;
     private SharedPreferences sp1;
     private FirebaseAuth mAuth;
     private EditText et_firstName,et_email,et_lastName,et_password,et_passwordAgain;
+
     @SuppressLint({"MissingInflatedId", "WrongViewCast"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -237,12 +239,13 @@ public class signUpMain extends AppCompatActivity {
     public static boolean hasUpperCase(String str) {
         return str.matches(".*[A-Z].*");
     }
-        public static boolean hasLowerCase(java.lang.String str)
-        {
-            Pattern pattern = Pattern.compile(".*[a-z].*");
-            Matcher matcher = pattern.matcher(str);
-            return matcher.find();
-        }
+
+    public static boolean hasLowerCase(java.lang.String str)
+    {
+        Pattern pattern = Pattern.compile(".*[a-z].*");
+        Matcher matcher = pattern.matcher(str);
+        return matcher.find();
+    }
     public static boolean hasAtSymbol(String str) {
         Pattern pattern = Pattern.compile(".*@.*");
         Matcher matcher = pattern.matcher(str);
