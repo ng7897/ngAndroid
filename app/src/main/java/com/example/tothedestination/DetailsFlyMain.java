@@ -98,10 +98,8 @@ public class DetailsFlyMain extends AppCompatActivity {
                     .addOnSuccessListener(unused -> Toast.makeText(DetailsFlyMain.this, "Updated successfully!", Toast.LENGTH_SHORT).show())
                     .addOnFailureListener(e -> Toast.makeText(DetailsFlyMain.this, "Update failed!", Toast.LENGTH_SHORT).show());
         });
-
-
-
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -114,8 +112,6 @@ public class DetailsFlyMain extends AppCompatActivity {
         MenuItem attractionListChange = menu.findItem(R.id.action_attractionListChange);
         MenuItem flyListChange = menu.findItem(R.id.action_flyListChange);
         SharedPreferences sp = getSharedPreferences("myPref", 0);
-
-        // TODO: check Why CanEditAttraction
 
         boolean isAdmin = sp.getBoolean("CanEditAttraction",false); // replace with your condition
         attractionListChange.setVisible(isAdmin);

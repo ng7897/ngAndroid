@@ -33,9 +33,9 @@ import java.util.Hashtable;
 
 public class MasterFlyMain extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    ArrayList<Fly> flyList, checkList;
-    ListView lv;
-    FlyAdapter flyAdapter;
+    private ArrayList<Fly> flyList;
+    private ListView lv;
+    private FlyAdapter flyAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,9 +107,7 @@ public class MasterFlyMain extends AppCompatActivity implements AdapterView.OnIt
         MenuItem flyListChange = menu.findItem(R.id.action_flyListChange);
         SharedPreferences sp = getSharedPreferences("myPref", 0);
 
-        // TODO: check Why CanEditAttraction
-
-        boolean isAdmin = sp.getBoolean("CanEditAttraction",false); // replace with your condition
+        boolean isAdmin = sp.getBoolean("CanEditAttraction",false);
         attractionListChange.setVisible(isAdmin);
         flyListChange.setVisible(isAdmin);
 

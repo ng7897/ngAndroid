@@ -105,8 +105,6 @@ public class DetailsAttractionMain extends AppCompatActivity {
         MenuItem flyListChange = menu.findItem(R.id.action_flyListChange);
         SharedPreferences sp = getSharedPreferences("myPref", 0);
 
-        // TODO: check Why CanEditAttraction
-
         boolean isAdmin = sp.getBoolean("CanEditAttraction",false); // replace with your condition
         attractionListChange.setVisible(isAdmin);
         flyListChange.setVisible(isAdmin);

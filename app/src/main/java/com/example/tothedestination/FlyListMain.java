@@ -47,15 +47,9 @@ public class    FlyListMain extends AppCompatActivity implements AdapterView.OnI
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fly_list);
         flyList = new ArrayList<Fly>();
-
-        // אפשרות לייצור מילון בין שם מדינה לבין שם קובץ
-
+        //  לייצור מילון בין שם מדינה לבין שם קובץ
         // נקבל את נתוני החיפוש מהמסך הקודם
-        //  היי
-
         // עונה , סוג אטרקציות, טווח גילאים (תינוק, ילד, נוער) , כמות שעות טיסה
-        //מדינה אני לא צריכה להשוות לשמהו בעמוד הקודם משום שהמשתמש בוחר אותה בסופו של דבר
-
         FirebaseDatabase database=FirebaseDatabase.getInstance();
         DatabaseReference flyRef=database.getReference("flyList");
 
@@ -66,20 +60,6 @@ public class    FlyListMain extends AppCompatActivity implements AdapterView.OnI
         String attraction = sp1.getString("key_attraction", "Not Important");
         String season = sp1.getString("key_season", "Not Important");
         String ageOfChildren = sp1.getString("key_ageOfChildren", "Not Important");
-        //String airport = sp1.getString("key_airport", "Not Important");
-        //double coordinatesX = sp1.getFloat("key_coordinatesX", 0);
-        //double coordinatesY = sp1.getFloat("key_coordinatesY", 0);
-
-
-        //int hoursFlight = getIntent().getExtras().getInt("hoursFlight");
-       // String attraction = getIntent().getExtras().getString("attraction");
-       // String season = getIntent().getExtras().getString("season");
-       // String ageOfChildren = getIntent().getExtras().getString("ageOfChildren");
-
-        //Query query = flyRef.orderByChild("country").equalTo("Belgium");
-
-
-
 
         flyRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -121,39 +101,9 @@ public class    FlyListMain extends AppCompatActivity implements AdapterView.OnI
             }
         });
 
-       /*for(int i=0;i<7;i++)
-        {
-           int randomNumber = random.nextInt(24) + 1;
-           Fly fly1=new Fly(randomNumber,"hiking","french","teen","summer");
-            flyList.add(fly1);
-            DatabaseReference newFlyRef= flyRef.push();
-            newFlyRef.setValue(fly1);
-        }*/
-
-
-
-      /*  Fly f1=new Fly(5,"hiking", "italy",country0);
-        Fly f2=new Fly(8,"shopping", "germany",country1);
-        Fly f3=new Fly(11,"cheese factory", "netherland",country2);
-        Fly f4=new Fly(6,"hiking", "french",country3);
-        Fly f5=new Fly(5,"beach", "ostria",country4);
-        Fly f6=new Fly(4,"hiking", "spain",country5);
-        Fly f7=new Fly(2,"hiking", "greece",country6);
-
-        flyList= new ArrayList<Fly>();
-        flyList.add(f1);
-        flyList.add(f2);
-        flyList.add(f3);
-        flyList.add(f4);
-        flyList.add(f5);
-        flyList.add(f6);
-        flyList.add(f7);*/
-
         flyAdapter=new FlyAdapter(this,0,0,flyList);
         lv=(ListView) findViewById(R.id.lv);
         lv.setAdapter(flyAdapter);
-
-
     }
 
     @Override
