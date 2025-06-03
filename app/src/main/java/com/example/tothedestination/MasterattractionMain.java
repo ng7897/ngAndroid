@@ -44,7 +44,6 @@ public class MasterattractionMain extends AppCompatActivity implements AdapterVi
     ListView lv;
     AttractionAdapter attAdapter;
     private Button delete, add;
-    private int imageRes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,13 +66,10 @@ public class MasterattractionMain extends AppCompatActivity implements AdapterVi
                 for (DataSnapshot attSnapshot : dataSnapshot.getChildren())
                 {
                     Attraction currentAttraction = attSnapshot.getValue(Attraction.class);
-                    imageRes = R.drawable.planedefultimage;
-                    Bitmap bitmap = BitmapFactory.decodeResource(getResources(), imageRes);
-                    currentAttraction.setBitmap(bitmap);
+                    currentAttraction.setKey(attSnapshot.getKey());
                     attList.add(currentAttraction);
+                    attAdapter.notifyDataSetChanged();
                 }
-                attAdapter.notifyDataSetChanged();
-
             }
 
             @Override
@@ -89,22 +85,22 @@ public class MasterattractionMain extends AppCompatActivity implements AdapterVi
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ArrayList<Attraction> checkedFlights = new ArrayList<>();
+                ArrayList<Attraction> checkedAttractions = new ArrayList<>();
                 for (Attraction att : attList) {
                     if (att.isChecked()) {
-                        checkedFlights.add(att);
+                        checkedAttractions.add(att);
                     }
                 }
                 FirebaseDatabase db = FirebaseDatabase.getInstance();
-                for (Attraction att1 : checkedFlights) {
-                    String keyFly = att1.getKey(); // Replace with your actual getter
+                for (Attraction att1 : checkedAttractions) {
+                    String keyAtt = att1.getKey(); // Replace with your actual getter
 
-                    database.getReference("flyList").child(keyFly).removeValue()
+                    database.getReference("attraction").child(keyAtt).removeValue()
                             .addOnSuccessListener(aVoid -> {
-                                Log.d("DeleteFlight", "Flight deleted: " + keyFly);
+                                Log.d("DeleteFlight", "Flight deleted: " + keyAtt);
                             })
                             .addOnFailureListener(e -> {
-                                Log.w("DeleteFlight", "Error deleting flight: " + keyFly, e);
+                                Log.w("DeleteFlight", "Error deleting flight: " + keyAtt, e);
                             });
                 }
 
@@ -114,35 +110,18 @@ public class MasterattractionMain extends AppCompatActivity implements AdapterVi
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(MasterattractionMain.this);
-                builder.setTitle("Add New Flight");
+                builder.setTitle("Add New Attraction");
                 // Create layout for input
                 LinearLayout layout = new LinearLayout(MasterattractionMain.this);
                 layout.setOrientation(LinearLayout.VERTICAL);
 
-                final EditText airportInput = new EditText(MasterattractionMain.this);
-                airportInput.setHint("Airport");
-                layout.addView(airportInput);
+                final EditText attNameInput = new EditText(MasterattractionMain.this);
+                attNameInput.setHint("attName");
+                layout.addView(attNameInput);
 
-                final EditText hoursInput = new EditText(MasterattractionMain.this);
-                hoursInput.setHint("HoursFlight");
-                hoursInput.setInputType(InputType.TYPE_CLASS_NUMBER); //makes sure there are no letters or symbols written
-                layout.addView(hoursInput);
-
-                final EditText ageOfChildInput = new EditText(MasterattractionMain.this);
-                ageOfChildInput.setHint("ageOfChild");
-                layout.addView(ageOfChildInput);
-
-                final EditText attractionInput = new EditText(MasterattractionMain.this);
-                attractionInput.setHint("attraction");
-                layout.addView(attractionInput);
-
-                final EditText seasonIntput = new EditText(MasterattractionMain.this);
-                seasonIntput.setHint("season");
-                layout.addView(seasonIntput);
-
-                final EditText countryInput = new EditText(MasterattractionMain.this);
-                countryInput.setHint("country");
-                layout.addView(countryInput);
+                final EditText explainInput = new EditText(MasterattractionMain.this);
+                explainInput.setHint("explain");
+                layout.addView(explainInput);
 
                 final EditText CoordinatesXInput = new EditText(MasterattractionMain.this);
                 CoordinatesXInput.setHint("CoordinatesX");
@@ -156,17 +135,13 @@ public class MasterattractionMain extends AppCompatActivity implements AdapterVi
                 builder.setView(layout);
 
                 builder.setPositiveButton("Add", (dialog, which) -> {
-                    String airport = airportInput.getText().toString().trim();
-                    String ageOfChild = hoursInput.getText().toString().trim();
-                    String attraction = attractionInput.getText().toString().trim();
-                    String country = countryInput.getText().toString().trim();
-                    String season = seasonIntput.getText().toString().trim();
+                    String explain = explainInput.getText().toString().trim();
+                    String name = attNameInput.getText().toString().trim();
                     String yString = CoordinatesYInput.getText().toString().trim();
                     Double CoordinatesY = Double.parseDouble(yString);
                     String xString = CoordinatesXInput.getText().toString().trim();
                     Double CoordinatesX = Double.parseDouble(xString);
-                    int hoursFlight = Integer.parseInt(hoursInput.getText().toString().trim());
-                    addFlightToFirebase(airport, hoursFlight, CoordinatesX, CoordinatesY, ageOfChild, attraction, country, season);
+                    addAttToFirebase(name, explain, CoordinatesX, CoordinatesY);
                 });
 
                 builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
@@ -177,25 +152,24 @@ public class MasterattractionMain extends AppCompatActivity implements AdapterVi
 
     }
 
-    private void addFlightToFirebase(String airport, int hoursFlight, double CoordinatesX, double CoordinatesY, String ageOfChild, String attraction, String country, String season) {
+    private void addAttToFirebase(String name, String explain, double CoordinatesX, double CoordinatesY) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference("flyList");
+        DatabaseReference ref = database.getReference("attraction");
 
-        String flightKey = ref.push().getKey(); // Generate unique ID
+        String attKey = ref.push().getKey(); // Generate unique ID
+        String defaultImageUrl = "https://firebasestorage.googleapis.com/v0/b/flight-c18f5.firebasestorage.app/o/attraction%2Fdefultpicture.png?alt=media&token=bfeda48f-9961-4946-ba1b-d74bfa926c36";
+        Attraction newAtt = new Attraction(name, CoordinatesX, CoordinatesY, explain, defaultImageUrl, attKey);
 
-        Fly newFlight = new Fly(hoursFlight, attraction, country, ageOfChild, season, flightKey, airport, CoordinatesX, CoordinatesY);
-
-        ref.child(flightKey).setValue(newFlight)
+        ref.child(attKey).setValue(newAtt)
                 .addOnSuccessListener(aVoid -> {
                     Toast.makeText(this, "Flight added!", Toast.LENGTH_SHORT).show();
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(this, "Error adding flight: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
+
+
     }
-
-
-
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
