@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -36,6 +38,7 @@ public class FlyAdapter extends ArrayAdapter<Fly> {
         TextView tvAgeOfChild = (TextView) view.findViewById(R.id.tvAgeOfChild);
         TextView tvSeason = (TextView) view.findViewById(R.id.tvSeason);
         ImageView ivProduct = (ImageView) view.findViewById(R.id.ivProduct);
+        CheckBox isCheck = (CheckBox) view.findViewById(R.id.isChecked);
 
         Fly temp = objects.get(position);
         ivProduct.setImageBitmap(temp.getBitmap());
@@ -44,6 +47,14 @@ public class FlyAdapter extends ArrayAdapter<Fly> {
         tvAttraction.setText(temp.getAttraction());
         tvAgeOfChild.setText(temp.getAgeOfChild());
         tvSeason.setText(temp.getSeason());
+
+        isCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                temp.setChecked(isChecked);
+            }
+        });
+
 
         ivProduct.setOnClickListener(new View.OnClickListener() {
             @Override

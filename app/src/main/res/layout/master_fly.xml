@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ABC6C4"
+    android:background="#B5CBD7"
     tools:context=".MasterFlyMain">
 
     <TextView
@@ -26,7 +26,7 @@
         android:layout_width="469dp"
         android:layout_height="597dp"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="136dp"
+        android:layout_marginTop="168dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 

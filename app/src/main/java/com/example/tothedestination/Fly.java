@@ -12,6 +12,7 @@ public class Fly {
     private String ageOfChild;
     private String season;
     private String country;
+    private boolean isChecked;
     private Bitmap bitmap;
     private String key;
 
@@ -24,6 +25,7 @@ public class Fly {
         this.season=season;
         this.bitmap=bitmap;
         this.key= key;
+        this.isChecked=false;
         this.Airport =airport;
         this.CoordinatesX =coordinatesX;
         this.CoordinatesY =coordinatesY;
@@ -38,6 +40,7 @@ public class Fly {
         this.season=season;
         this.bitmap=null;
         this.key= key;
+        this.isChecked=false;
         this.Airport =airport;
         this.CoordinatesX =coordinatesX;
         this.CoordinatesY =coordinatesY;
@@ -46,6 +49,14 @@ public class Fly {
     public Fly()
     {
 
+    }
+
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
     }
 
     public String getAirport() {

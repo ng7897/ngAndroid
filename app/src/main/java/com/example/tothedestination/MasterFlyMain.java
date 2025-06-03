@@ -7,14 +7,19 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -36,6 +41,9 @@ public class MasterFlyMain extends AppCompatActivity implements AdapterView.OnIt
     private ArrayList<Fly> flyList;
     private ListView lv;
     private FlyAdapter flyAdapter;
+    private Button delete, add;
+    private int imageRes;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +52,9 @@ public class MasterFlyMain extends AppCompatActivity implements AdapterView.OnIt
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference flyRef = database.getReference("flyList");
+
+        add = findViewById(R.id.add);
+        delete = findViewById(R.id.delete);
 
         flyList = new ArrayList<Fly>();
         flyRef.addValueEventListener(new ValueEventListener() {
@@ -62,14 +73,18 @@ public class MasterFlyMain extends AppCompatActivity implements AdapterView.OnIt
 
                 for (DataSnapshot flySnapshot : dataSnapshot.getChildren()) {
                     // Rule base
-                    // ML הרבה תנאים
+
                     Fly currentFlight = flySnapshot.getValue(Fly.class);
-                    Bitmap bitmap = BitmapFactory.decodeResource(getResources(), countryMap.get(currentFlight.getCountry())); // Example: Load from resources
+                    if (countryMap.get(currentFlight.getCountry()) != null) {
+                        imageRes = countryMap.get(currentFlight.getCountry());
+                    } else {
+                        imageRes = R.drawable.planedefultimage;
+                    }
+                    Bitmap bitmap = BitmapFactory.decodeResource(getResources(), imageRes);
                     currentFlight.setBitmap(bitmap);
-                    currentFlight.setKey(flySnapshot.getKey());
                     flyList.add(currentFlight);
-                    flyAdapter.notifyDataSetChanged();
                 }
+                flyAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -82,6 +97,112 @@ public class MasterFlyMain extends AppCompatActivity implements AdapterView.OnIt
         lv = (ListView) findViewById(R.id.lv);
         lv.setAdapter(flyAdapter);
 
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ArrayList<Fly> checkedFlights = new ArrayList<>();
+                for (Fly fly : flyList) {
+                    if (fly.isChecked()) {
+                        checkedFlights.add(fly);
+                    }
+                }
+                FirebaseDatabase db = FirebaseDatabase.getInstance();
+                for (Fly flight : checkedFlights) {
+                    String keyFly = flight.getKey(); // Replace with your actual getter
+
+                    database.getReference("flyList").child(keyFly).removeValue()
+                            .addOnSuccessListener(aVoid -> {
+                                Log.d("DeleteFlight", "Flight deleted: " + keyFly);
+                            })
+                            .addOnFailureListener(e -> {
+                                Log.w("DeleteFlight", "Error deleting flight: " + keyFly, e);
+                            });
+                }
+
+            }
+        });
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MasterFlyMain.this);
+                builder.setTitle("Add New Flight");
+                // Create layout for input
+                LinearLayout layout = new LinearLayout(MasterFlyMain.this);
+                layout.setOrientation(LinearLayout.VERTICAL);
+
+                final EditText airportInput = new EditText(MasterFlyMain.this);
+                airportInput.setHint("Airport");
+                layout.addView(airportInput);
+
+                final EditText hoursInput = new EditText(MasterFlyMain.this);
+                hoursInput.setHint("HoursFlight");
+                hoursInput.setInputType(InputType.TYPE_CLASS_NUMBER); //makes sure there are no letters or symbols written
+                layout.addView(hoursInput);
+
+                final EditText ageOfChildInput = new EditText(MasterFlyMain.this);
+                ageOfChildInput.setHint("ageOfChild");
+                layout.addView(ageOfChildInput);
+
+                final EditText attractionInput = new EditText(MasterFlyMain.this);
+                attractionInput.setHint("attraction");
+                layout.addView(attractionInput);
+
+                final EditText seasonIntput = new EditText(MasterFlyMain.this);
+                seasonIntput.setHint("season");
+                layout.addView(seasonIntput);
+
+                final EditText countryInput = new EditText(MasterFlyMain.this);
+                countryInput.setHint("country");
+                layout.addView(countryInput);
+
+                final EditText CoordinatesXInput = new EditText(MasterFlyMain.this);
+                CoordinatesXInput.setHint("CoordinatesX");
+                layout.addView(CoordinatesXInput);
+
+                final EditText CoordinatesYInput = new EditText(MasterFlyMain.this);
+                CoordinatesYInput.setHint("CoordinatesY");
+                layout.addView(CoordinatesYInput);
+
+
+                builder.setView(layout);
+
+                builder.setPositiveButton("Add", (dialog, which) -> {
+                    String airport = airportInput.getText().toString().trim();
+                    String ageOfChild = hoursInput.getText().toString().trim();
+                    String attraction = attractionInput.getText().toString().trim();
+                    String country = countryInput.getText().toString().trim();
+                    String season = seasonIntput.getText().toString().trim();
+                    String yString = CoordinatesYInput.getText().toString().trim();
+                    Double CoordinatesY = Double.parseDouble(yString);
+                    String xString = CoordinatesXInput.getText().toString().trim();
+                    Double CoordinatesX = Double.parseDouble(xString);
+                    int hoursFlight = Integer.parseInt(hoursInput.getText().toString().trim());
+                    addFlightToFirebase(airport, hoursFlight, CoordinatesX, CoordinatesY, ageOfChild, attraction, country, season);
+                });
+
+                builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
+
+                builder.show();
+            }
+        });
+
+    }
+
+    private void addFlightToFirebase(String airport, int hoursFlight, double CoordinatesX, double CoordinatesY, String ageOfChild, String attraction, String country, String season) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference("flyList");
+
+        String flightKey = ref.push().getKey(); // Generate unique ID
+
+        Fly newFlight = new Fly(hoursFlight, attraction, country, ageOfChild, season, flightKey, airport, CoordinatesX, CoordinatesY);
+
+        ref.child(flightKey).setValue(newFlight)
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText(this, "Flight added!", Toast.LENGTH_SHORT).show();
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(this, "Error adding flight: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
     }
 
 
@@ -161,5 +282,4 @@ public class MasterFlyMain extends AppCompatActivity implements AdapterView.OnIt
         }
         return true;
     }
-
-    }
+}
