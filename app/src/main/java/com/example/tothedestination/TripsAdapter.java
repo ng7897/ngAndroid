@@ -21,14 +21,19 @@ public class TripsAdapter  extends ArrayAdapter<vacation> {
     List<vacation> objects;
 
     public TripsAdapter(Context context, int resource, int textViewResourceld, List<vacation> objects) {
+        //super מעביר למחלקת האב- arrayAdapter את כל המידע שהיא צריכה כדי לדעת איך להציג כל שורה ברשימה
         super(context, resource, textViewResourceld, objects);
         this.context = context;
         this.objects = objects;
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
+        //מייצג איך יוצגו המידע בפני המשתמש, ברשימה, מן טבלה
         LayoutInflater layoutInflater = ((Activity) context).getLayoutInflater();
+        // view מייצג את התצוגה של פריט בודד אחד ברשימה,custom_layout, כלומר שורת טיול אחת ברשימה
+        //view מייצג תצוגה כלשהי של הכפתורים הטקטסטים וכו
         View view = layoutInflater.inflate(R.layout.custom_layout2, parent, false);
+        //ניגשים פה לרכיבים שנמצאים בתוך הListView, כל המידע שנמצא בפריט, בטיול אחד, מקשרים בין המשתנים שיצרנו במסך זה לבין הcustomLayout
         TextView tvHoursFly = (TextView) view.findViewById(R.id.tvHoursFlight);
         TextView tvCountry = (TextView) view.findViewById(R.id.tvCountry);
         TextView tvAgeOfChild = (TextView) view.findViewById(R.id.tvAgeOfChild);
@@ -38,6 +43,7 @@ public class TripsAdapter  extends ArrayAdapter<vacation> {
         TextView tvDateTo = (TextView) view.findViewById(R.id.tvDateTo);
         ImageView ivProduct = (ImageView) view.findViewById(R.id.ivProduct);
 
+        //לוקחים מהרשימה את הטיולים אשר עכשיו האפליקציה מצביעה עליה, לפי מיקומה ומכניסים את הנתונים שלה לתוך המשתנים
         vacation temp = objects.get(position);
         ivProduct.setImageBitmap(temp.getBitmap());
         tvHoursFly.setText(String.valueOf(temp.getHoursFlight()));
@@ -49,12 +55,14 @@ public class TripsAdapter  extends ArrayAdapter<vacation> {
         Date date = new Date(temp.getFromDate());
         Date date1 = new Date(temp.getToDate());
 
+        //יוצרים format
         SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd yyyy", Locale.getDefault());
 
+        //מכניסים את התאריך כאשר הוא מסוג string
         tvDateFrom.setText(dateFormat.format(date));
         tvDateTo.setText(dateFormat.format(date1));
 
-
+        //בלחיצה על התמונה המשתמש יעבור למסך הבא, למסך בו רואים את פרטי הטיול וגם שומרים את המפתח של הטיול והמשתמש
         ivProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

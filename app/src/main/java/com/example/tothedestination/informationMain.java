@@ -12,5 +12,6 @@ public class informationMain extends AppCompatActivity {
         setContentView(R.layout.information);
 
         //https://www.gov.il/en/departments/dynamiccollectors/travel-warnings-nsc?skip=0
-    }
+
+        }
 }

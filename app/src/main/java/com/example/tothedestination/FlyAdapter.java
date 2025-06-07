@@ -24,14 +24,19 @@ public class FlyAdapter extends ArrayAdapter<Fly> {
     List<Fly> objects;
 
     public FlyAdapter(Context context, int resource, int textViewResourceld, List<Fly> objects) {
+        //super מעביר למחלקת האב- arrayAdapter את כל המידע שהיא צריכה כדי לדעת איך להציג כל שורה ברשימה
         super(context,resource,textViewResourceld,objects);
         this.context = context;
         this.objects = objects;
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
+        //מייצג איך יוצגו המידע בפני המשתמש, ברשימה, מן טבלה
         LayoutInflater layoutInflater = ((Activity) context).getLayoutInflater();
+        // view מייצג את התצוגה של פריט בודד אחד ברשימה,custom_layout, כלומר שורת טיסה אחת ברשימה
+        //view מייצג תצוגה כלשהי של הכפתורים הטקטסטים וכו
         View view = layoutInflater.inflate(R.layout.custom_layout, parent, false);
+        //ניגשים פה לרכיבים שנמצאים בתוך הListView, כל המידע שנמצא בפריט, בטיסה אחת, מקשרים בין המשתנים שיצרנו במסך זה לבין הcustomLayout
         TextView tvHoursFly = (TextView) view.findViewById(R.id.tvHoursFlight);
         TextView tvCountry = (TextView) view.findViewById(R.id.tvCountry);
         TextView tvAttraction = (TextView) view.findViewById(R.id.tvAttraction);
@@ -40,6 +45,7 @@ public class FlyAdapter extends ArrayAdapter<Fly> {
         ImageView ivProduct = (ImageView) view.findViewById(R.id.ivProduct);
         CheckBox isCheck = (CheckBox) view.findViewById(R.id.isChecked);
 
+        //לוקחים מהרשימה את הטיסה אשר עכשיו האפליקציה מצביעה עליה, לפי מיקומה ומכניסים את הנתונים שלה לתוך המשתנים
         Fly temp = objects.get(position);
         ivProduct.setImageBitmap(temp.getBitmap());
         tvHoursFly.setText(String.valueOf(temp.getHoursFlight()));
@@ -48,6 +54,7 @@ public class FlyAdapter extends ArrayAdapter<Fly> {
         tvAgeOfChild.setText(temp.getAgeOfChild());
         tvSeason.setText(temp.getSeason());
 
+        //מאפשר למשתמש לסמן את הטיסה, למלא את הcheckBox
         isCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
@@ -55,7 +62,7 @@ public class FlyAdapter extends ArrayAdapter<Fly> {
             }
         });
 
-
+        //בלחיצה על תמונת המפה המתמש יעבור למסך הבא, לפי האם המשתמש הוא admin או לא
         ivProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
