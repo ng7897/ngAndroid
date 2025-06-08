@@ -69,7 +69,7 @@
             android:name=".finalstartMain"
             android:exported="false" />
         <activity
-            android:name=".informationMain"
+            android:name=".informationApplicationMain"
             android:exported="false" />
         <activity
             android:name=".after_deleteMain"
