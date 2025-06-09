@@ -82,6 +82,7 @@ public class MasterFlyMain extends AppCompatActivity implements AdapterView.OnIt
                     }
                     Bitmap bitmap = BitmapFactory.decodeResource(getResources(), imageRes);
                     currentFlight.setBitmap(bitmap);
+                    currentFlight.setKey(flySnapshot.getKey());
                     flyList.add(currentFlight);
                 }
                 flyAdapter.notifyDataSetChanged();
@@ -239,17 +240,7 @@ public class MasterFlyMain extends AppCompatActivity implements AdapterView.OnIt
     {
         super.onOptionsItemSelected(item);
         int id=item.getItemId();
-        if(id==R.id.action_login)
-        {
-            Toast.makeText(this,"you selected login", Toast.LENGTH_SHORT).show();
-            Intent intent1=new Intent(MasterFlyMain.this, loginMain.class);
-            startActivity(intent1);
-        }
-        else if(id==R.id.action_setting)
-        {
-            Toast.makeText(this,"you selected setting", Toast.LENGTH_SHORT).show();
-        }
-        else if(id==R.id.About_programmer)
+        if(id==R.id.About_programmer)
         {
             Toast.makeText(this,"you selected About programmer", Toast.LENGTH_SHORT).show();
         }

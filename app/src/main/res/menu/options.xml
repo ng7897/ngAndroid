@@ -3,11 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/action_login"
-        android:title="Login"
-        android:orderInCategory="100"
-        tools:ignore="HardcodedText" />
-    <item
         android:id="@+id/About_programmer"
         android:title="information About the programmer"
         android:orderInCategory="100"
@@ -16,11 +11,6 @@
         android:id="@+id/about_app"
         android:title="information About the app"
         android:orderInCategory="100"
-        tools:ignore="HardcodedText" />
-    <item
-        android:id="@+id/action_setting"
-        android:title="setting"
-        android:orderInCategory="200"
         tools:ignore="HardcodedText" />
     <item
         android:id="@+id/action_signout"
