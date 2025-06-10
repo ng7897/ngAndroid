@@ -39,11 +39,18 @@ public class signUpMain extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup);
+
+        //ישור המשתנים לערכים בxml
         mAuth = FirebaseAuth.getInstance();
-
         finalSighUp=findViewById(R.id.finalSignUp);
-
         arrowImage=findViewById(R.id.arrowImage);
+        et_password= findViewById(R.id.editTextNumberPassword);
+        et_email= findViewById(R.id.editTextEmailAddress);
+        et_firstName= findViewById(R.id.editTextPersonName);
+        et_lastName= findViewById(R.id.editTextPersonName2);
+        et_passwordAgain= findViewById(R.id.editTextNumberPassword2);
+
+        //בלחיצה על החץ חוזר לעמוד הקודם
         arrowImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,19 +58,13 @@ public class signUpMain extends AppCompatActivity {
                 startActivity(intent2);
             }
         });
-        // לשמור על המידע שמכניסים בshared preferences
-        sp1=getSharedPreferences("myPref",0);
-        et_password= findViewById(R.id.editTextNumberPassword);
-        et_email= findViewById(R.id.editTextEmailAddress);
-        et_firstName= findViewById(R.id.editTextPersonName);
-        et_lastName= findViewById(R.id.editTextPersonName2);
-        et_passwordAgain= findViewById(R.id.editTextNumberPassword2);
 
-        //Signup לכתוב הודעה אם לא מכניסים את כל הנתונים
+        //Signup לכתוב הערה אם לא מכניסים את כל הנתונים המתאימים
          finalSighUp.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View view) {
                  boolean ifError = false;
+                        //האם ריק
                          if(TextUtils.isEmpty(et_email.getText().toString()))
                          {
                              et_email.setError("Email is required");
@@ -72,6 +73,7 @@ public class signUpMain extends AppCompatActivity {
                          }
                          else
                          {
+                             //האם יש סימן@
                              if(!hasAtSymbol(et_email.getText().toString()))
                              {
                                  et_email.setError("needed @ in the email");
@@ -149,13 +151,17 @@ public class signUpMain extends AppCompatActivity {
 
                          if (!ifError)
                          {
+                             //ליצור משתמש בauthntication
                              register();
+                             // לשמור על המידע שמכניסים בshared preferences
+                             sp1=getSharedPreferences("myPref",0);
                              SharedPreferences.Editor editor = sp1.edit();
                              editor.putString("key_email",et_email.getText().toString());
                              editor.putString("key_password", et_password.getText().toString());
                              editor.putString("key_firstName", et_firstName.getText().toString());
                              editor.putString("key_lastName", et_lastName.getText().toString());
                              editor.commit();
+                             //לשמור את המשתמש בfirebase realtime database
                              saveUser();
                              Intent intent2=new Intent(signUpMain.this, search1Main.class);
                              startActivity(intent2);
@@ -165,13 +171,13 @@ public class signUpMain extends AppCompatActivity {
 
 
     }
-
+    //תפריט menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.options, menu);
         return super.onCreateOptionsMenu(menu);
     }
-
+    //מה קורה בלחיצה על משהו מסויים בmenu
     public boolean onOptionsItemSelected(MenuItem item)
     {
         super.onOptionsItemSelected(item);
@@ -194,9 +200,10 @@ public class signUpMain extends AppCompatActivity {
         }
         return true;
     }
+
+    //לשמור את המשתמש בfirebase realtime database
     public void saveUser()
     {
-
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference usersListRef = database.getReference("userList");
 
@@ -212,6 +219,7 @@ public class signUpMain extends AppCompatActivity {
         Toast.makeText(this,"user added", Toast.LENGTH_SHORT).show();
     }
 
+    //ליצור משתמש בauthentication
     public void register() {
         mAuth.createUserWithEmailAndPassword(et_email.getText().toString(), et_password.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
@@ -226,16 +234,18 @@ public class signUpMain extends AppCompatActivity {
             }
         });
     }
+    //בודק האם הסיסמה,שם וכו יש אות גדולה
     public static boolean hasUpperCase(String str) {
         return str.matches(".*[A-Z].*");
     }
-
+    //בודק האם הסיסמה,שם וכו יש אות קטנה
     public static boolean hasLowerCase(java.lang.String str)
     {
         Pattern pattern = Pattern.compile(".*[a-z].*");
         Matcher matcher = pattern.matcher(str);
         return matcher.find();
     }
+    //בודק האם יש @ באימייל
     public static boolean hasAtSymbol(String str) {
         Pattern pattern = Pattern.compile(".*@.*");
         Matcher matcher = pattern.matcher(str);

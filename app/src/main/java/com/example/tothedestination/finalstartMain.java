@@ -33,15 +33,13 @@ public class finalstartMain extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.finalstart);
 
-
-
+        //קישור בין המשתנים לxml
         logIn = findViewById(R.id.logIn);
         signUp = findViewById(R.id.signUp);
         lottie2 = findViewById(R.id.lottie2);
         mAuth = FirebaseAuth.getInstance();
 
-
-
+        //בלחיצה עובר למסך הירשמות
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,6 +47,8 @@ public class finalstartMain extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //בלחיצה עובר למסך התחברות
         logIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,11 +61,12 @@ public class finalstartMain extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
+        //בודק האם המשתמש מחובר כבר- אם כן עובר למסך search1
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
         if(currentUser !=null)
         {
+            //קורא לפעולה הבודקת בautentication האם האימייל באמת קיים, האם המשתמש באמת קיים
             Helpers.searchUserByEmail(currentUser.getEmail(),getSharedPreferences("myPref", 0));
             Intent intent = new Intent(finalstartMain.this, search1Main.class);
             startActivity(intent);
