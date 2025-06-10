@@ -223,16 +223,18 @@ public class after_deleteMain extends AppCompatActivity implements AdapterView.O
     //הצגת התראה בפני המשתמש
     @SuppressLint("ScheduleExactAlarm")
     public void scheduleFlightNotification() {
+        //מקבלים את התאריך טיסה הלוך
         SharedPreferences sp1 = this.getSharedPreferences("myPref", 0);
         String dateStr = sp1.getString("key_From", null);
 
         if (dateStr == null) return;
-
+        //יוצרים format
         SimpleDateFormat sdf = new SimpleDateFormat("MMM dd yyyy", Locale.ENGLISH);
         try {
+            //המרת String לDate
             Date flightDate = sdf.parse(dateStr);
 
-            // Subtract 1 day
+            // לקבוע את ההתראה שתיהיה יום לפני תאריך הטיסה בשעה 9:00 בבוקר
             Calendar notifyTime = Calendar.getInstance();
             notifyTime.setTime(flightDate);
             notifyTime.add(Calendar.DAY_OF_YEAR, -1);
@@ -240,20 +242,31 @@ public class after_deleteMain extends AppCompatActivity implements AdapterView.O
             notifyTime.set(Calendar.MINUTE, 0);
             notifyTime.set(Calendar.SECOND, 0);
 
+            //בידקה שההתראה עובדת
             // Update for testing  ---------------
-//            notifyTime.add(Calendar.SECOND, 5);
+            //notifyTime.add(Calendar.SECOND, 5);
             /// --------------
 
+            //אם הזמן שבו הייתה צריכה ההתראה עבר כבר אז אל תבצע אותה
             if (notifyTime.before(Calendar.getInstance())) {
                 // Don't schedule if it's in the past
                 return;
             }
-
+            //pendingIntent- כאשר הגיעה השעה של ההתראה אז תשדר את הintent כדי להפעיל את ההתראה
+            //ברגע שההתראה מצלצלת יש intent זה מעביר למסך notificationReciever
+            //pendingIntent- מאפשר לאפליקציה להריץ קוד בעתיד,כאשר מקבלים שידור ישנו intent שמתבצע
+            //100- מספר ייחודי המשמש להבדיל בין PendingIntent שונים
+            //FLAG_UPDATE_CURRENT- אם כבר קיים pendingIntent עם אותו הrequestCode והintent אז שהוא יעדכן אותו במקום ליצור חדש
+            //FLAG_IMMUTABLE- מציין שהintent לא ניתן לשינוי לאחר יצירתו
             Intent intent = new Intent(this, NotificationReceiver.class);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(
                     this, 100, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
+            //מתי בדיוק להפעיל את הקוד, דרך pendingIntent
             AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
+            //setExact- תזמון מדויק
+            //AlarmManager.RTC_WAKEUP- תשתמש בשעון אמיתי של המכשיר(RTC) ותעיר את המכשיר אם צריך משינה
+            //pendingIntent- הפעולה שתרצה לבצע באותו זמן(שידור לnotificationReceiver)
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, notifyTime.getTimeInMillis(), pendingIntent);
 
         } catch (ParseException e) {

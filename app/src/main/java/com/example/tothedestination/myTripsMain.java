@@ -40,17 +40,19 @@ public class myTripsMain extends AppCompatActivity  implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_trips);
 
+        //firebase לפנות לרשימת הטיולים ולסנן אותה לפי המשתמש הנוכחי
         vacList = new ArrayList<vacation>();
         FirebaseDatabase database=FirebaseDatabase.getInstance();
         String userKey = getSharedPreferences("myPref",0).getString("key_user", null);
         Query userVacationQuery=database.getReference("vacations").orderByChild("keyUser").equalTo(userKey);
 
-
+        //לעבור על הרשימה, להכניס תמונות וכו
         userVacationQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 vacList.clear();
 
+                //ליצור מילון לתמונות
                 Dictionary<String,Integer> countryMap = new Hashtable<String,Integer>();
                 countryMap.put("Italy",R.drawable.country0);
                 countryMap.put("Germany",R.drawable.country1);
@@ -60,9 +62,15 @@ public class myTripsMain extends AppCompatActivity  implements AdapterView.OnIte
                 countryMap.put("Iceland",R.drawable.country5);
                 countryMap.put("Belgium",R.drawable.country6);
 
+                //dataSnapshot- מייצג את כל הרשימה של הטיולים vacation
+                //vacSnapshow- מייצג vacation אחד, טיול אחד
+                //לעבור על הרשימה vacations לאחר הסינון
                 for (DataSnapshot vacSnapshot : dataSnapshot.getChildren())
                 {
+                    //המרה של JSON לvacation
                     vacation currentVac = vacSnapshot.getValue(vacation.class);
+
+                    //הוספת התמונות ושיוכן והוספת הטיול לרשימה אותה נציג בפני המשתמש
                     Bitmap bitmap = BitmapFactory.decodeResource(getResources(), countryMap.get(currentVac.getCountry())); // Example: Load from resources
                     currentVac.setBitmap(bitmap);
                     currentVac.setKey(vacSnapshot.getKey());
@@ -78,26 +86,28 @@ public class myTripsMain extends AppCompatActivity  implements AdapterView.OnIte
             }
         });
 
+        //הצגת הרשימה בפני המשתמש
         tripsAdapter=new TripsAdapter(this,0,0,vacList);
         lv=(ListView) findViewById(R.id.lv);
         lv.setAdapter(tripsAdapter);
     }
-
+    //אם המשתמש בחר משהו תציג הערה
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         Toast.makeText(this, adapterView.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
     }
-
+    //אם המשתמש לא בחר משהו
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
+    //תפריט menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.options, menu);
         return super.onCreateOptionsMenu(menu);
     }
-
+    //אם המשתמש בחר משהו בmenu מה עושים
     public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
         int id = item.getItemId();
