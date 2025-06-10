@@ -207,7 +207,6 @@ public class signUpMain extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference usersListRef = database.getReference("userList");
 
-
         User user=new User(et_firstName.getText().toString(),et_lastName.getText().toString(),et_password.getText().toString(),et_email.getText().toString());
         DatabaseReference newUserRef= usersListRef.push();
         newUserRef.setValue(user);

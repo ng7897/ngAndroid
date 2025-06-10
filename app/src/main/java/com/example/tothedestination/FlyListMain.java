@@ -39,22 +39,20 @@ public class    FlyListMain extends AppCompatActivity implements AdapterView.OnI
     ArrayList<Fly> flyList;
     ListView lv;
     FlyAdapter flyAdapter;
-    //Random random = new Random();
     private SharedPreferences sp1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fly_list);
+
         flyList = new ArrayList<Fly>();
-        //  לייצור מילון בין שם מדינה לבין שם קובץ
-        // נקבל את נתוני החיפוש מהמסך הקודם
-        // עונה , סוג אטרקציות, טווח גילאים (תינוק, ילד, נוער) , כמות שעות טיסה
         FirebaseDatabase database=FirebaseDatabase.getInstance();
         DatabaseReference flyRef=database.getReference("flyList");
 
         // בונה "מנוע" לוגי שלפי המאפיינים משנה את הסינונים
 
+        // נקבל את נתוני החיפוש מהמסך הקודם
         sp1=getSharedPreferences("myPref",0);
         int hoursFlight = sp1.getInt("key_hoursFlight", 0);
         String attraction = sp1.getString("key_attraction", "Not Important");
@@ -66,6 +64,7 @@ public class    FlyListMain extends AppCompatActivity implements AdapterView.OnI
             public void onDataChange(DataSnapshot dataSnapshot) {
                 flyList.clear();
 
+                //  לייצור מילון בין שם מדינה לבין שם קובץ
                 Dictionary<String,Integer> countryMap = new Hashtable<String,Integer>();
                 countryMap.put("Italy",R.drawable.country0);
                 countryMap.put("Germany",R.drawable.country1);
@@ -75,11 +74,13 @@ public class    FlyListMain extends AppCompatActivity implements AdapterView.OnI
                 countryMap.put("Iceland",R.drawable.country5);
                 countryMap.put("Belgium",R.drawable.country6);
 
+                //לעבור על הרשימה שנמצאת בfirebase
                 for (DataSnapshot flySnapshot : dataSnapshot.getChildren()) {
                     // Rule base
                     // ML הרבה תנאים
                     Fly currentFlight = flySnapshot.getValue(Fly.class);
-                        if (currentFlight.getHoursFlight() == hoursFlight || hoursFlight==0) {
+                    // עונה , סוג אטרקציות, טווח גילאים (תינוק, ילד, נוער) , כמות שעות טיסה
+                    if (currentFlight.getHoursFlight() == hoursFlight || hoursFlight==0) {
                             if (attraction.equals(currentFlight.getAttraction()) || attraction.equals("Not Important")) {
                                 if (season.equals(currentFlight.getSeason()) || season.equals("Not Important")) {
                                     if (ageOfChildren.equals(currentFlight.getAgeOfChild()) || ageOfChildren.equals("Not Important")) {
@@ -91,36 +92,38 @@ public class    FlyListMain extends AppCompatActivity implements AdapterView.OnI
                                 }
                             }
                         }
+                    //לעדכן את הadapter
                     flyAdapter.notifyDataSetChanged();
                 }
             }
-
+            //אם לא עובד
             @Override
             public void onCancelled(DatabaseError error) {
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
-
+        //להציג את הרשימה בפני המשתמש
         flyAdapter=new FlyAdapter(this,0,0,flyList);
         lv=(ListView) findViewById(R.id.lv);
         lv.setAdapter(flyAdapter);
     }
-
+    //אם השמתשמ בחר משהו מציג הערה
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         Toast.makeText(this, adapterView.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
     }
-
+    //אם השמתשמ לא בחר משהו
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
+    //תפריט menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.options, menu);
         return super.onCreateOptionsMenu(menu);
     }
-
+    //אם המשתמש בחר משהו מהmenu מה עושים
     public boolean onOptionsItemSelected(MenuItem item)
     {
         super.onOptionsItemSelected(item);

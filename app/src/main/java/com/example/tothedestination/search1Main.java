@@ -40,6 +40,7 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
         setContentView(R.layout.search1);
         initDatePicker();
 
+        //קישור המשתנים לערכים בxml
         dateButtonFrom = findViewById(R.id.datePickerButtonFrom);
         dateButtonFrom.setText(getTodayDate());
         dateButtonTo = findViewById(R.id.datePickerButtonTo);
@@ -53,8 +54,10 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
         Spinner ageChildSpinner=findViewById(R.id.ageChildSpinner);
         ageChildSpinner.setOnItemSelectedListener(this);
         Button saveFeatures=findViewById(R.id.saveFeatures);
+
         sp1=getSharedPreferences("myPref",0);
 
+        //בלחיצה על כפתור שומרים את המאפיינים שהמשתמש ההזין בshared preference+מעבר למסך הבא
         saveFeatures.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,7 +77,7 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
         });
     }
 
-
+    //להפוך String לDate
     public static Date getDateFromString(String dateString, String format) {
         SimpleDateFormat dateFormat = new SimpleDateFormat(format);
         try {
@@ -85,15 +88,16 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
         }
     }
 
-
+    //כאשר המשתמש בוחר משהו
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         Toast.makeText(this, adapterView.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
     }
-
+    //כאשר המשתמש לא בוחר כלום
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
+    //תפריט menu
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -101,7 +105,7 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
         getMenuInflater().inflate(R.menu.options, menu);
         return super.onCreateOptionsMenu(menu);
     }
-
+    //בודק האם המשתמש במשתמש בmenu הוא admin או משתמש רגיל
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem attractionListChange = menu.findItem(R.id.action_attractionListChange);
@@ -109,12 +113,13 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
         SharedPreferences sp = getSharedPreferences("myPref", 0);
 
         boolean isAdmin = sp.getBoolean("CanEditAttraction",false); // replace with your condition
+        //אם המשתמש admin הוא יראה גם את שני אילו
         attractionListChange.setVisible(isAdmin);
         flyListChange.setVisible(isAdmin);
 
         return super.onPrepareOptionsMenu(menu);
     }
-
+    //אם המשתמש בוחר משהו בmenu מה עושים
     public boolean onOptionsItemSelected(MenuItem item)
     {
         super.onOptionsItemSelected(item);
@@ -153,6 +158,7 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
         return true;
     }
 
+    //לקבל את התאריך של היום הנוכחי
     private String getTodayDate()
     {
         Calendar cal = Calendar.getInstance();
@@ -163,6 +169,7 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
         return makeDateString(day, month, year);
     }
 
+    //פותח את החלון של בחירת התאריך בפני המשתמש ובודק האם המשתמש בחר לשנות את התאריך הלוך או חזור, איזה כפתור הוא לחץ ושמנה אותו בהתאם
     private void initDatePicker()
     {
         DatePickerDialog.OnDateSetListener dateSetListener=new DatePickerDialog.OnDateSetListener() {
@@ -181,14 +188,17 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
         int year= cal.get(Calendar.YEAR);
         int month= cal.get(Calendar.MONTH);
         int day= cal.get(Calendar.DAY_OF_MONTH);
+        //הגרה לעיצוב הdialog, מעניק מראה בהיר וקלאסי
         int style= AlertDialog.THEME_HOLO_LIGHT;
+        //this- activity, syyle-סגנון, dateSetLisner- פועל אחרי שהמשתמש לוחץ אישור ומקבל את החודש שנה ויום שנבחרו, year+month+day- תאריכים של הרגע הנוכחי
         datePickerDialog = new DatePickerDialog(this,style,dateSetListener,year,month,day);
     }
-
+    //מקבל יום חודש ושנה ושם אותם בstring
     private String makeDateString(int day, int month, int year) {
         return getMonthFormat(month) + " " + day + " " + year;
     }
 
+    //להחזיר חודש
     private String getMonthFormat(int month)
     {
         if(month == 1)
@@ -218,6 +228,7 @@ public class search1Main extends AppCompatActivity implements AdapterView.OnItem
 
         return "JAN";
     }
+    //בודקת האם המשתמש בחר את הכפתור של טיסה הלוך או חזור
     public void openDatePicker(View view)
     {
         if (view.getId() == R.id.datePickerButtonFrom)

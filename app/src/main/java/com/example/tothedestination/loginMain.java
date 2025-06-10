@@ -37,13 +37,19 @@ public class loginMain extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+
+        //קישור המשתמנים עם הערכים בxml
+        finalLogIn = findViewById(R.id.finalLogIn);
+        et_password = findViewById(R.id.editTextNumberPassword);
+        et_email = findViewById(R.id.editTextEmailAddress);
+        arrowImage = findViewById(R.id.arrowImage);
+
+        //firebase
         mAuth = FirebaseAuth.getInstance();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         usersRef = database.getReference("userList");
-        finalLogIn = findViewById(R.id.finalLogIn);
 
-        // Back to last view
-        arrowImage = findViewById(R.id.arrowImage);
+        // בלחיצה על החץ עובר למסך הקודם
         arrowImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,11 +57,6 @@ public class loginMain extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
-
-        //49-67 לשמור על המידע שמכניסים בshared preferences
-        sp = getSharedPreferences("myPref", 0);
-        et_password = findViewById(R.id.editTextNumberPassword);
-        et_email = findViewById(R.id.editTextEmailAddress);
 
         // Do Login אם לא מכניסים סיסמה או מייל רושם הודעה
         finalLogIn.setOnClickListener(new View.OnClickListener() {
@@ -85,13 +86,13 @@ public class loginMain extends AppCompatActivity {
 
     }
 
-
+    //תפריט menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.options, menu);
         return super.onCreateOptionsMenu(menu);
     }
-
+    //אם בוחרים משהו בmenu מה עושים
     public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
         int id = item.getItemId();
@@ -114,18 +115,20 @@ public class loginMain extends AppCompatActivity {
         return true;
     }
 
+    //בודקת האם קיים המשתמש בfirebase authentication
     public void login() {
         mAuth.signInWithEmailAndPassword(et_email.getText().toString(), et_password.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
 
+                    sp = getSharedPreferences("myPref", 0);
                     SharedPreferences.Editor editor = sp.edit();
                     editor.putString("key_email", et_email.getText().toString());
                     editor.putString("key_password", et_password.getText().toString());
-
-
                     editor.commit();
+
+                    //קוראים לפעולה הבודקת האם המשתש קיים לפי האימייל בfirebase realtime database
                     Helpers.searchUserByEmail(et_email.getText().toString(),sp);
                     Intent intent2 = new Intent(loginMain.this, search1Main.class);
                     startActivity(intent2);

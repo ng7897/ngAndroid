@@ -61,8 +61,10 @@ public class after_deleteMain extends AppCompatActivity implements AdapterView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.after_delete);
 
+        //קבלת המפתח של הטיס השהמשתמש בחר
         keyFly = getIntent().getStringExtra("flyKey");
 
+        //קישור המשתנים לערכים בxml
         countryFinal = findViewById(R.id.countryFinal);
         hoursFinal = findViewById(R.id.hoursFinal);
         seasonFinal = findViewById(R.id.seasonFinal);
@@ -70,16 +72,16 @@ public class after_deleteMain extends AppCompatActivity implements AdapterView.O
         dateToFinal = findViewById(R.id.dateToFinal);
         saveVac = findViewById(R.id.saveVac);
         airportFinal = findViewById(R.id.airportFinal);
-        //LinearLayout checkBox= findViewById(R.id.checkBox);
         map = findViewById(R.id.map);
         moveForward = findViewById(R.id.moveForward);
-        attList = new ArrayList<Attraction>();
 
+        attList = new ArrayList<Attraction>();
+        //קבלת הרשימות, ref
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference flyRef = database.getReference("flyList").child(keyFly);
-
         DatabaseReference attRef = database.getReference("attraction");
 
+        //לעבור על הטיסה שהמשתמש בחר, לקבל את הנתונים שם ולהכניס למשתנים
         flyRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot flyListDataSnapshot) {
@@ -100,13 +102,18 @@ public class after_deleteMain extends AppCompatActivity implements AdapterView.O
                 dateFromFinal.setText(dateFrom);
                 dateToFinal.setText(dateTo);
 
+                //לקבל את attraction רשימה
                 DataSnapshot attractionsSnapshot = flyListDataSnapshot.child("AttractionList");
-                // Get the attraction keys
+
                 attList.clear();
                 List<String> attractionKeys = new ArrayList<>();
+                //attractionsSnapshow- מצביע על הרשימה attractionList הנמצאת בתוך הflyList
+                //attractionKeySnapshow- מצביע כל לולאה על אטרקציה אחרת הנמצאת ברשימה attractionListflyList
+                //עוברים פה על כל הרשימה attractionList ומכניסים את המפתחות שאנו צריכים של האטרציות לרשימה, יוצרים רשימה שתכיל את כל האטרקציות שצריך להראות בפני המשתמש
                 for (DataSnapshot attractionKeySnapshot : attractionsSnapshot.getChildren()) {
                     attractionKeys.add(attractionKeySnapshot.getKey());
                 }
+                //עוברים על הרשימה attraction ומוצאים בה את כל האטרקציות שהכנסנו למערך attractionKey ומעדכנים את הadapter
                 for (int i = 0; i < attractionKeys.size(); i++) {
                     DatabaseReference attractionRef = attRef.child(attractionKeys.get(i));
                     attractionRef.addValueEventListener(new ValueEventListener() {
@@ -131,7 +138,7 @@ public class after_deleteMain extends AppCompatActivity implements AdapterView.O
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
-
+        //שומרים בלחיצה על כפתור על הטיול
         saveVac.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -139,11 +146,12 @@ public class after_deleteMain extends AppCompatActivity implements AdapterView.O
             }
 
         });
+        //מציגים בפני המשתמש את הרשימה של האטרקציות המומלצות של אותה המדינה שנבחרה
         attAdapter = new AttractionAdapter(this, 0, 0, attList);
         lv = (ListView) findViewById(R.id.lv);
         lv.setAdapter(attAdapter);
 
-
+        //בלחיצה על כפתור map עוברים על הרשימה של האטרקציות לראות איזה המשתמש בחר ומכניסים לרשימה-מערך ומעבירים אותה למסך הבא וגם את הקורדינציות של נמל התעופה והמשתמש עובר למסך המפה
         map.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -164,7 +172,7 @@ public class after_deleteMain extends AppCompatActivity implements AdapterView.O
             }
         });
 
-
+        //לחיצה מעביר את המשתמש למסך הבא
         moveForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -174,17 +182,17 @@ public class after_deleteMain extends AppCompatActivity implements AdapterView.O
             }
         });
     }
-
+    //כאשר המשתמש בחר  משהו מראה הערה
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         Toast.makeText(this, adapterView.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
     }
-
+    //כאשר המשתמש לא בחר כלום
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
-
+    //להפוך את הString לDate
     public static Date convertStringToDate(String dateString, String format) {
         SimpleDateFormat dateFormat = new SimpleDateFormat(format, Locale.ENGLISH);
         try {
@@ -194,7 +202,7 @@ public class after_deleteMain extends AppCompatActivity implements AdapterView.O
             return null; // Or throw the exception if you prefer
         }
     }
-
+    //שומר את הטיול שהמשתמש בחר, עם הנתונים שלו, מכניס את הטיול לרשימה vacation
     public void saveVacation(String country,String attraction, int hoursFlight, String ageOfChildren, String season, long dateFrom, long dateTo, String keyFly, String airport, double coordinatesX, double coordinatesY) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference refVac = database.getReference("vacations");
@@ -212,6 +220,7 @@ public class after_deleteMain extends AppCompatActivity implements AdapterView.O
         Toast.makeText(this, "vacation added", Toast.LENGTH_SHORT).show();
     }
 //---------------------------------------------------------------------------------------------------------
+    //הצגת התראה בפני המשתמש
     @SuppressLint("ScheduleExactAlarm")
     public void scheduleFlightNotification() {
         SharedPreferences sp1 = this.getSharedPreferences("myPref", 0);
@@ -251,13 +260,13 @@ public class after_deleteMain extends AppCompatActivity implements AdapterView.O
             e.printStackTrace();
         }
     }
-
+    //תפריט menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.options, menu);
         return super.onCreateOptionsMenu(menu);
     }
-
+    //אם המשתמש בוחר משהו מהmenu מה עושים
     public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
         int id = item.getItemId();
