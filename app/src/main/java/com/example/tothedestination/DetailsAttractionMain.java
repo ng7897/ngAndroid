@@ -42,20 +42,20 @@ public class DetailsAttractionMain extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.details_attraction);
 
+        //קבלת המפתח של האטרקציה שהמשתמש בחר
         keyAtt = getIntent().getStringExtra("attKey");
 
+        //קישור המשתנים לערכים בxml
         etAtName = findViewById(R.id.etAtName);
         etExplain = findViewById(R.id.etExplain);
         saveChanges = findViewById(R.id.saveChanges);
         etCoordinatesX = findViewById(R.id.etCoordinatesX);
         etCoordinatesY = findViewById(R.id.etCoordinatesY);
 
+        //firebase, מצביע attraction,לטיסה עם אותו המפתח שקיבלנו
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        //DatabaseReference attRef = database.getReference("attList").child(keyAtt);
-
         DatabaseReference attRef = database.getReference("attraction").child(keyAtt);
-
-
+        //עובר על הנתונים של האטרקציה שקיבלנו את המפתח שלה ומכניס אותם למשתנים, לשדות במטרה שהן יראו את הנתונים של האטרקציה
         attRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot attListDataSnapshot) {
@@ -73,45 +73,50 @@ public class DetailsAttractionMain extends AppCompatActivity {
             }
         });
 
-        //make me be able to change the information about the attraction and it changes it in the firebase as well
+        //בלחיצה על כפתור שמירה הנתונים נשמרים, הדברים שהמששתמש שינה, ישנו עדכון של הנתונים
         saveChanges.setOnClickListener(v -> {
             String name = etAtName.getText().toString();
             String explain = etExplain.getText().toString();
             double etcoordinatesX = Double.parseDouble(etCoordinatesX.getText().toString());
             double etcoordinatesY = Double.parseDouble(etCoordinatesY.getText().toString());
 
+            //יוצרים HashMap אשר שומרת את כל הנתונים וכל הדברים שכתובים בשדות לאחר השינוי
             Map<String, Object> updatedData = new HashMap<>();
             updatedData.put("attName", name);
             updatedData.put("explain", explain);
             updatedData.put("CoordinatesX", etcoordinatesX);
             updatedData.put("CoordinatesY", etcoordinatesY);
 
+            //משנים את הנתונים של האטרקציה בהתאם לHashMap
             attRef.updateChildren(updatedData)
                     .addOnSuccessListener(unused -> Toast.makeText(DetailsAttractionMain.this, "Updated successfully!", Toast.LENGTH_SHORT).show())
                     .addOnFailureListener(e -> Toast.makeText(DetailsAttractionMain.this, "Update failed!", Toast.LENGTH_SHORT).show());
         });
 
     }
+    //תפריט menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
         getMenuInflater().inflate(R.menu.options, menu);
         return super.onCreateOptionsMenu(menu);
     }
-
+    //בדיקה האם המשתמש הוא admmin, אם כן יראה עוד אפשרויות בmenu
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem attractionListChange = menu.findItem(R.id.action_attractionListChange);
         MenuItem flyListChange = menu.findItem(R.id.action_flyListChange);
         SharedPreferences sp = getSharedPreferences("myPref", 0);
 
-        boolean isAdmin = sp.getBoolean("CanEditAttraction",false); // replace with your condition
+        //בדיקה האם המשתמש הוא admin
+        boolean isAdmin = sp.getBoolean("CanEditAttraction",false);
+        //אם כן זה יראה את שני אילו
         attractionListChange.setVisible(isAdmin);
         flyListChange.setVisible(isAdmin);
 
         return super.onPrepareOptionsMenu(menu);
     }
-
+    //אם המשתמש בוחר משהו בmenu מה עושים
     public boolean onOptionsItemSelected(MenuItem item)
     {
         super.onOptionsItemSelected(item);

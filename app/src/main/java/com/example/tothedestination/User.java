@@ -17,11 +17,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class User {
+
+    //הגדרת תכונות המחלקה User
     private  String firstName;
     private String lastName;
     private String password;
     private String mail;
 
+    //יצירת פעולה בונה והכנסת הנתונים שהיא מקבלת לתכונותיה
     public User(String firstName, String lastName, String password, String mail)
     {
         this.firstName = firstName;
@@ -29,11 +32,14 @@ public class User {
         this.password=password;
         this.mail=mail;
     }
+
+    //עולה בונה ריקה כדי שנוכל להתשמש בfirebase
     public User()
     {
 
     }
 
+    //פעולות get set
     public String getFirstName() {
         return firstName;
     }

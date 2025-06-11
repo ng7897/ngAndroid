@@ -2,18 +2,20 @@ package com.example.tothedestination;
 
 public class AdminUser extends User{
 
-private boolean canEditAttraction;
-private boolean canDeleteAttraction;
-private boolean canAddAttraction;
-private boolean canEditFlyList;
-private boolean canDeleteFlyList;
-private boolean canAddFlyList;
 
+    private boolean canEditAttraction;
+    private boolean canDeleteAttraction;
+    private boolean canAddAttraction;
+    private boolean canEditFlyList;
+    private boolean canDeleteFlyList;
+    private boolean canAddFlyList;
+
+    //עולה בונה ריקה כדי שנוכל להתשמש בfirebase
     public AdminUser()
     {
 
     }
-
+    //יצירת פעולה בונה והכנסת הנתונים שהיא מקבלת לתכונותיה וגם קבלת הנתונים של המחלקה User מכיוון שהמחלקה AdminUser יורשת מUser את כל תכונותיה ומוסיפה לה תכונות אחרות של ניהול שיש רק לadmin
     public AdminUser(String firstName, String lastName, String password, String mail, boolean canEditAttraction, boolean canDeleteAttraction, boolean canAddAttraction, boolean canEditFlyList, boolean canDeleteFlyList, boolean canAddFlyList)  {
         super(firstName, lastName, password, mail);
         this.canEditAttraction = canEditAttraction;
@@ -24,6 +26,7 @@ private boolean canAddFlyList;
         this.canAddFlyList = canAddFlyList;
     }
 
+    //פעולות get set
     public boolean isCanEditAttraction() {
         return canEditAttraction;
     }

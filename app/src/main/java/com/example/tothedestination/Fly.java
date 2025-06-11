@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 
 public class Fly {
 
+    //הגדרת תכונות המחלקה Fly
     private int hoursFlight;
     private String Airport;
     private double CoordinatesX;
@@ -16,6 +17,7 @@ public class Fly {
     private Bitmap bitmap;
     private String key;
 
+    // יצירת פעולה בונה והכנסת הנתונים שהיא מקבלת לתכונותיה עם תמונה
     public Fly(int hoursFlight, String attraction, String country, String ageOfChild, String season, Bitmap bitmap,String key, String airport, double coordinatesX, double coordinatesY)
     {
         this.hoursFlight=hoursFlight;
@@ -30,7 +32,7 @@ public class Fly {
         this.CoordinatesX =coordinatesX;
         this.CoordinatesY =coordinatesY;
     }
-
+    //יצירת פעולה בונה והכנסת הנתונים שהיא מקבלת לתכונותיה
     public Fly(int hoursFlight, String attraction, String country, String ageOfChild, String season,String key, String airport, double coordinatesX, double coordinatesY)
     {
         this.hoursFlight=hoursFlight;
@@ -46,11 +48,13 @@ public class Fly {
         this.CoordinatesY =coordinatesY;
     }
 
+    //עולה בונה ריקה כדי שנוכל להתשמש בfirebase
     public Fly()
     {
 
     }
 
+    //פעולות get set
     public boolean isChecked() {
         return isChecked;
     }

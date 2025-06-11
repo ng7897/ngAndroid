@@ -6,6 +6,7 @@ import java.util.Date;
 
 public class vacation {
 
+    //הגדרת תכונות המחלקה vacation
     private int hoursFlight;
     private String airport;
     private double coordinatesX;
@@ -20,6 +21,7 @@ public class vacation {
     private String attraction;
     private String key;
 
+    //יצירת פעולה בונה והכנסת הנתונים שהיא מקבלת לתכונותיה עם תמונה
     public vacation(String country, String attraction,int hoursFlight, String ageOfChild, String season, long fromDate, long toDate, String keyUser, String airport, double coordinatesX, double coordinatesY, Bitmap bitmap) {
         this.hoursFlight = hoursFlight;
         this.attraction = attraction;
@@ -35,7 +37,7 @@ public class vacation {
         this.bitmap=bitmap;
 
     }
-
+    //יצירת פעולה בונה והכנסת הנתונים שהיא מקבלת לתכונותיה
     public vacation(String country, String attraction,int hoursFlight, String ageOfChild, String season, long fromDate, long toDate, String keyUser, String airport, double coordinatesX, double coordinatesY) {
         this.hoursFlight = hoursFlight;
         this.attraction = attraction;
@@ -50,11 +52,13 @@ public class vacation {
         this.coordinatesY=coordinatesY;
 
     }
+    //עולה בונה ריקה כדי שנוכל להתשמש בfirebase
     public vacation()
     {
 
     }
 
+    //פעולות get set
     public void setKey(String key) {
         this.key = key;
     }

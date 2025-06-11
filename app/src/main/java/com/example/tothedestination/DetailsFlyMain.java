@@ -38,8 +38,10 @@ public class DetailsFlyMain extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.details_fly);
 
+        //קבלת המפתח של הטיסה שהמשתמש בחר
         keyFly = getIntent().getStringExtra("flyKey");
 
+        //קישור המשתנים לערכים בxml
         etAirport = findViewById(R.id.etFlyAirport);
         etAttraction = findViewById(R.id.etFlyAttraction);
         saveChanges = findViewById(R.id.saveChanges);
@@ -50,10 +52,10 @@ public class DetailsFlyMain extends AppCompatActivity {
         etSeason = findViewById(R.id.etFlySeason);
         etAgeOfChild = findViewById(R.id.etFlyAgeOfChild);
 
+        //firebase, מצביע לflyList,לטיסה עם אותו המפתח שקיבלנו
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-
         DatabaseReference flyReff = database.getReference("flyList").child(keyFly);
-
+        //עובר על הנתונים של הטיסה שקיבלנו את המפתח שלה ומכניס אותם למשתנים, לשדות במטרה שהן יראו את הנתונים של הטיסה
         flyReff.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot flyListDataSnapshot) {
@@ -73,7 +75,7 @@ public class DetailsFlyMain extends AppCompatActivity {
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
-
+        //בלחיצה על כפתור שמירה הנתונים נשמרים, הדברים שהמששתמש שינה, ישנו עדכון של הנתונים
         saveChanges.setOnClickListener(v -> {
             String airport = etAirport.getText().toString();
             String attraction = etAttraction.getText().toString();
@@ -84,6 +86,7 @@ public class DetailsFlyMain extends AppCompatActivity {
             double etcoordinatesX = Double.parseDouble(etCoordinatesX.getText().toString());
             double etcoordinatesY = Double.parseDouble(etCoordinatesY.getText().toString());
 
+            //יוצרים HashMap אשר שומרת את כל הנתונים וכל הדברים שכתובים בשדות לאחר השינוי
             Map<String, Object> updatedData = new HashMap<>();
             updatedData.put("Airport", airport);
             updatedData.put("CoordinatesX", etcoordinatesX);
@@ -94,32 +97,35 @@ public class DetailsFlyMain extends AppCompatActivity {
             updatedData.put("hoursFlight", hoursFlight);
             updatedData.put("season", season);
 
+            //משנים את הנתונים של הטיסה בהתאם לHashMap
             flyReff.updateChildren(updatedData)
                     .addOnSuccessListener(unused -> Toast.makeText(DetailsFlyMain.this, "Updated successfully!", Toast.LENGTH_SHORT).show())
                     .addOnFailureListener(e -> Toast.makeText(DetailsFlyMain.this, "Update failed!", Toast.LENGTH_SHORT).show());
         });
     }
-
+    //תפריט menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
         getMenuInflater().inflate(R.menu.options, menu);
         return super.onCreateOptionsMenu(menu);
     }
-
+    //בדיקה האם המשתמש הוא admmin, אם כן יראה עוד אפשרויות בmenu
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem attractionListChange = menu.findItem(R.id.action_attractionListChange);
         MenuItem flyListChange = menu.findItem(R.id.action_flyListChange);
         SharedPreferences sp = getSharedPreferences("myPref", 0);
 
-        boolean isAdmin = sp.getBoolean("CanEditAttraction",false); // replace with your condition
+        //בדיקה האם המשתמש הוא admin
+        boolean isAdmin = sp.getBoolean("CanEditAttraction",false);
+        //אם כן זה יראה את שני אילו
         attractionListChange.setVisible(isAdmin);
         flyListChange.setVisible(isAdmin);
 
         return super.onPrepareOptionsMenu(menu);
     }
-
+    //אם המשתמש בוחר משהו בmenu מה עושים
     public boolean onOptionsItemSelected(MenuItem item)
     {
         super.onOptionsItemSelected(item);

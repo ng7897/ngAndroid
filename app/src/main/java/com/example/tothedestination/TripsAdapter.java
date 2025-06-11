@@ -17,9 +17,18 @@ import java.util.Locale;
 
 public class TripsAdapter  extends ArrayAdapter<vacation> {
 
+    //הגדרת התכונות של המחלקה
+    //context- שמציג את הרשימה של הטיסותActivityה
+    //שתמשים בcontext בשביל לקבל את הactivity שצריך להציג את רשימת הטיסות, בשביל לקבל את הLayout וכך הadapter יוכל להמיר את קובץ העיצוב לאובייקט View שניתן להציג על המסך, בשביל לשמש גישה לshared preference ובשביל ליצורintent
+    //objects- רשימה של הטיסות
     Context context;
     List<vacation> objects;
 
+    //objects- רשימה של הטיולים
+    //textViewResourceld- מבצע את קישור הנתונים לרכיבים ספציפיים מה שנותן לי גמישות ושליטה רבה יותר. הוא שומר את הid של הtextView וכו
+    //resource- זה הID של קובץ העיצוב, הLayout של פריט בודד ברשימהף מראה איך להציג אותו
+    //context- אובייקט המספק מידע על הסביבה, הactivity, צריך אותו כאן כדי לגשת למשאבים ולעשות דברים כמו גישה לshared preference Intent וכו
+    //יצירת פעולה בונה המכניסה חלק מהנתונים שהיא מקבלת לתכונותיה
     public TripsAdapter(Context context, int resource, int textViewResourceld, List<vacation> objects) {
         //super מעביר למחלקת האב- arrayAdapter את כל המידע שהיא צריכה כדי לדעת איך להציג כל שורה ברשימה
         super(context, resource, textViewResourceld, objects);
@@ -27,6 +36,12 @@ public class TripsAdapter  extends ArrayAdapter<vacation> {
         this.objects = objects;
     }
 
+    //הפרמטר parent חשוב כדי שהview יקבל את איך הוא אמרו להיראות ולהיות מוצג, את הlayout
+    //parent מספק מידע על הlayout של הview, על פריט הטיסה
+    //parent- זהו הListView שאליו יתווסף הView שיוחזר מהפעולה.
+    //convertView- אם הוא לא null אז הוא לא צריך ליצור רשימה חדשה, אם כבר יש בתוכו משהו למשל vacations הוא פשוט מעדכן את הנתונים אם צריך להציג אותה פעמים או יותר במקום ליצור View חדש
+    //position- מייצג את המיקום של הפריט הנוכחי ברשימה
+    //נקראת כל פעם שצריך להציג פריט חדש ברשימה, תפקידה היא לייצר את התצוגה,view עסור פריט ספציפי ברשימה
     public View getView(int position, View convertView, ViewGroup parent) {
         //מייצג איך יוצגו המידע בפני המשתמש, ברשימה, מן טבלה
         LayoutInflater layoutInflater = ((Activity) context).getLayoutInflater();
