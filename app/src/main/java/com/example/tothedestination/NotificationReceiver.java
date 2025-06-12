@@ -9,6 +9,7 @@ import android.os.Build;
 
 import androidx.core.app.NotificationCompat;
 
+//BroadcastReceiver - הוא מאזין לאירועים כמו התראה מתוזמנת ושידור מותאם אישית
 public class NotificationReceiver extends BroadcastReceiver {
 
     @Override
