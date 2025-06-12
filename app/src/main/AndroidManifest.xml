@@ -75,6 +75,9 @@
             android:name=".after_deleteMain"
             android:exported="false" />
         <activity
+            android:name=".informationProgrammerMain"
+            android:exported="false" />
+        <activity
             android:name=".search1Main"
             android:exported="false" />
         <activity

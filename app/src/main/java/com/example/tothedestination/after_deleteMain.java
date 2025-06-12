@@ -280,24 +280,34 @@ public class after_deleteMain extends AppCompatActivity implements AdapterView.O
         return super.onCreateOptionsMenu(menu);
     }
     //אם המשתמש בוחר משהו מהmenu מה עושים
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
         super.onOptionsItemSelected(item);
-        int id = item.getItemId();
-        if (id == R.id.About_programmer)
+        int id=item.getItemId();
+        if(id==R.id.About_programmer)
         {
-            Toast.makeText(this, "you selected About programmer", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"you selected About programmer", Toast.LENGTH_SHORT).show();
+            Intent intent1 = new Intent(after_deleteMain.this, informationProgrammerMain.class);
+            startActivity(intent1);
         }
-        else if (id == R.id.about_app)
+        else if(id==R.id.about_app)
         {
-            Toast.makeText(this, "you selected About app", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"you selected About app", Toast.LENGTH_SHORT).show();
+            Intent intent1 = new Intent(after_deleteMain.this, informationApplicationMain.class);
+            startActivity(intent1);
         }
         else if (id == R.id.action_signout)
         {
             Toast.makeText(this, "you selected sign out", Toast.LENGTH_SHORT).show();
+            FirebaseAuth.getInstance().signOut();
+            Intent intent1 = new Intent(after_deleteMain.this, finalstartMain.class);
+            startActivity(intent1);
         }
-        else if (id == R.id.action_exit)
+        else if(id==R.id.action_exit)
         {
-            Toast.makeText(this, "you selected exit", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"you selected exit", Toast.LENGTH_SHORT).show();
+            finishAffinity(); // סוגר את כל ה-Activities
+            System.exit(0);   // עוצר את תהליך האפליקציה
         }
         return true;
     }

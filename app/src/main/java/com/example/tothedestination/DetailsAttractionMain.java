@@ -124,10 +124,14 @@ public class DetailsAttractionMain extends AppCompatActivity {
         if(id==R.id.About_programmer)
         {
             Toast.makeText(this,"you selected About programmer", Toast.LENGTH_SHORT).show();
+            Intent intent1 = new Intent(DetailsAttractionMain.this, informationProgrammerMain.class);
+            startActivity(intent1);
         }
         else if(id==R.id.about_app)
         {
             Toast.makeText(this,"you selected About app", Toast.LENGTH_SHORT).show();
+            Intent intent1 = new Intent(DetailsAttractionMain.this, informationApplicationMain.class);
+            startActivity(intent1);
         }
         else if (id == R.id.action_signout)
         {
@@ -139,6 +143,8 @@ public class DetailsAttractionMain extends AppCompatActivity {
         else if(id==R.id.action_exit)
         {
             Toast.makeText(this,"you selected exit", Toast.LENGTH_SHORT).show();
+            finishAffinity(); // סוגר את כל ה-Activities
+            System.exit(0);   // עוצר את תהליך האפליקציה
         }
         else if(id==R.id.action_attractionListChange)
         {
