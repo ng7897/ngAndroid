@@ -8,4 +8,25 @@
     android:background="#B5CBD7"
     tools:context=".informationProgrammerMain">
 
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="76dp"
+        android:text="@string/informationAboutProgrammer"
+        android:textSize="35dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/informationP"
+        android:layout_width="358dp"
+        android:layout_height="92dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="192dp"
+        android:text="My name is Naama Granot, I'm almost 18 years old. I live in Rishon LeZion and study physics and computer science at school. I love drawing, reading books, playing computer games, watching TV shows, and more. I have a dog named Pitsi — she’s 9 years old and is a Pomeranian."
+        android:textSize="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
