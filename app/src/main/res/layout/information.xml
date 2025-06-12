@@ -13,8 +13,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:text="@string/dataOnProgrammer"
-        android:textColor="#000000"
-        android:textSize="34sp"
+        android:textColor="@color/white"
+        android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
@@ -26,8 +26,8 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="200dp"
         android:text="@string/firstName"
-        android:textColor="@color/black"
-        android:textSize="18dp"
+        android:textColor="@color/white"
+        android:textSize="17dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
@@ -36,13 +36,26 @@
         android:id="@+id/textView20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/secondName"
-        android:textColor="@color/black"
+        android:layout_marginStart="144dp"
+        android:layout_marginTop="200dp"
+        android:text="to the destination"
+        android:textColor="@color/white"
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView19"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="264dp"
+        android:text="information"
+        android:textColor="@color/white"
+        android:textSize="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
