@@ -26,19 +26,29 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //binding הוא מייצג את הרכיבים בxml ומאפשר גישה אליהם למשל:binding.tvTitle.setText("something");
+        //ActivityMapsBinding זאת מחלקה אוטומטית שנוצרת על סמך בסיס  הקובץ בxml, היא יוצרת באמצעות הinflate(getLayoutInfalater()) את התצוגה בפועל של הxml
         //ViewBinding זה במקום findViewById, ViewBinding יוצר אובייקט שמייצג את כל הרכיבים שבxml
         binding = ActivityMapsBinding.inflate(getLayoutInflater());
         //מציג את הlayout על המסך
+        //binding.getRoot - מחזיר את הסוג layout למשל LinerLayout או ConstraintLayout
         setContentView(binding.getRoot());
 
+        //getSerializableExtra - מיועד לשליפת אובייקט מורכב מintent
         //קבלת רשימת האטרקציות שהמשתמש סימן בcheckBox
         Intent intent = getIntent();
         attList = (ArrayList<Attraction>) intent.getSerializableExtra("attList");
 
+        //getSupportFragmentManager - מחזיר את המנהל של הFragments , של המפה
+        //Fragment= המפה שלי
+        // Fragment Manager - צריך כי אם יש אובייקט של מפה למשל צריך שיהיה אחראי שינהל אותו, תפקידו הוא למצוא את הFragment הקיים, את המפה בxml
+        //getSupportFragmentManager -
+        //findFragmentById(R.id.map); - מוצא את המפה לפי הid בxml
         //איתור רכיב המפה לפי הid בxml(map) והמרתו לSupportMapFragment
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         //טוען את המפה בצורה שלא חוסמת את המשך הקוד, טעינת המפה לוקחת זמן בגלל שהיא מהאיטרנט ולכן מבקשים להתעדכן כשזה מוכן
+        //getMapAsync - מפעיל את טעינת המפה
         mapFragment.getMapAsync(this);
     }
 

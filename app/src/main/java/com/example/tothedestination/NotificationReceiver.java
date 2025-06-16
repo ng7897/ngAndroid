@@ -15,6 +15,7 @@ public class NotificationReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         //מייצגות את שם הערוץ והID שלו
+        //בלי זה, התראות לא יוצגו באנדרואיד 8 ומעלה
         String channelId = "flight_channel";
         String channelName = "Flight Notifications";
 

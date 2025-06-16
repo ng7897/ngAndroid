@@ -234,6 +234,7 @@ public class after_deleteMain extends AppCompatActivity implements AdapterView.O
             //המרת String לDate
             Date flightDate = sdf.parse(dateStr);
 
+            //calander היא מחלקה שמאפשרת לעבוד עם תאריכים,שעות, ימים וחודשים, לבצע חישובים עליהם ולקבוע זמני התראות
             // לקבוע את ההתראה שתיהיה יום לפני תאריך הטיסה בשעה 9:00 בבוקר
             Calendar notifyTime = Calendar.getInstance();
             notifyTime.setTime(flightDate);
@@ -247,6 +248,7 @@ public class after_deleteMain extends AppCompatActivity implements AdapterView.O
             //notifyTime.add(Calendar.SECOND, 5);
             /// --------------
 
+            //calendar.getInstance() זה למצוא את הזמן הנוכחי
             //אם הזמן שבו הייתה צריכה ההתראה עבר כבר אז אל תבצע אותה
             if (notifyTime.before(Calendar.getInstance())) {
                 // Don't schedule if it's in the past
@@ -263,6 +265,7 @@ public class after_deleteMain extends AppCompatActivity implements AdapterView.O
                     this, 100, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
             //מתי בדיוק להפעיל את הקוד, דרך pendingIntent
+            //קבלת גישה לשירות מערכות, alarmManager, שמאפשר לתזמן פעולות עתידיות בזמן מסוים
             AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
             //setExact- תזמון מדויק
             //AlarmManager.RTC_WAKEUP- תשתמש בשעון אמיתי של המכשיר(RTC) ותעיר את המכשיר אם צריך משינה
@@ -270,6 +273,8 @@ public class after_deleteMain extends AppCompatActivity implements AdapterView.O
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, notifyTime.getTimeInMillis(), pendingIntent);
 
         } catch (ParseException e) {
+            //אם האפליקציה לא מצליחה להמיר String לDate
+            //דפיס את פרטי השגיאה
             e.printStackTrace();
         }
     }
