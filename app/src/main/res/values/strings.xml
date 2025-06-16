@@ -69,6 +69,7 @@
         <item>Hiking</item>
         <item>Beach</item>
         <item>Landscape</item>
+        <item>Skiing</item>
     </string-array>
     <string-array name="Spinner_season">
         <item>Not Important</item>
